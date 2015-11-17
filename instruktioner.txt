@@ -1,0 +1,12 @@
+1. Lägga till repo:
+git init
+git remote add origin https://github.com/SimonJonsson/Tetris.git
+git pull https://github.com/SimonJonsson/Tetris.git
+
+2. Vad du ska göra varje gång du ska börja koda
+2.1 ladda ner senaste versionen
+git pull https://github.com/SimonJonsson/Tetris.git
+2.2 Lägga upp senaste versionen
+git add *
+git commit -m "Meddelande" 
+git push
