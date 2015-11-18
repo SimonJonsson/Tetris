@@ -3,7 +3,7 @@
 int main()
 {
     //Hej!
-    // Create the main window
+    // Create the main window. test
     sf::RenderWindow app(sf::VideoMode(800, 600), "SFML window");
 
     // Load a sprite to display
