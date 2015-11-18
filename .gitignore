@@ -4,6 +4,7 @@ obj/*
 *.cbp
 *.depend
 *.layout
+cb.bmp
 
 # Emacs shit
 *.*~
