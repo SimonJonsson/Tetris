@@ -1,0 +1,9 @@
+# CodeBlocks shit
+bin/*
+obj/*
+*.cbp
+*.depend
+*.layout
+
+# Emacs shit
+*.*~
