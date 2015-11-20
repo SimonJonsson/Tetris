@@ -7,7 +7,7 @@ class GameView : public UpdateView
 {
 public:
     GameView();
-    ~GameView();
+    ~GameView() = default;
 private:
 }
 

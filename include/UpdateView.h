@@ -6,7 +6,10 @@ class UpdateView
 {
 public:
     UpdateView();
-    ~UpdateView();
+    ~UpdateView() = default;
+
+    virtual void update() = 0;
+
 private:
 
 }
