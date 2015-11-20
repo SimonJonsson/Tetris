@@ -1,4 +1,4 @@
-#include "MenuView.h"
+#include "../include/MenuView.h"
 
 MenuView::MenuView()
 {

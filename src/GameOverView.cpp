@@ -1,4 +1,4 @@
-#include "GameOverView.h"
+#include "../include/GameOverView.h"
 
 GameOverView::GameOverView()
 {

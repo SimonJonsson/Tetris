@@ -1,4 +1,4 @@
-#include "HighScoreView.h"
+#include "../include/HighScoreView.h"
 
 HighScoreView::HighScoreView()
 {
