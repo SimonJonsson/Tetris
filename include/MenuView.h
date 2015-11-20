@@ -5,17 +5,17 @@
 
 class MenuView
 {
-    private:
-        sf::Shape StartGame_button
-        sf::Shape Highscore_button
-        sf::Shape Exit_button
+private:
+    sf::Shape StartGame_button
+    sf::Shape Highscore_button
+    sf::Shape Exit_button
 
-    public:
-        MenuView() : UpdateView() {}
-        ~MenuView();
+public:
+    MenuView() : UpdateView() {}
+    ~MenuView();
 
-        void update() override;
-        void changeButton();
+    void update() override;
+    void changeButton();
 };
 
 #endif // MENUVIEW_H
