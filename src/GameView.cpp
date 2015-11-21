@@ -7,7 +7,7 @@ GameView::GameView(sf::Window& window)
 
 }
 
-void update()
+void GameView::update()
 {
 
 }
