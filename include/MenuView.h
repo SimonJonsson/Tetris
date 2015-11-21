@@ -3,18 +3,19 @@
 
 #include "UpdateView.h"
 
-class MenuView
+class MenuView : public UpdateView
 {
 private:
-    sf::Shape StartGame_button
-    sf::Shape Highscore_button
-    sf::Shape Exit_button
+//Ni har inte includat något. Kompilerar inte
+   // sf::Shape StartGame_button;
+   // sf::Shape Highscore_button;
+   // sf::Shape Exit_button;
 
 public:
     MenuView() : UpdateView() {}
     ~MenuView();
 
-    void update() override;
+   // void update() override;
     void changeButton();
 };
 

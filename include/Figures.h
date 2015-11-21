@@ -19,7 +19,7 @@ class J final : public Figure
         J()
         : Figure() {}
         virtual ~J();
-        void rotate() override;
+        void rotate()  override;
     protected:
     private:
 };

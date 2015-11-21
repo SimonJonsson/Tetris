@@ -1,6 +1,6 @@
 #ifndef FIGURE_H
 #define FIGURE_H
-#include
+#include <array>
 
 
 class Figure
@@ -14,7 +14,7 @@ public:
 
     //clone på figurerna?
 
-    virtual rotate() const = 0;
+    virtual void rotate() = 0;
 
 protected:
 
