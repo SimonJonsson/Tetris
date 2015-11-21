@@ -5,7 +5,7 @@
 class UpdateView
 {
 public:
-    UpdateView();
+    UpdateView() = default;
     ~UpdateView() = default;
 
     virtual void update() = 0;
