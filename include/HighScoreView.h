@@ -5,17 +5,15 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 struct HighScore
 {
-    string name;
+    std::string name;
     int score;
 };
 class HighScoreView : public UpdateView
 {
     private:
-        vector<HighScore> highscores;
+        std::vector<HighScore> highscores;
     public:
         HighScoreView(): UpdateView() {}
         ~HighScoreView();
