@@ -30,6 +30,6 @@ private:
     GameOverView*   gameOverView;
 
 
-}
+};
 
 #endif

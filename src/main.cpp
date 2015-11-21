@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "../include/ViewHandler.h"
 
 int main()
 {

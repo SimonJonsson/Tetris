@@ -9,6 +9,6 @@ public:
     GameView();
     ~GameView() = default;
 private:
-}
+};
 
 #endif
