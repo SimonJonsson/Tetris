@@ -6,11 +6,18 @@
 #include "Figure.h"
 #include <vector>
 
+typedef sf::Vector2<int> Position;
+
 class GameEngine
 {
 private:
-    std::vector<sf::Shape> field;
-    std::vector<sf::Shape> borders;
+    int wHeight;
+    int wWidth;
+    int bHeight;
+    int bWidth;
+    Position boardPos;
+    std::vector<sf::Shape*> field(500); //Init room for about half of board
+  //  (RectangleShape*) borders[4];
     Figure* currentFigure;
     Figure* nextFigure;
     int difficulty = 0;
@@ -27,7 +34,7 @@ private:
     void updateScore(long amount);
 
 public:
-    GameEngine() = default;
+    GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth);
     ~GameEngine() = default;
 
     void leftClick();
