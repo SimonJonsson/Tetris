@@ -12,3 +12,6 @@ MenuView::~MenuView()
 }
 
 */
+void MenuView::update(sf::RenderWindow& window)
+{
+}

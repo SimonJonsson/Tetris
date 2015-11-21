@@ -15,3 +15,7 @@ GameOverView::~GameOverView()
     //dtor
 }
 */
+
+void GameOverView::update(sf::RenderWindow& window)
+{
+}

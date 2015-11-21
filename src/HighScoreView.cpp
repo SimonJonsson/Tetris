@@ -11,3 +11,7 @@ HighScoreView::~HighScoreView()
     //dtor
 }
 */
+
+void HighScoreView::update(sf::RenderWindow& window)
+{
+}

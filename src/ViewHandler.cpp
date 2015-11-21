@@ -6,10 +6,10 @@ using namespace std;
 ViewHandler::ViewHandler()
 {
 
-//  menuView        = new MenuView{};
-//  highScoreView   = new HighScoreView{};
+    menuView        = new MenuView{};
+    highScoreView   = new HighScoreView{};
     gameView        = new GameView{};
-//  gameOverView    = new GameOverView{};
+    gameOverView    = new GameOverView{};
     currentView = gameView;
 }
 

@@ -7,7 +7,7 @@
 class UpdateView
 {
 public:
-    UpdateView() = default;
+    UpdateView();
     ~UpdateView() = default;
 
     virtual void update(sf::RenderWindow&) = 0;
