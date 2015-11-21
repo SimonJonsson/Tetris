@@ -4,43 +4,29 @@ using namespace std;
 
 ViewHandler::ViewHandler()
 {
-    sf::Window window(sf::VideoMode(800, 600), "SFML window");
-//    menuView        = new MenuView{};
-  //  highScoreView   = new HighScoreView{};
-    //gameView        = new GameView{window};
-    //gameOverView    = new GameOverView{};
+//  menuView        = new MenuView{};
+//  highScoreView   = new HighScoreView{};
+//    gameView        = new GameView{window};
+//  gameOverView    = new GameOverView{};
 }
 
 //Main function for updating the window
 void ViewHandler::initiate()
 {
- //Hej!
-    // Create the main window. test
-    sf::Window window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window;
+    sf::View view;
+    // Initialize the view to a rectangle located at (100, 100) and with a size of 400x200
+    view.reset(sf::FloatRect(100, 100, 400, 200));
+    // Rotate it by 45 degrees
+    view.rotate(45);
+    // Set its target viewport to be half of the window
+    view.setViewport(sf::FloatRect(0.f, 0.f, 0.5f, 1.f));
+    // Apply it
+    window.setView(view);
+    // Set the default view back
+    window.setView(window.getDefaultView());
+    // Render stuff not affected by the view
 
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile("cb.bmp"))
-    sf::Sprite sprite(texture);
-
-	// Start the game loop
-    while (window.isOpen())
-    {
-        // Process events
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            // Close window : exit
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-
-        // Draw the sprite
-//        app.draw(sprite);
-
-        // Update the window
-        window.display();
-    }
+    window.display();
 
 }
