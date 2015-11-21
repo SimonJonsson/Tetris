@@ -2,7 +2,7 @@
 
 using namespace std;
 
-GameView::GameView(sf::Window& window)
+GameView::GameView()
 {
 
 }

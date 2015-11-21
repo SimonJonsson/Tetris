@@ -25,6 +25,7 @@ public:
 
 
 private:
+
     UpdateView*     currentView;
 
     MenuView*       menuView;

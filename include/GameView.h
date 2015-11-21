@@ -9,7 +9,7 @@
 class GameView : public UpdateView
 {
 public:
-    GameView(sf::Window&);
+    GameView();
     ~GameView() = default;
 
     void update() override;
