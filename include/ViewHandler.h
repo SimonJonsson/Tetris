@@ -25,13 +25,13 @@ public:
 
 
 private:
+    sf::RenderWindow*   windowptr;
+    UpdateView*         currentView;
 
-    UpdateView*     currentView;
-
-    MenuView*       menuView;
-    HighScoreView*  highScoreView;
-    GameView*       gameView;
-    GameOverView*   gameOverView;
+    MenuView*           menuView;
+    HighScoreView*      highScoreView;
+    GameView*           gameView;
+    GameOverView*       gameOverView;
 
 
 };

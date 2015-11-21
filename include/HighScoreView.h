@@ -19,7 +19,7 @@ class HighScoreView : public UpdateView
         HighScoreView(): UpdateView() {}
         ~HighScoreView();
 
-        void update() override;
+        void update(sf::RenderWindow&) override;
         void readHighscore();
 };
 

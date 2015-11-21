@@ -16,7 +16,7 @@ public:
     MenuView() : UpdateView() {}
     ~MenuView();
 
-   // void update() override;
+    void update(sf::RenderWindow&) override;
     void changeButton();
 };
 

@@ -16,7 +16,7 @@ private:
     int bHeight;
     int bWidth;
     Position boardPos;
-    std::vector<sf::Shape*> field(500); //Init room for about half of board
+    std::vector<sf::Shape*> field; //Init room for about half of board
   //  (RectangleShape*) borders[4];
     Figure* currentFigure;
     Figure* nextFigure;

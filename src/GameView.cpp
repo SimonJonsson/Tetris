@@ -7,7 +7,13 @@ GameView::GameView()
 
 }
 
-void GameView::update()
+void GameView::update(sf::RenderWindow& window)
 {
 
+    sf::Texture texture;
+    if (!texture.loadFromFile("cb.bmp"))
+    {}
+    sf::Sprite sprite(texture);
+
+    window.draw(sprite);
 }

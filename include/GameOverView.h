@@ -18,7 +18,7 @@ public:
     //void open_view(); - Simon
     //void close_view(); - Simon
 
-    void               update() override;
+    void               update(sf::RenderWindow&) override;
     void               updateHighScore();
     void               setName();
     void               setScore();

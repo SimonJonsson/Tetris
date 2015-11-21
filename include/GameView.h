@@ -12,8 +12,9 @@ public:
     GameView();
     ~GameView() = default;
 
-    void update() override;
+    void update(sf::RenderWindow&) override;
 private:
+    sf::RenderWindow* window;
 };
 
 #endif

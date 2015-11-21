@@ -10,7 +10,7 @@ public:
     UpdateView() = default;
     ~UpdateView() = default;
 
-    virtual void update() = 0;
+    virtual void update(sf::RenderWindow&) = 0;
 
 private:
 

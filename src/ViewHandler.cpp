@@ -1,9 +1,11 @@
 #include "../include/ViewHandler.h"
+#include <iostream>
 
 using namespace std;
 
 ViewHandler::ViewHandler()
 {
+
 //  menuView        = new MenuView{};
 //  highScoreView   = new HighScoreView{};
     gameView        = new GameView{};
@@ -14,20 +16,10 @@ ViewHandler::ViewHandler()
 //Main function for updating the window
 void ViewHandler::initiate()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Tetris");
-    sf::View view;
+    //window.setFramerateLimit(60);
 
-    // Initialize the view to a rectangle located at (100, 100) and with a size of 400x200
-    view.reset(sf::FloatRect(100, 100, 100, 100));
-    // Set its target viewport to be half of the window
-    view.setViewport(sf::FloatRect(0.f, 0.f, 0.5f, 1.f));
-    // Apply it
-    window.setView(view);
-    // Set the default view back
-    window.setView(window.getDefaultView());
-    // Render stuff not affecte
-    sf::Font font;
-    sf::Text text("Hello SFML", font, 50);
+    sf::RenderWindow window(sf::VideoMode(700, 800), "Tetris");
+    windowptr = &window;
 
     // Start the game loop
     while (window.isOpen())
@@ -40,10 +32,12 @@ void ViewHandler::initiate()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        // Clear screen
-        window.clear();
-        // Draw the string
-        window.draw(text);
+
+        // Clear screen, screen background is white.
+        window.clear(sf::Color::White);
+
+        currentView->update(window);
+
         // Update the window
         window.display();
     }
