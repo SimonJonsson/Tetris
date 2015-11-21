@@ -1,6 +1,6 @@
 #ifndef UPDATEVIEW_H
 #define UPDATEVIEW_H
-#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 class UpdateView
 {
