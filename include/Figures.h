@@ -1,3 +1,4 @@
+//Sofia & Patrik
 #ifndef FIGURES_H
 #define FIGURES_H
 #include "Figure.h"

@@ -1,3 +1,7 @@
+//Grayson
+#ifndef GAMEENGINE_H
+#define GAMEENGINE_H
+
 #include <SFML/Graphics.hpp>
 #include "Figure.h"
 #include <vector>
@@ -37,5 +41,9 @@ public:
     Figure* getCurrentFigure();
     Figure* getNextFigure();
     long getScore();
+    void operator=(GameEngine& ) = delete;
 
 };
+
+
+#endif

@@ -1,3 +1,4 @@
+//Axel & Mathilda
 #ifndef HIGHSCOREVIEW_H
 #define HIGHSCOREVIEW_H
 

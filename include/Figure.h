@@ -1,3 +1,4 @@
+//Sofia & Patrik
 #ifndef FIGURE_H
 #define FIGURE_H
 #include <array>
