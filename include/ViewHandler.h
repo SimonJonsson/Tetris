@@ -25,7 +25,6 @@ public:
 
 
 private:
-    sf::RenderWindow*   windowptr;
     UpdateView*         currentView;
 
     MenuView*           menuView;

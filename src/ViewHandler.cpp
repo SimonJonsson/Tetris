@@ -19,7 +19,6 @@ void ViewHandler::initiate()
     //window.setFramerateLimit(60);
 
     sf::RenderWindow window(sf::VideoMode(700, 800), "Tetris");
-    windowptr = &window;
 
     // Start the game loop
     while (window.isOpen())
