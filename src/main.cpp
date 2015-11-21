@@ -1,3 +1,4 @@
+// Simon
 #include <SFML/Graphics.hpp>
 #include "../include/ViewHandler.h"
 

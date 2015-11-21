@@ -1,3 +1,4 @@
+//Simon
 #ifndef VIEWHANDLER_H
 #define VIEWHANDLER_H
 
