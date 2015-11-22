@@ -25,7 +25,7 @@ Varje gång man ändrar skit
 7) git status - se vilka filer som ändrats
 8) git diff - se kod som ändrats
 9) (låt säga man ändrat readme.md och main.cpp)
-git add readme.md main.cpp (använd inte git add .)
+git add readme.md main.cpp (var försiktig med git add ., lägger till allt)
 10) git status (visar grönt på filer man lagt till)
 11) git commit -m "vad har jag gjort"
 12) git pull (updatera innan du pushar ändringar)
@@ -38,3 +38,9 @@ dessa ändringar måste även committas
 
 
 q för att komma ut
+
+
+
+--------------------------
+Kodmall.
+https://www.ida.liu.se/~TDDC76/2014/project/kodmallar.sv.shtml#Dokumentationen%20av%20program
