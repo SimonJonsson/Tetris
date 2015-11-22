@@ -1,23 +1,22 @@
-/*
- * TDDC76 - MAT3 - Group 5
+/* TDDC76 - MAT3 - Group 5
  *
  * INDENTIFICATION
- *
  * Filename:    GameEngine.h
  * Unitname:    GameEngine
  * Type:        Module declaration
  * Revision:    1.0
  * Author:      G. Webb
  *
- *
  * DESCRIPTION
- *
  * This module decalares the functionality that the Tetris game engine will have.
  *
+ * USES
+ * Module: SFML/Graphics
+ * Module: vector
+ * Module: Figure
+ *
  * REVISIONLOG
- *
  * Revision     Date    Changes
- *
  * 1.0          151122  Óriginal version.
  */
 
@@ -59,8 +58,8 @@ private:
     void increaseScore(long amount); //Increases score by specified amount of points.
 
 public:
-    GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty=0);
-    ~GameEngine() = default; //Currently leaks memory!
+    GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty=0); //Constructor.
+    ~GameEngine() = default; //Currently leaks memory! Needs to be implemented.
 
     void leftClick(); //Actions corresponding to player pressing left arrow key.
     void rightClick(); //Actions corresponding to player pressing right arrow key.
@@ -74,7 +73,7 @@ public:
     Figure* getCurrentFigure(); //Returns current figure that is falling down.
     Figure* getNextFigure(); //Returns next figure to be placed.
     long getScore(); //Returns current score.
-    void operator=(GameEngine& ) = delete; //Only one GameEngine can exist at one time.
+    void operator=(GameEngine& )= delete; //Only one GameEngine can exist at one time.
 
 };
 
