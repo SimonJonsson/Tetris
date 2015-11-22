@@ -33,7 +33,7 @@ GameView::GameView()
  */
 void GameView::update(sf::RenderWindow& window)
 {
-//    gameEngine->update(12);
+    gameEngine->update(12);
 
     sf::Texture texture;
     if (!texture.loadFromFile("cb.bmp"))
@@ -47,20 +47,20 @@ void GameView::update(sf::RenderWindow& window)
  */
 void GameView::leftClick()
 {
-//    gameEngine->leftClick();
+    gameEngine->leftClick();
 }
 
 void GameView::rightClick()
 {
-//    gameEngine->rightClick();
+    gameEngine->rightClick();
 }
 
 void GameView::upClick()
 {
-//    gameEngine->upClick();
+    gameEngine->upClick();
 }
 
 void GameView::downClick()
 {
-//    gameEngine->downClick();
+    gameEngine->downClick();
 }
