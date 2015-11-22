@@ -59,23 +59,23 @@ private:
 
 public:
     GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty=0); //Constructor.
-    ~GameEngine() = default; //Currently leaks memory! Needs to be implemented.
+    ~GameEngine(); //Destructor.
 
+    void update(long dt); //Logic loop. dt is time since last update was performed.
     void leftClick(); //Actions corresponding to player pressing left arrow key.
     void rightClick(); //Actions corresponding to player pressing right arrow key.
     void upClick(); //Actions corresponding to player pressing up arrow key.
     void downClick(); //Actions corresponding to player pressing down arrow key.
 
-    void update(long dt); //Logic loop. dt is time since last update was performed.
     bool isGameOver(); //Checks if game has ended /returns gameOver.
     bool isGamePaused(); //Checks if player has paused game /returns gamePaused.
-    std::vector<sf::Shape*> getBlockField(); //Returns vector containing pointers to all blocks in blockfield.
+    std::vector<sf::Shape*>& getBlockField(); //Returns vector containing pointers to all blocks in blockfield.
     Figure* getCurrentFigure(); //Returns current figure that is falling down.
     Figure* getNextFigure(); //Returns next figure to be placed.
     long getScore(); //Returns current score.
+
     void operator=(GameEngine& )= delete; //Only one GameEngine can exist at one time.
 
 };
-
 
 #endif
