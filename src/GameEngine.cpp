@@ -12,6 +12,8 @@
  *
  * USES
  * Module: GameEngine
+ * Module: iostream
+ * Module: math
  *
  * REVISIONLOG
  * Revision     Date    Changes
@@ -19,9 +21,12 @@
  */
 
 #include "../include/GameEngine.h"
-
+#include <iostream>
+#include <math.h>
 using namespace std;
 using namespace sf;
+
+/////////////////////////-----(START) PUBLIC FUNCTIONS-----//////////////////////////////////////
 
 /*
 * CONSTRUCTOR GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty);
@@ -34,8 +39,12 @@ GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int b
     fHeight = boardHeight;
     fWidth = boardWidth;
     difficulty = initialDifficulty;
+    moveTime = initMoveTime;
 
-    boardPos = Position((wWidth - fWidth) / 2, (wHeight - fHeight) / 2);
+    fieldPos = Position((wWidth - fWidth) / 2, (wHeight - fHeight) / 2);
+    startPos = Position(fieldPos.x + fWidth / 2, fieldPos.y);
+    currentFigure = generateRandomFigure();
+    nextFigure = generateRandomFigure();
 }
 
 /*
@@ -48,6 +57,8 @@ GameEngine::~GameEngine()
     {
         delete block;
     }
+    delete currentFigure;
+    delete nextFigure;
 }
 
 /* FUNCTION void GameEngine::update(long dt)
@@ -56,7 +67,31 @@ GameEngine::~GameEngine()
  */
 void GameEngine::update(long dt)
 {
+    if(!gameOver && !gamePaused )
+    {
+        timeStill += dt;
+        if(timeStill > moveTime)
+        {
+            bool shouldPlace = translate(currentFigure,0,1);
 
+            if (shouldPlace)
+            {
+                placeFigure();
+                //nextFigure->translate(defaultPos);
+                currentFigure = nextFigure;
+                nextFigure = generateRandomFigure();
+                timeStill = 0;
+                if(collides()) //in default pos. -> can only collide with blockfield.
+                {
+                    gameOver = true;
+                }
+            }
+        }
+        int cleared = clearFullRows();
+        increaseScore(scorePerRow*cleared*(difficulty+1)); //+1 due to initial diff=0
+        updateDifficulty();
+
+    }
 }
 
 /* FUNCTION void GameEngine::leftClick()
@@ -64,7 +99,7 @@ void GameEngine::update(long dt)
  */
 void GameEngine::leftClick()
 {
-
+    translate(currentFigure,-1,0);
 }
 
 /* FUNCTION void GameEngine::rightClick()
@@ -72,7 +107,7 @@ void GameEngine::leftClick()
  */
 void GameEngine::rightClick()
 {
-
+    translate(currentFigure,1,0);
 }
 
 /* FUNCTION void GameEngine::upClick()
@@ -88,7 +123,10 @@ void GameEngine::upClick()
  */
 void GameEngine::downClick()
 {
-
+    if(translate(currentFigure,0,1))
+    {
+        timeStill = 0;
+    }
 }
 
 /* FUNCTION bool GameEngine::isGameOver()
@@ -138,4 +176,84 @@ long GameEngine::getScore()
 {
     return score;
 }
+
+//////////////////////-----(END) PUBLIC FUNCTIONS-----//////////////////////////////////////
+//////////////////////-----(START) PRIVATE FUNCTIONS-----///////////////////////////////////
+
+/* FUNCTION void GameEngine::updateMoveTime()
+ * Update moveTime.
+ */
+void GameEngine::updateDifficulty()
+{
+    if(diffCleared > 2 + difficulty) //Needs to be tested until good feel.
+    {
+        ++difficulty;
+        moveTime = initMoveTime / log(exp(1) + difficulty); //Also needs testing for feel.
+        diffCleared = 0;
+    }
+}
+
+/* FUNCTION void GameEngine::translate(Figure* fig, int x, int y)
+ * Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
+ * Returns false if figure lower bound is touching blockfield->needs to be placed.
+ * Else true.
+ */
+bool GameEngine::translate(Figure* fig, int x, int y)
+{
+
+}
+
+/* FUNCTION void GameEngine::translate(sf::Shape* block, int x, int y)
+ * Translate one tetris block. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
+ * Returns false if translation is not possible.
+ */
+bool GameEngine::translate(sf::Shape* block, int x, int y)
+{
+
+}
+
+/* FUNCTION bool GameEngine::collides(Figure* fig)
+ * Check if current figure collides with blockfield/borders
+ */
+bool GameEngine::collides()
+{
+
+}
+
+/* FUNCTION void GameEngine::placeFigure()
+ * Place current figure onto blockfield.
+ */
+void GameEngine::placeFigure()
+{
+
+}
+
+/* FUNCTION Figure* GameEngine::generateRandomFigure()
+ * Generate a random figure.
+ */
+Figure* GameEngine::generateRandomFigure()
+{
+
+}
+
+/* FUNCTION int GameEngine::clearFullRows()
+ * Removes full rows from board and returns number of rows removed.
+ */
+int GameEngine::clearFullRows()
+{
+
+}
+
+/* FUNCTION void GameEngine::increaseScore(long amount)
+ * Increases score by specified amount of points.
+ */
+void GameEngine::increaseScore(long amount)
+{
+    if(amount > 0)
+    {
+        score += amount;
+    }
+}
+
+//////////////////////-----(END) PRIVATE FUNCTIONS-----///////////////////////////////////
 
