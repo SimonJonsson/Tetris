@@ -1,4 +1,26 @@
-//Simon
+/*
+ * TDDC76 - MAT3 - Group 5
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:    ViewHandler.h
+ * Enhetsnamn: ViewHandler
+ * Typ:        Moduldeklaration
+ * Revision:   1
+ * Skriven av: Simon Jönsson
+ *
+ *
+ * BESKRIVNING
+ *
+ * Handler for all the views.
+ * Manages keybindings, drawing, window
+ *
+ * REVISIONSBERÄTTELSE
+ *
+ * Revision     Datum   Förändringar
+ *
+ * 1            940319  Ursprungsversion
+ */
 #ifndef VIEWHANDLER_H
 #define VIEWHANDLER_H
 
@@ -25,13 +47,18 @@ public:
 
 
 private:
-    UpdateView*         currentView;
+    sf::RenderWindow    window;
 
+    UpdateView*         currentView;
     MenuView*           menuView;
     HighScoreView*      highScoreView;
     GameView*           gameView;
     GameOverView*       gameOverView;
 
+    int windowWidth     = 700;
+    int windowHeight    = 800;
+
+    bool pause          = false;
 
 };
 
