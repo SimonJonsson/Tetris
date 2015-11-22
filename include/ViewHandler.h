@@ -43,7 +43,6 @@ public:
 
     void    initiate();
     //Problem uppstår när vi skall stänga av spelet.
-    void    controls(); //Läser från keyboard, har kontrollschema
 
 
 private:
@@ -59,6 +58,10 @@ private:
     int windowHeight    = 800;
 
     bool pause          = false;
+
+    void eventHandler();
+    void inputHandler();
+    void outputHandler();
 
 };
 

@@ -43,80 +43,98 @@ void ViewHandler::initiate()
     // Start the game loop
     while (window.isOpen())
     {
-        // Process events
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            // Close window : exit
-            if (event.type == sf::Event::Closed)
-                window.close();
+        eventHandler();
+        inputHandler();
+        outputHandler();
+    }
+}
 
-            /*
-             *  If we lose focus of the screen we pause, if we gain focus again we unpause.
-             */
-            if (event.type == sf::Event::GainedFocus)
-                pause = false;
+/*
+ * Handles all events for the window
+ */
+void ViewHandler::eventHandler()
+{
 
-            if (event.type == sf::Event::LostFocus)
-                pause = true;
-        }
+    // Process events
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        // Close window : exit
+        if (event.type == sf::Event::Closed)
+            window.close();
 
         /*
-         * The keybindings for all views
-         * This happens before the update so we can draw
-         * instantaneously what happens.
-         * This must also have a debounce function
+         *  If we lose focus of the screen we pause, if we gain focus again we unpause.
          */
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if (event.type == sf::Event::GainedFocus)
+            pause = false;
+
+        if (event.type == sf::Event::LostFocus)
+            pause = true;
+    }
+}
+/*
+ * The keybindings for all views
+ * This happens before the update so we can draw
+ * instantaneously what happens.
+ * This must also have a debounce function
+ */
+void ViewHandler::inputHandler()
+{
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cout << "left\n";
+        if (!pause)
+            currentView->leftClick();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cout << "right\n";
+        if (!pause)
+            currentView->rightClick();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cout << "up\n";
+        if (!pause)
+            currentView->upClick();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cout << "down\n";
+        if (!pause)
+            currentView->downClick();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+    {
+        if (typeid(currentView) == typeid(GameView))
         {
-            cout << "left\n";
-            if (!pause)
-                currentView->leftClick();
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            cout << "right\n";
-            if (!pause)
-                currentView->rightClick();
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            cout << "up\n";
-            if (!pause)
-                currentView->upClick();
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            cout << "down\n";
-            if (!pause)
-                currentView->downClick();
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-        {
-            if (typeid(currentView) == typeid(GameView))
+            if (pause)
             {
-                if (pause)
-                {
-                    pause = false;
-                }
-                else
-                {
-                    pause = true;
-                }
+                pause = false;
+            }
+            else
+            {
+                pause = true;
             }
         }
-
-        // We want to render only if we are not paused.
-        if (!pause)
-        {
-            // Clear screen, screen background is white.
-            window.clear(sf::Color::White);
-            // Update for currentView.
-            currentView->update(window);
-
-            // Update the window
-            window.display();
-        }
-
+    }
+}
+/*
+ * Handles the outputs for ViewHandler
+ * including all update functions
+ */
+void ViewHandler::outputHandler()
+{
+    // We want to render only if we are not paused.
+    if (!pause)
+    {
+        // Clear screen, screen background is white.
+        window.clear(sf::Color::White);
+        // Update for currentView.
+        currentView->update(window);
+        // Update the window
+        window.display();
     }
 }
