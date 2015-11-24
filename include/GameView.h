@@ -40,7 +40,7 @@ public:
     void downClick()  override;
 
 private:
-    sf::RenderWindow*   window
+    sf::RenderWindow*   window;
     GameEngine*         gameEngine;
 
 };
