@@ -1,4 +1,4 @@
-#include "Figure.h"
+#include "../include/Figure.h"
 
 Figure::Figure()
 {

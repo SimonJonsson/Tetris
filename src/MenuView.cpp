@@ -1,9 +1,9 @@
 #include "../include/MenuView.h"
 
-/* // samma som innan...
+/*
 MenuView::MenuView()
 {
-    //ctor
+
 }
 
 MenuView::~MenuView()
@@ -12,6 +12,27 @@ MenuView::~MenuView()
 }
 
 */
-void MenuView::update(sf::RenderWindow& window)
+void MenuView::update()
 {
+
+}
+
+void MenuView::leftClick()
+{
+
+}
+
+void MenuView::rightClick()
+{
+
+}
+
+void MenuView::upClick()
+{
+
+}
+
+void MenuView::downClick()
+{
+
 }

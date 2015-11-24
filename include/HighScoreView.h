@@ -19,8 +19,13 @@ class HighScoreView : public UpdateView
         HighScoreView(): UpdateView() {}
         ~HighScoreView();
 
-        void update(sf::RenderWindow&) override;
+        void update() override;
         void readHighscore();
+
+        void leftClick()  override;
+        void rightClick() override;
+        void upClick()    override;
+        void downClick()  override;
 };
 
 #endif // HIGHSCOREVIEW_H

@@ -12,6 +12,27 @@ HighScoreView::~HighScoreView()
 }
 */
 
-void HighScoreView::update(sf::RenderWindow& window)
+void HighScoreView::update()
 {
+
+}
+
+void HighScoreView::leftClick()
+{
+
+}
+
+void HighScoreView::rightClick()
+{
+
+}
+
+void HighScoreView::upClick()
+{
+
+}
+
+void HighScoreView::downClick()
+{
+
 }

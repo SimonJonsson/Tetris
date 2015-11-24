@@ -133,7 +133,7 @@ void ViewHandler::outputHandler()
         // Clear screen, screen background is white.
         window.clear(sf::Color::White);
         // Update for currentView.
-        currentView->update(window);
+        currentView->update();
         // Update the window
         window.display();
     }

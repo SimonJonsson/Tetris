@@ -7,17 +7,21 @@
 class MenuView : public UpdateView
 {
 private:
-//Ni har inte includat något. Kompilerar inte
-   // sf::Shape StartGame_button;
-   // sf::Shape Highscore_button;
-   // sf::Shape Exit_button;
+    sf::RectangleShape StartGame_button;
+    sf::RectangleShape Highscore_button;
+    sf::RectangleShape Exit_button;
 
 public:
-    MenuView() : UpdateView() {}
+    MenuView() {}
     ~MenuView();
 
-    void update(sf::RenderWindow&) override;
+    void update() override;
     void changeButton();
+
+    void leftClick()  override;
+    void rightClick() override;
+    void upClick()    override;
+    void downClick()  override;
 };
 
 #endif // MENUVIEW_H

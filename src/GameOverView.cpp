@@ -16,6 +16,27 @@ GameOverView::~GameOverView()
 }
 */
 
-void GameOverView::update(sf::RenderWindow& window)
+void GameOverView::update()
 {
+
+}
+
+void GameOverView::leftClick()
+{
+
+}
+
+void GameOverView::rightClick()
+{
+
+}
+
+void GameOverView::upClick()
+{
+
+}
+
+void GameOverView::downClick()
+{
+
 }
