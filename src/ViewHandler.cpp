@@ -27,12 +27,13 @@ using namespace std;
 //Instantiates all the views
 ViewHandler::ViewHandler()
 {
-//    menuView        = new MenuView{};
-//    highScoreView   = new HighScoreView{};
+    menuView        = new MenuView(&window);
+    highScoreView   = new HighScoreView(&window);
     gameView        = new GameView(&window);
-//    gameOverView    = new GameOverView{};
+    gameOverView    = new GameOverView(&window);
     currentView     = gameView;
 }
+
 
 //Main function for updating the window
 void ViewHandler::initiate()
@@ -73,6 +74,7 @@ void ViewHandler::eventHandler()
             pause = true;
     }
 }
+
 /*
  * The keybindings for all views
  * This happens before the update so we can draw
@@ -121,6 +123,7 @@ void ViewHandler::inputHandler()
         }
     }
 }
+
 /*
  * Handles the outputs for ViewHandler
  * including all update functions
@@ -130,6 +133,8 @@ void ViewHandler::outputHandler()
     // We want to render only if we are not paused.
     if (!pause)
     {
+        // So we get the current window
+//        currentView = menuView->getWindow();
         // Clear screen, screen background is white.
         window.clear(sf::Color::White);
         // Update for currentView.
