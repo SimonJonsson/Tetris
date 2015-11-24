@@ -32,7 +32,7 @@ GameView::GameView(sf::RenderWindow* windowptr)
 /*
  * Updatefunction for GameView. Handles all the graphics of game engine.
  */
-void GameView::update(sf::RenderWindow& window)
+void GameView::update()
 {
     gameEngine->update(12);
 
