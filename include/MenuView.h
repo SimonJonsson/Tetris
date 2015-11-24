@@ -11,8 +11,10 @@ private:
     sf::RectangleShape Highscore_button;
     sf::RectangleShape Exit_button;
 
+    sf::RenderWindow* window;
+
 public:
-    MenuView() {}
+    MenuView(sf::RenderWindow*);
     ~MenuView();
 
     void update() override;

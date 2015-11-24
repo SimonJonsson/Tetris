@@ -12,7 +12,7 @@ private:
     int score{0};
     sf::RenderWindow* window;
 public:
-    GameOverView(sf::RenderWindow*) : UpdateView() {}
+    GameOverView(sf::RenderWindow*);
     //Kanske bara standardkonstruktor
     ~GameOverView() = default;
 

@@ -1,11 +1,12 @@
 #include "../include/HighScoreView.h"
 
-/* // Samma som med gameoverview definitionen
-HighScoreView::HighScoreView()
+
+HighScoreView::HighScoreView(sf::RenderWindow* windowptr)
 {
-    //ctor
+    window = windowptr;
 }
 
+/*
 HighScoreView::~HighScoreView()
 {
     //dtor

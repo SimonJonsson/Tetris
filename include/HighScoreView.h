@@ -11,12 +11,14 @@ struct HighScore
     std::string name;
     int score;
 };
+
 class HighScoreView : public UpdateView
 {
     private:
         std::vector<HighScore> highscores;
+        sf::RenderWindow* window;
     public:
-        HighScoreView(): UpdateView() {}
+        HighScoreView(sf::RenderWindow*);
         ~HighScoreView();
 
         void update() override;

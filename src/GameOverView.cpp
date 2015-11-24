@@ -1,13 +1,13 @@
 #include "../include/GameOverView.h"
 
 
-/* Ni har redan definerat denna
-GameOverView::GameOverView()
+
+GameOverView::GameOverView(sf::RenderWindow* windowptr)
 {
-    //ctor
+    window = windowptr;
 }
 
-*/
+
 
 /* //Ni har en default destruktor
 GameOverView::~GameOverView()

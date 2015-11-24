@@ -1,11 +1,11 @@
 #include "../include/MenuView.h"
 
-/*
-MenuView::MenuView()
+
+MenuView::MenuView(sf::RenderWindow* windowptr)
 {
-
+    window = windowptr;
 }
-
+/*
 MenuView::~MenuView()
 {
     //dtor
