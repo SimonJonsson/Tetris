@@ -36,24 +36,30 @@ private:
     int wWidth; //Width of Window.
     int fHeight; //Height of playing field.
     int fWidth; //Width of playing field.
-    Position boardPos; //Upper left corner of playing field.
+    Position fieldPos; //Upper left corner of playing field.
+    Position startPos; //Start posiion of new figures.
     std::vector<sf::Shape*> blockField; //Vector with pointers to all blocks that have been placed.
     Figure* currentFigure; //Current tetris figure falling down.
     Figure* nextFigure; //Next figure to be placed.
+    int rowsCleared = 0; //Number of rows player has cleared.
+    int diffCleared = 0; //Number of rows cleared on current difficulty
     int difficulty = 0; //Difficulty of game. Based on number of cleared rows.
+
+    long initMoveTime = 800; //Move time(ms) for difficulty 0.
     int moveTime = 0; //Time(ms) until block should be moved. Based on difficulty.
     int timeStill = 0; //How long time(ms) has gone since block was moved.
     int blockSize = 0; //Width/Height of one block. This will be stepsize when translating.
     long score = 0; //Current accumulated score.
+    int scorePerRow = 100;
     bool gameOver = false; //Has the game ended.
     bool gamePaused = false; //Has the game been paused.
 
-    void updateMoveTime(); //Update moveTime.
-    void translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
-    void translate(sf::Shape* block, int x, int y); //Translate one tetris block. As above
-    sf::Shape* collides(Figure* fig); //Check if figure collides with blockfield/borders
-    void placeFigure(Figure*& fig); //Place current figure onto blockfield.
-    void generateNextFigure(); //Generate a next random figure.
+    void updateDifficulty(); //Update moveTime.
+    bool translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
+    bool translate(sf::Shape* block, int x, int y); //Translate one tetris block. As above
+    bool collides(); //Check if current figure collides with blockfield/borders
+    void placeFigure(); //Place current figure onto blockfield.
+    Figure* generateRandomFigure(); //Generate a random figure.
     int clearFullRows(); //Removes full rows from board and returns number of rows removed.
     void increaseScore(long amount); //Increases score by specified amount of points.
 
