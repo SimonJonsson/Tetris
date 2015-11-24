@@ -29,7 +29,7 @@ ViewHandler::ViewHandler()
 {
 //    menuView        = new MenuView{};
 //    highScoreView   = new HighScoreView{};
-    gameView        = new GameView{};
+    gameView        = new GameView(window*);
 //    gameOverView    = new GameOverView{};
     currentView     = gameView;
 }

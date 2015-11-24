@@ -19,12 +19,13 @@
  *
  * 1            940319  Ursprungsversion
  */
-#include <../include/GameView.h>
+#include "../include/GameView.h"
 
 using namespace std;
 
-GameView::GameView()
+GameView::GameView(sf::RenderWindow* windowptr)
 {
+    window = windowptr;
     gameEngine = new GameEngine(700,800,640,580);
 }
 
@@ -39,7 +40,7 @@ void GameView::update(sf::RenderWindow& window)
     if (!texture.loadFromFile("cb.bmp"))
     {}
     sf::Sprite sprite(texture);
-    window.draw(sprite);
+    window->draw(sprite);
 }
 
 /*

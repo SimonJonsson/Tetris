@@ -31,7 +31,7 @@ public:
     UpdateView();
     ~UpdateView() = default;
 
-    virtual void update(sf::RenderWindow&) = 0;
+    virtual void update() = 0;
 
     virtual void leftClick()    = 0;
     virtual void rightClick()   = 0;

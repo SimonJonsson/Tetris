@@ -29,10 +29,10 @@
 class GameView : public UpdateView
 {
 public:
-    GameView();
+    GameView(sf::RenderWindow*);
     ~GameView() = default;
 
-    void update(sf::RenderWindow&) override;
+    void update() override;
 
     void leftClick()  override;
     void rightClick() override;
@@ -40,7 +40,8 @@ public:
     void downClick()  override;
 
 private:
-    GameEngine* gameEngine;
+    sf::RenderWindow*   window
+    GameEngine*         gameEngine;
 
 };
 
