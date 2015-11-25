@@ -43,8 +43,10 @@ GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int b
 
     fieldPos = Position((wWidth - fWidth) / 2, (wHeight - fHeight) / 2);
     startPos = Position(fieldPos.x + fWidth / 2, fieldPos.y);
+
     currentFigure = generateRandomFigure();
     nextFigure = generateRandomFigure();
+
 }
 
 /*
@@ -53,7 +55,7 @@ GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int b
  */
 GameEngine::~GameEngine()
 {
-    for(Shape* block : blockField)
+    for(RectangleShape* block : blockField)
     {
         delete block;
     }
@@ -81,7 +83,7 @@ void GameEngine::update(long dt)
                 currentFigure = nextFigure;
                 nextFigure = generateRandomFigure();
                 timeStill = 0;
-                if(collides()) //in default pos. -> can only collide with blockfield.
+                if(collides(currentFigure)) //in default pos. -> can only collide with blockfield.
                 {
                     gameOver = true;
                 }
@@ -115,7 +117,14 @@ void GameEngine::rightClick()
  */
 void GameEngine::upClick()
 {
-
+    // Figure* temp = currentFigure->clone();
+    // temp->rotate();
+    // bool coll = collides(temp);
+    // if (!coll)
+    //{
+    //currentFigure->rotate
+    //}
+    //
 }
 
 /* FUNCTION void GameEngine::downClick()
@@ -145,10 +154,10 @@ bool GameEngine::isGamePaused()
     return gamePaused;
 }
 
-/* FUNCTION vector<Shape*> GameEngine::getBlockField()
+/* FUNCTION vector<RectangleShape*> GameEngine::getBlockField()
  * Returns vector with pointers to all blocks in field.
  */
-vector<Shape*>& GameEngine::getBlockField()
+vector<RectangleShape*>& GameEngine::getBlockField()
 {
     return blockField;
 }
@@ -178,6 +187,7 @@ long GameEngine::getScore()
 }
 
 //////////////////////-----(END) PUBLIC FUNCTIONS-----//////////////////////////////////////
+
 //////////////////////-----(START) PRIVATE FUNCTIONS-----///////////////////////////////////
 
 /* FUNCTION void GameEngine::updateMoveTime()
@@ -200,24 +210,24 @@ void GameEngine::updateDifficulty()
  */
 bool GameEngine::translate(Figure* fig, int x, int y)
 {
-
+ //need translate from figure
 }
 
-/* FUNCTION void GameEngine::translate(sf::Shape* block, int x, int y)
+/* FUNCTION void GameEngine::translate(sf::RectangleShape* block, int x, int y)
  * Translate one tetris block. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
  * Returns false if translation is not possible.
  */
-bool GameEngine::translate(sf::Shape* block, int x, int y)
+bool GameEngine::translate(sf::RectangleShape* block, int x, int y)
 {
-
+    //block->setPosition(block->getPosition.x + x*blockSize, block->getPosition.y + y*blockSize);
 }
 
 /* FUNCTION bool GameEngine::collides(Figure* fig)
- * Check if current figure collides with blockfield/borders
+ * Check if figure collides with blockfield/borders
  */
-bool GameEngine::collides()
+bool GameEngine::collides(Figure* fig)
 {
-
+    //need intersects from figure.
 }
 
 /* FUNCTION void GameEngine::placeFigure()
@@ -225,7 +235,7 @@ bool GameEngine::collides()
  */
 void GameEngine::placeFigure()
 {
-
+    //need getBlocks from figure
 }
 
 /* FUNCTION Figure* GameEngine::generateRandomFigure()
@@ -233,7 +243,19 @@ void GameEngine::placeFigure()
  */
 Figure* GameEngine::generateRandomFigure()
 {
+    int id = uniRand(); //[1,numFigure]
 
+}
+
+/* FUNCTION int GameEngine::uniRand()
+ * Generate a uniformly distributed random number in the range 1 to numFigures(7 default).
+ */
+int GameEngine::uniRand()
+{
+     mt19937 rng;
+     rng.seed(random_device()());
+     uniform_int_distribution<mt19937::result_type> numGen(1,numFigures); //U(1,numFigures) distributed
+     return numGen(rng); //Generate random number 1->#figures.
 }
 
 /* FUNCTION int GameEngine::clearFullRows()
