@@ -31,7 +31,7 @@ ViewHandler::ViewHandler()
     highScoreView   = new HighScoreView(&window);
     gameView        = new GameView(&window);
     gameOverView    = new GameOverView(&window);
-    currentView     = gameView;
+    currentView     = menuView;
 }
 
 

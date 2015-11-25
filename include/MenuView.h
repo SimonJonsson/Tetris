@@ -3,14 +3,21 @@
 #define MENUVIEW_H
 
 #include "UpdateView.h"
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 class MenuView : public UpdateView
 {
 private:
-    sf::RectangleShape StartGame_button;
-    sf::RectangleShape Highscore_button;
-    sf::RectangleShape Exit_button;
+    sf::RectangleShape StartGame_button{sf::Vector2f(200, 50)};
+    sf::RectangleShape Highscore_button{sf::Vector2f(200, 50)};
+    sf::RectangleShape Exit_button{sf::Vector2f(200, 50)};
 
+    sf::Text StartGame_text;
+    sf::Text Highscore_text;
+    sf::Text Exit_text;
+
+    sf::Font coolFont;
     sf::RenderWindow* window;
 
 public:
