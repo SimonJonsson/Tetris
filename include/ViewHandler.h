@@ -59,6 +59,11 @@ private:
     int windowHeight    = 800;
 
     bool pause          = false;
+    bool upBounce       = false;
+    bool downBounce     = false;
+    bool rightBounce    = false;
+    bool leftBounce     = false;
+    bool pauseBounce    = false;
 
     void eventHandler();
     void inputHandler();

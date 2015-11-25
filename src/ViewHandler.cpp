@@ -86,32 +86,65 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        cout << "left\n";
-        if (!pause)
-            currentView->leftClick();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        cout << "right\n";
-        if (!pause)
-            currentView->rightClick();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        cout << "up\n";
-        if (!pause)
-            currentView->upClick();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        cout << "down\n";
-        if (!pause)
-            currentView->downClick();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-    {
-        if (typeid(currentView) == typeid(GameView))
+        if (!pause && !leftBounce)
         {
+            cout << "left\n";
+            leftBounce = true;
+            currentView->leftClick();
+        }
+    }
+    else
+    {
+        leftBounce = false;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        if (!pause && !rightBounce)
+        {
+            cout << "right\n";
+            rightBounce = true;
+            currentView->rightClick();
+        }
+    }
+    else
+    {
+        rightBounce = false;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        if (!pause && !upBounce)
+        {
+            cout << "up\n";
+            upBounce = true;
+            currentView->upClick();
+        }
+    }
+    else
+    {
+        upBounce = false;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        if (!pause && !downBounce)
+        {
+            cout << "down\n";
+            downBounce = true;
+            currentView->downClick();
+        }
+    }
+    else
+    {
+        downBounce = false;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+    {
+        if (typeid(currentView) == typeid(GameView) && !pauseBounce)
+        {
+            pauseBounce = true;
             if (pause)
             {
                 pause = false;
@@ -121,6 +154,10 @@ void ViewHandler::inputHandler()
                 pause = true;
             }
         }
+    }
+    else
+    {
+        pauseBounce = false;
     }
 }
 
