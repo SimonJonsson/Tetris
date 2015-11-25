@@ -40,7 +40,7 @@ void ViewHandler::initiate()
 {
     //Creates a window with height, width, title and disables resizing of window
     window.create(sf::VideoMode(windowWidth,windowHeight),"Tetris",sf::Style::Close);
-
+    window.setPosition(sf::Vector2i(0,100));
     // Start the game loop
     while (window.isOpen())
     {
@@ -159,6 +159,11 @@ void ViewHandler::inputHandler()
     {
         pauseBounce = false;
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
+    {
+        window.close();
+    }
 }
 
 /*
@@ -173,7 +178,7 @@ void ViewHandler::outputHandler()
         // So we get the current window
 //        currentView = menuView->getWindow();
         // Clear screen, screen background is white.
-        window.clear(sf::Color::White);
+        window.clear(sf::Color(120,120,120));
         // Update for currentView.
         currentView->update();
         // Update the window
