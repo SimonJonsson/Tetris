@@ -6,7 +6,7 @@
 using namespace std;
 
 sf::Color background(120,120,120);
-sf::Color highlight(200,80,160);
+sf::Color highlight(180,180,180);
 sf::Color textcolor(255,0,0);
 
 MenuView::MenuView(sf::RenderWindow* windowptr)
@@ -16,7 +16,7 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
 
     //Finjusterar de olika datamedlemmarna med avseende på
     //position, storlek, färg, osv.
-    StartGame_button.setPosition(150, 150);
+    StartGame_button.setPosition(245, 250);
     StartGame_button.setFillColor(sf::Color::Black);
     StartGame_button.setOutlineThickness(5);
     StartGame_button.setOutlineColor(highlight);
@@ -25,9 +25,9 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     StartGame_text.setString("Play Game");
     StartGame_text.setColor(textcolor);
     StartGame_text.setCharacterSize(40);
-    StartGame_text.setPosition(160, 140);
+    StartGame_text.setPosition(255, 240);
 
-    Highscore_button.setPosition(150, 230);
+    Highscore_button.setPosition(245, 330);
     Highscore_button.setFillColor(sf::Color::Black);
     Highscore_button.setOutlineThickness(5);
     Highscore_button.setOutlineColor(background);
@@ -36,9 +36,9 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     Highscore_text.setString("higH Score");
     Highscore_text.setColor(textcolor);
     Highscore_text.setCharacterSize(40);
-    Highscore_text.setPosition(155, 220);
+    Highscore_text.setPosition(250, 320);
 
-    Exit_button.setPosition(150, 310);
+    Exit_button.setPosition(245, 410);
     Exit_button.setFillColor(sf::Color::Black);
     Exit_button.setOutlineThickness(5);
     Exit_button.setOutlineColor(background);
@@ -47,7 +47,7 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     Exit_text.setString("Exit");
     Exit_text.setColor(textcolor);
     Exit_text.setCharacterSize(40);
-    Exit_text.setPosition(210, 300);
+    Exit_text.setPosition(305, 400);
 
     window = windowptr;
 }
@@ -75,6 +75,20 @@ void MenuView::leftClick()
 
 void MenuView::rightClick()
 {
+    //Ska ändra curretView vid ett rightClick
+    if(StartGame_button.getOutlineColor() == highlight)
+    {
+    //CurrentView = GameView
+    }
+    else if(Highscore_button.getOutlineColor() == highlight)
+    {
+    //CurrentView = HighscoreView
+
+    }
+    else
+    {
+    //Exit
+    }
 
 }
 

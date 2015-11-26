@@ -4,12 +4,18 @@
 
 #include "UpdateView.h"
 #include <string>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 class GameOverView : public UpdateView
 {
 private:
     std::string name{""};
     int score{0};
+
+    sf::Text GameOver_text;
+
+    sf::Font coolFont;
     sf::RenderWindow* window;
 public:
     GameOverView(sf::RenderWindow*);

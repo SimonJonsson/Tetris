@@ -4,6 +4,18 @@
 
 GameOverView::GameOverView(sf::RenderWindow* windowptr)
 {
+    //Laddar in den font som ska användas för texten
+   coolFont.loadFromFile("res/fonts/nextwave.ttf");
+
+    //Finjusterar de olika datamedlemmarna med avseende på
+    //position, storlek, färg, osv.
+    GameOver_text.setFont(coolFont);
+    GameOver_text.setString("Game over");
+    GameOver_text.setColor(sf::Color::Blue);
+    GameOver_text.setCharacterSize(100);
+    GameOver_text.setPosition(100, 10);
+    GameOver_text.setStyle(sf::Text::Underlined);
+
     window = windowptr;
 }
 
@@ -18,7 +30,7 @@ GameOverView::~GameOverView()
 
 void GameOverView::update()
 {
-
+    window->draw(GameOver_text);
 }
 
 void GameOverView::leftClick()

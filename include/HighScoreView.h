@@ -16,7 +16,11 @@ class HighScoreView : public UpdateView
 {
     private:
         std::vector<HighScore> highscores;
+        sf::Text HighScore_text;
+
+        sf::Font coolFont;
         sf::RenderWindow* window;
+
     public:
         HighScoreView(sf::RenderWindow*);
         ~HighScoreView();
