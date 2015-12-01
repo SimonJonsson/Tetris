@@ -33,6 +33,7 @@ ViewHandler::ViewHandler()
     gameView        = new GameView(&window);
     gameOverView    = new GameOverView(&window);
 
+    //Changes currentView to menuView
     changeView("MenuView");
 }
 
