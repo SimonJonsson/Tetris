@@ -68,6 +68,7 @@ private:
     void eventHandler();
     void inputHandler();
     void outputHandler();
+    void changeView(std::string);
 
 };
 

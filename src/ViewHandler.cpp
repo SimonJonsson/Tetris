@@ -21,6 +21,7 @@
  */
 #include "../include/ViewHandler.h"
 #include <iostream>
+#include <typeinfo>
 
 using namespace std;
 
@@ -31,7 +32,8 @@ ViewHandler::ViewHandler()
     highScoreView   = new HighScoreView(&window);
     gameView        = new GameView(&window);
     gameOverView    = new GameOverView(&window);
-    currentView     = menuView;
+
+    changeView("MenuView");
 }
 
 
@@ -67,7 +69,7 @@ void ViewHandler::eventHandler()
         /*
          *  If we lose focus of the screen we pause, if we gain focus again we unpause.
          */
-        if (event.type == sf::Event::GainedFocus)
+        if (event.type == sf::Event::GainedFocus && typeid(*currentView) != typeid(GameView))
             pause = false;
 
         if (event.type == sf::Event::LostFocus)
@@ -91,6 +93,12 @@ void ViewHandler::inputHandler()
             cout << "left\n";
             leftBounce = true;
             currentView->leftClick();
+
+            if (typeid(*currentView) == typeid(HighScoreView)
+                || typeid(*currentView) == typeid(GameOverView))
+            {
+                changeView("MenuView");
+            }
         }
     }
     else
@@ -105,6 +113,11 @@ void ViewHandler::inputHandler()
             cout << "right\n";
             rightBounce = true;
             currentView->rightClick();
+
+            if (typeid(*currentView) == typeid(MenuView))
+            {
+                cout << "hello\n";
+            }
         }
     }
     else
@@ -142,7 +155,7 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
     {
-        if (typeid(currentView) == typeid(GameView) && !pauseBounce)
+        if (typeid(*currentView) == typeid(GameView) && !pauseBounce)
         {
             pauseBounce = true;
             if (pause)
@@ -175,8 +188,6 @@ void ViewHandler::outputHandler()
     // We want to render only if we are not paused.
     if (!pause)
     {
-        // So we get the current window
-//        currentView = menuView->getWindow();
         // Clear screen, screen background is white.
         window.clear(sf::Color(120,120,120));
         // Update for currentView.
@@ -184,4 +195,32 @@ void ViewHandler::outputHandler()
         // Update the window
         window.display();
     }
+}
+
+/*
+ * Changes the currentView to desired new view.
+ */
+void ViewHandler::changeView(string newView)
+{
+    if(newView == "MenuView")
+    {
+        currentView = menuView;
+    }
+    else if (newView == "HighScoreView")
+    {
+        currentView = highScoreView;
+    }
+    else if (newView == "GameView")
+    {
+        currentView = gameView;
+    }
+    else if (newView == "GameOverView")
+    {
+        currentView = gameOverView;
+    }
+    else
+    {
+        cerr << "There exists no window: \"" << newView << "\"\n";
+    }
+
 }
