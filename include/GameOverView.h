@@ -27,10 +27,10 @@ public:
 
     void               update() override;
     void               updateHighScore();
-    void               setName();
-    void               setScore();
-    const std::string& getName();
-    const int&         getScore();
+    void               setName(const std::string&);
+    void               setScore(const int&);
+    std::string        getName();
+    int                getScore();
 
     void leftClick()  override;
     void rightClick() override;

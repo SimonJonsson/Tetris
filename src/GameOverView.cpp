@@ -1,6 +1,7 @@
 #include "../include/GameOverView.h"
+#include <string>
 
-
+using namespace std;
 
 GameOverView::GameOverView(sf::RenderWindow* windowptr)
 {
@@ -31,6 +32,31 @@ GameOverView::~GameOverView()
 void GameOverView::update()
 {
     window->draw(GameOver_text);
+}
+
+void GameOverView::updateHighScore()
+{
+
+}
+
+void GameOverView::setName(const string& newName)
+{
+    name = newName;
+}
+
+void GameOverView::setScore(const int& newScore)
+{
+    score = newScore;
+}
+
+string GameOverView::getName()
+{
+    return name;
+}
+
+int GameOverView::getScore()
+{
+    return score;
 }
 
 void GameOverView::leftClick()
