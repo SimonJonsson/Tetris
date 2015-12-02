@@ -1,42 +1,57 @@
 #include "../include/Figure.h"
+#include <vector>
 using namespace std;
 using namespace sf;
 
 
 Figure::Figure()
 {
-square.setSize(sf::Vector2f(20,20));
+    pos.x = 0;
+    pos.y = 0;
+
+    for(int i = 0; i <= figmatrix.size() - 1; ++i)
+    {
+        for(int j = 0; j <= figmatrix[i].size() - 1; ++j)
+        {
+            if(figmatrix[i][j] = 1)
+            {
+                RectangleShape* block = new RectangleShape(sf::Vector2f(20,20));
+                block->setPosition(sf::Vector2f(20*i,20*j));
+                block->setFillColor(color);
+                blocks.push_back(block);
+            }
+        }
+    }
 }
 
 Figure::~Figure()
 {
-    //dtor
 }
 
-//std::vector<sf::RectangleShape*> blocks
-//{
-//blocks = new Rectangleshape[våran-array.size];
-//}
+vector<RectangleShape*> Figure::getBlocks()
+{
+return blocks;
+}
 
-//Våran-array
-//{
-//for(i = 0; i <= våran-array[].size - 1; ++i)
-//{
-//for(j = 0; j <= våran-array[].size - 1; ++j)
-//{
-//if(vårn-array[i][j] = 1)
-//blocks.add(new RectangleShape(20*i, 20*j, colour));
 
 void Figure::rotate()
 {
 }
 
+// x -1 , 20 pixlar vänster, x=1, 20 pix hög. y=-1 20 upp, y=1 20 ner.
+
 void Figure::translate(int x, int y)
 {
-/*if(x == 1, y == 0)
-{
-Figure.getPosition(ruta()0,0))
-Figure.setPosition() 1
-}
-*/
+    pos.x = pos.x + 20*x;
+    pos.y = pos.y + 20*y;
+
+    for(int i = 0; i <= figmatrix.size() - 1; ++i)
+    {
+        for(int j = 0; j <= figmatrix[i].size() - 1; ++j)
+        {
+            RectangleShape* b = new RectangleShape(Vector2f(20,20));
+            b->setPosition(Vector2f(pos.x + (b->getPosition()).x, pos.y + (b->getPosition()).y));
+        }
+    }
+
 }

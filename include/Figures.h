@@ -2,6 +2,7 @@
 #ifndef FIGURES_H
 #define FIGURES_H
 #include "Figure.h"
+#include <array>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Color.hpp>
 
@@ -10,127 +11,197 @@ class I final : public Figure
 {
     public:
         I()
-        : Figure() {}
+        : Figure() {
+        /*
+        figmatrix = std::vector<std::vector<int>>{{
+         std::vector<int,4>{0, 0, 0, 0},
+         std::vector<int,4>{1, 1, 1, 1},
+         std::vector<int,4>{0, 0, 0, 0},
+         std::vector<int,4>{0, 0, 0, 0}
+         }}; */
+
+         figmatrix = {
+         {0, 0, 0, 0},
+         {1, 1, 1, 1},
+         {0, 0, 0, 0},
+         {0, 0, 0, 0}
+         };
+
+        color = sf::Color::Magenta;
+        }
         virtual ~I();
         void rotate() override;
-        std::array <std::array<int, 4>, 4> Figure_I
-        {{
-         std::array<int,4>{0, 0, 0, 0},
-         std::array<int,4>{1, 1, 1, 1},
-         std::array<int,4>{0, 0, 0, 0},
-         std::array<int,4>{0, 0, 0, 0}
-         }};
+
     protected:
+
     private:
-    //purple
+
 };
 
 class J final : public Figure
 {
     public:
         J()
-        : Figure() {}
+        : Figure() {
+        figmatrix = {
+         {1, 0, 0},
+         {1, 1, 1},
+         {0, 0, 0}
+         };
+
+        color = sf::Color::Blue;
+        }
         virtual ~J();
         void rotate() override;
-        std::array <std::array<int, 3>, 3> Figure_J
+
+    protected:
+    private:
+/*            figmatrix
         {{
          std::array<int,3>{1, 0, 0},
          std::array<int,3>{1, 1, 1},
          std::array<int,3>{0, 0, 0}
          }};
-    protected:
-    private:
-    //blue
+*/
+
 };
 
 class L final : public Figure
 {
     public:
         L()
-        : Figure() {}
+        : Figure() {
+        figmatrix = {
+         {0, 0, 1},
+         {1, 1, 1},
+         {0, 0, 0}
+         };
+
+        color = sf::Color::Green;
+        }
         virtual ~L();
         void rotate() override;
-        std::array <std::array<int, 3>, 3> Figure_L
+
+    protected:
+    private:
+/*    figmatrix
          {{
          std::array<int,3>{0, 0, 1},
          std::array<int,3>{1, 1, 1},
          std::array<int,3>{0, 0, 0}
          }};
-    protected:
-    private:
-    //green
+         */
+
 };
 
 class O final : public Figure
 {
     public:
         O()
-        : Figure() {}
+        : Figure() {
+        figmatrix = {
+         {1, 1},
+         {1, 1}
+         };
+
+        color = sf::Color::Red;
+        }
         virtual ~O();
         void rotate() override;
-        std::array <std::array<int, 2>, 2> Figure_O
+
+    protected:
+    private:
+ /*   figmatrix
          {{
          std::array<int,2>{1, 1},
          std::array<int,2>{1, 1}
          }};
+         */
 
-    protected:
-    private:
-    //red
 };
 
 class S final : public Figure
 {
     public:
         S()
-        : Figure() {}
+        : Figure() {
+        figmatrix = {
+         {0, 1, 1},
+         {1, 1, 0},
+         {0, 0, 0}
+         };
+
+        color = sf::Color::White;
+        }
         virtual ~S();
         void rotate() override;
-         std::array <std::array<int, 3>, 3> Figure_S
+
+    protected:
+    private:
+/*    figmatrix
          {{
          std::array<int,3>{0, 1, 1},
          std::array<int,3>{1, 1, 0},
          std::array<int,3>{0, 0, 0}
          }};
-    protected:
-    private:
-    //white
+         */
+
 };
 
 class T final : public Figure
 {
     public:
         T()
-        : Figure() {}
+        : Figure() {
+        figmatrix = {
+         {0, 1, 0},
+         {1, 1, 1},
+         {0, 0, 0}
+         };
+
+        color = sf::Color(250, 150, 100);
+        }
         virtual ~T();
         void rotate() override;
-         std::array <std::array<int, 3>, 3> Figure_T
+
+    protected:
+    private:
+/*    figmatrix
          {{
          std::array<int,3>{0, 1, 0},
          std::array<int,3>{1, 1, 1},
          std::array<int,3>{0, 0, 0}
          }};
-    protected:
-    private:
-    //orange
+         */
+
 };
 
 class Z final : public Figure
 {
     public:
         Z()
-        : Figure() {}
+        : Figure() {
+        figmatrix = {
+         {1, 1, 0},
+         {0, 1, 1},
+         {0, 0, 0}
+         };
+
+        color = sf::Color::Yellow;
+        }
         virtual ~Z();
         void rotate() override;
-         std::array <std::array<int, 3>, 3> Figure_Z
+
+    protected:
+    private:
+/*    figmatrix
          {{
          std::array<int,3>{1, 1, 0},
          std::array<int,3>{0, 1, 1},
          std::array<int,3>{0, 0, 0}
          }};
-    protected:
-    private:
-    //yellow
+         */
+
 };
 
 #endif // FIGURES_H
