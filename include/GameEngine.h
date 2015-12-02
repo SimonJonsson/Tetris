@@ -81,6 +81,8 @@ public:
     Figure* getCurrentFigure(); //Returns current figure that is falling down.
     Figure* getNextFigure(); //Returns next figure to be placed.
     long getScore(); //Returns current score.
+    sf::Vector2<int> getFieldPos(); //Gets x,y pos of board
+    int getRowsCleared(); //Gets number of rows cleared.
 
     void operator=(GameEngine& )= delete; //Only one GameEngine can exist at one time.
 
