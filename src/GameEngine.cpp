@@ -75,7 +75,7 @@ void GameEngine::update(long dt)
         if(timeStill > moveTime)
         {
             bool shouldPlace = translate(currentFigure,0,1);
-
+            timeStill = 0;
             if (shouldPlace)
             {
                 placeFigure();
@@ -90,8 +90,8 @@ void GameEngine::update(long dt)
             }
         }
         int cleared = clearFullRows();
-        increaseScore(scorePerRow*cleared*(difficulty+1)); //+1 due to initial diff=0
-        updateDifficulty();
+       // increaseScore(scorePerRow*cleared*(difficulty+1)); //+1 due to initial diff=0
+       // updateDifficulty();
 
     }
 }
@@ -122,7 +122,7 @@ void GameEngine::upClick()
     // bool coll = collides(temp);
     // if (!coll)
     //{
-    //currentFigure->rotate
+    currentFigure->rotate();
     //}
     //
 }
@@ -225,7 +225,7 @@ void GameEngine::updateDifficulty()
  */
 bool GameEngine::translate(Figure* fig, int x, int y)
 {
- //need translate from figure
+    fig->translate(x, y);
 }
 
 /* FUNCTION void GameEngine::translate(sf::RectangleShape* block, int x, int y)

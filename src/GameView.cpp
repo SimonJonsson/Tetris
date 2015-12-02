@@ -20,9 +20,9 @@
  * 1            940319  Ursprungsversion
  */
 #include "../include/GameView.h"
-
+#include <iostream>
 using namespace std;
-
+using namespace sf;
 
 GameView::GameView(sf::RenderWindow* windowptr)
 {
@@ -70,6 +70,9 @@ void GameView::update()
 {
     gameEngine->update(getFps());
 
+    //blockField = gameEngine->getBlockField();
+    currentFigure = gameEngine->getCurrentFigure();
+    //nextFigure = gameEngine->getNextFigure();
     score = gameEngine->getScore();
     //scoreNumText.setString(to_string(score));
     draw();
@@ -90,6 +93,7 @@ void GameView::draw()
     window->draw(scoreNumText);
     window->draw(nextFigureBox);
     window->draw(nextFigureText);
+    drawFigures();
 
 }
 
@@ -126,4 +130,29 @@ float GameView::getFps()
 int GameView::getScore()
 {
     return score;
+}
+
+void GameView::drawFigures()
+{
+    if (currentFigure != nullptr)
+    {
+        for (sf::RectangleShape* i : currentFigure->getBlocks())
+        {
+            window->draw(*i);
+           // cout << i->getPosition().x << "  " << i->getPosition().y;
+        }
+    }
+/*
+    if (nextFigure != nullptr)
+    {
+        for (auto i : nextFigure->getBlocks())
+        {
+            window->draw(*i);
+        }
+    }*/
+    /*
+    for (auto i : blockField)
+    {
+        window->draw(*i);
+    }*/
 }

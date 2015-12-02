@@ -28,6 +28,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 class GameView : public UpdateView
 {
@@ -48,6 +49,9 @@ public:
 private:
     sf::RenderWindow*   window;
     GameEngine*         gameEngine;
+    Figure*             currentFigure;
+    Figure*             nextFigure;
+
 
     int fieldPosX = 50;
     int fieldPosY = 40;
@@ -63,16 +67,18 @@ private:
     float lastTime = 0;
     float currentTime;
 
-    float getFps();
 
+    std::vector<sf::RectangleShape*> blockField;
     sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};
     sf::RectangleShape nextFigureBox{sf::Vector2f(220, 220)};
-
     sf::Text scoreText;
     sf::Text scoreNumText;
     sf::Text nextFigureText;
     sf::Font coolFont;
     sf::Clock clock;
+
+    float getFps();
+    void drawFigures();
 };
 
 #endif
