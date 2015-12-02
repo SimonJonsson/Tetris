@@ -117,7 +117,16 @@ void ViewHandler::inputHandler()
 
             if (typeid(*currentView) == typeid(MenuView))
             {
-                changeView(menuView->getFocus());
+                string focus = menuView->getFocus();
+                if (focus == "Exit")
+                {
+                    window.close();
+                }
+                else
+                {
+                    changeView(menuView->getFocus());
+                }
+
             }
         }
     }
