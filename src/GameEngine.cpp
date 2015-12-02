@@ -259,6 +259,8 @@ void GameEngine::placeFigure()
 Figure* GameEngine::generateRandomFigure()
 {
     int id = uniRand(); //[1,numFigure]
+    Figure* f = new J();
+    return f;
 
 }
 
