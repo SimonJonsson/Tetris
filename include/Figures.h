@@ -29,7 +29,7 @@ class I final : public Figure
 
         color = sf::Color::Magenta;
         }
-        virtual ~I();
+        ~I() = default;
         void rotate() override;
 
     protected:
@@ -51,7 +51,7 @@ class J final : public Figure
 
         color = sf::Color::Blue;
         }
-        virtual ~J();
+        ~J() = default;
         void rotate() override;
 
     protected:
@@ -79,7 +79,7 @@ class L final : public Figure
 
         color = sf::Color::Green;
         }
-        virtual ~L();
+        ~L() = default;
         void rotate() override;
 
     protected:
@@ -106,7 +106,7 @@ class O final : public Figure
 
         color = sf::Color::Red;
         }
-        virtual ~O();
+        ~O() = default;
         void rotate() override;
 
     protected:
@@ -133,7 +133,7 @@ class S final : public Figure
 
         color = sf::Color::White;
         }
-        virtual ~S();
+        ~S() = default;
         void rotate() override;
 
     protected:
@@ -161,7 +161,7 @@ class T final : public Figure
 
         color = sf::Color(250, 150, 100);
         }
-        virtual ~T();
+        ~T() = default;
         void rotate() override;
 
     protected:
@@ -189,7 +189,7 @@ class Z final : public Figure
 
         color = sf::Color::Yellow;
         }
-        virtual ~Z();
+        ~Z() = default;
         void rotate() override;
 
     protected:

@@ -22,7 +22,7 @@ public:
 
 
     virtual void rotate() = 0;
-    virtual void translate(int x, int y) = 0;
+    void translate(int x, int y);
 
 
 std::vector<sf::RectangleShape*> getBlocks();
