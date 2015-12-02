@@ -5,10 +5,6 @@
 
 using namespace std;
 
-sf::Color background(120,120,120);
-sf::Color highlight(180,180,180);
-sf::Color textcolor(255,0,0);
-
 MenuView::MenuView(sf::RenderWindow* windowptr)
 {
     //Laddar in den font som ska användas för texten
@@ -71,25 +67,11 @@ void MenuView::update()
 
 void MenuView::leftClick()
 {
-    cout << focus << endl;
+
 }
 
 void MenuView::rightClick()
 {
-    //Ska ändra curretView vid ett rightClick
-    if(StartGame_button.getOutlineColor() == highlight)
-    {
-    //CurrentView = GameView
-    }
-    else if(Highscore_button.getOutlineColor() == highlight)
-    {
-    //CurrentView = HighscoreView
-
-    }
-    else
-    {
-    //Exit
-    }
 
 }
 

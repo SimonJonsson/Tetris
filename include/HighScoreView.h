@@ -8,15 +8,15 @@
 
 struct HighScore
 {
-    std::string name;
-    int score;
+    sf::Text name;
+    sf::Text score;
 };
 
 class HighScoreView : public UpdateView
 {
     private:
         std::vector<HighScore> highscores;
-        sf::Text HighScore_text;
+        sf::Text HighScore_title;
 
         sf::Font coolFont;
         sf::RenderWindow* window;
