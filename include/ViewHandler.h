@@ -55,14 +55,14 @@ private:
     GameView*           gameView;
     GameOverView*       gameOverView;
 
-    int windowWidth     = 700;
+    int windowWidth     = 800;
     int windowHeight    = 800;
     int rightTimer      = 0;
     int leftTimer       = 0;
     int upTimer         = 0;
     int downTimer       = 0;
     int noBounces       = 15; //Number of bounces before we debounce
-    int gNoBounces      = 5; //Number of bounces before we debounce in game
+    int gNoBounces      = 5; //Number of bounces before we debounce in GameView
 
     bool pause          = false;
     bool upBounce       = false;

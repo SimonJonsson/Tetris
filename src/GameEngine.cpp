@@ -278,7 +278,7 @@ int GameEngine::uniRand()
  */
 int GameEngine::clearFullRows()
 {
-
+    return 0;
 }
 
 /* FUNCTION void GameEngine::increaseScore(long amount)

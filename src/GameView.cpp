@@ -20,24 +20,49 @@
  * 1            940319  Ursprungsversion
  */
 #include "../include/GameView.h"
-#include <iostream>
 
 using namespace std;
 
 
 GameView::GameView(sf::RenderWindow* windowptr)
 {
-    window = windowptr;
-    gameEngine = new GameEngine(700,800,500,640);
 
-    background.setPosition(100, 60);
+    coolFont.loadFromFile("res/fonts/nextwave.ttf");
+    window = windowptr;
+    gameEngine = new GameEngine(700,800,fieldWidth,fieldHeight);
+
+    scoreWidth = scoreNumText.getGlobalBounds().width;
+
+    background.setPosition(fieldPosX, fieldPosY);
     background.setFillColor(sf::Color::Black);
 
     scoreText.setFont(coolFont);
-    scoreText.setString("0");
-    //scoreText.setColor(textcolor);
-    scoreText.setCharacterSize(40);
-    scoreText.setPosition(255, 240);
+    scoreText.setString("SCORE");
+    scoreText.setColor(textcolor);
+    scoreText.setCharacterSize(60);
+    scoreText.setPosition(fieldPosX,
+                        fieldPosY - fieldOffset - 60);
+
+    scoreNumText.setFont(coolFont);
+    scoreNumText.setString("1337");
+    scoreNumText.setColor(textcolor);
+    scoreNumText.setCharacterSize(60);
+    scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
+                            fieldPosY - fieldOffset - 60);
+
+    nextFigureText.setFont(coolFont);
+    nextFigureText.setString("NEXT FIGURE");
+    nextFigureText.setColor(textcolor);
+    nextFigureText.setCharacterSize(40);
+    nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset,
+                                fieldPosY - nextFigureText.getGlobalBounds().height);
+
+    //nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
+      //                          fieldPosY + nextFigureText.getGlobalBounds().);
+    nextFigureBox.setFillColor(sf::Color::Black);
+
+
+    cout << fieldPosY - nextFigureText.getGlobalBounds().height << endl;
 }
 
 /*
@@ -45,21 +70,29 @@ GameView::GameView(sf::RenderWindow* windowptr)
  */
 void GameView::update()
 {
-    currentTime = clock.restart().asSeconds();
-    fps = 1.f / currentTime;
-    score = gameEngine->getScore();
-    gameEngine->update(fps);
+    gameEngine->update(getFps());
 
-    //scoreText.setString(to_string(score));
+    score = gameEngine->getScore();
+    scoreNumText.setString(to_string(score));
     draw();
 }
+
 /*
  * Drawfunction for all the objects
  */
 void GameView::draw()
 {
-    window->draw(scoreText);
     window->draw(background);
+    window->draw(scoreText);
+
+    scoreWidth = scoreNumText.getGlobalBounds().width;
+    scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
+                            fieldPosY - fieldOffset - 60);
+
+    window->draw(scoreNumText);
+    window->draw(nextFigureText);
+    window->draw(nextFigureBox);
+
 }
 
 /*
@@ -83,4 +116,16 @@ void GameView::upClick()
 void GameView::downClick()
 {
     gameEngine->downClick();
+}
+
+float GameView::getFps()
+{
+    currentTime = clock.restart().asSeconds();
+    fps = 1.f / currentTime;
+    return fps;
+}
+
+int GameView::getScore()
+{
+    return score;
 }

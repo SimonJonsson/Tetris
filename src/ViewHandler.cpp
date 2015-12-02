@@ -259,6 +259,7 @@ void ViewHandler::changeView(string newView)
     else if (newView == "HighScoreView")
     {
         currentView = highScoreView;
+        highScoreView->readHighscore();
     }
     else if (newView == "GameView")
     {
@@ -267,6 +268,7 @@ void ViewHandler::changeView(string newView)
     else if (newView == "GameOverView")
     {
         currentView = gameOverView;
+        gameOverView->setScore(gameView->getScore());
     }
     else
     {

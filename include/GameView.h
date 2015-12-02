@@ -26,6 +26,9 @@
 #include "UpdateView.h"
 #include "GameEngine.h"
 
+#include <string>
+#include <iostream>
+
 class GameView : public UpdateView
 {
 public:
@@ -40,21 +43,35 @@ public:
     void upClick()    override;
     void downClick()  override;
 
+    int getScore();
+
 private:
     sf::RenderWindow*   window;
     GameEngine*         gameEngine;
 
-    sf::RectangleShape background{sf::Vector2f(500, 640)};
-
-    sf::Text scoreText;
-    sf::Font coolFont;
-    sf::Clock clock;
+    int fieldPosX = 50;
+    int fieldPosY = 60;
+    int fieldWidth = 500;
+    int fieldHeight = 640;
+    int fieldOffset = 10;
 
     long int score = 0;
+    int scoreWidth;
 
     float fps = 0;
     float lastTime = 0;
     float currentTime;
+
+    float getFps();
+
+    sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};
+    sf::RectangleShape nextFigureBox{sf::Vector2f(100, 100)};
+
+    sf::Text scoreText;
+    sf::Text scoreNumText;
+    sf::Text nextFigureText;
+    sf::Font coolFont;
+    sf::Clock clock;
 };
 
 #endif
