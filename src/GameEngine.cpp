@@ -42,7 +42,7 @@ GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int b
     moveTime = initMoveTime;
 
     fieldPos = Position((wWidth - fWidth) / 2, (wHeight - fHeight) / 2);
-    startPos = Position(fieldPos.x + fWidth / 2, fieldPos.y);
+    startPos = Position(fieldPos.x + fWidth / 2  /* - figuresize / 2 */, fieldPos.y);
 
     currentFigure = generateRandomFigure();
     nextFigure = generateRandomFigure();
@@ -186,6 +186,21 @@ long GameEngine::getScore()
     return score;
 }
 
+/* FUNCTION sf::Vector2<int> GameEngine::getFieldPos()
+ * Get position of playing field.
+ */
+sf::Vector2<int> GameEngine::getFieldPos()
+{
+    return fieldPos;
+}
+
+/* FUNCTION int GameEngine::getRowsCleared()
+ * Get number of rows/lines cleared.
+ */
+int GameEngine::getRowsCleared()
+{
+    return rowsCleared;
+}
 //////////////////////-----(END) PUBLIC FUNCTIONS-----//////////////////////////////////////
 
 //////////////////////-----(START) PRIVATE FUNCTIONS-----///////////////////////////////////
