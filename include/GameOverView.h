@@ -7,11 +7,19 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Font.hpp>
 
+struct HighScoreInfo
+{
+    std::string name{""};
+    int score{0};
+};
+
 class GameOverView : public UpdateView
 {
 private:
     std::string name{""};
     int score{0};
+    std::vector<HighScoreInfo> highscores;
+    bool highscore = false;
 
     sf::Text GameOver_text;
 
@@ -22,10 +30,10 @@ public:
     //Kanske bara standardkonstruktor
     ~GameOverView() = default;
 
-    //void open_view(); - Simon
-    //void close_view(); - Simon
-
     void               update() override;
+    void               readHighScores();
+    int                compareScore();
+    void               checkScore();
     void               updateHighScore();
     void               setName(const std::string&);
     void               setScore(const int&);

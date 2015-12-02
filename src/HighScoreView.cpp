@@ -87,8 +87,7 @@ void HighScoreView::readHighscore()
         //vara i fönstret
         inputText.setPosition(positionCheck);
     }
-
-
+    infile.close();
 }
 
 void HighScoreView::leftClick()

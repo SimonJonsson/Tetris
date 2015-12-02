@@ -1,5 +1,6 @@
 #include "../include/GameOverView.h"
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -20,18 +21,52 @@ GameOverView::GameOverView(sf::RenderWindow* windowptr)
     window = windowptr;
 }
 
-
-
-/* //Ni har en default destruktor
-GameOverView::~GameOverView()
-{
-    //dtor
-}
-*/
-
 void GameOverView::update()
 {
     window->draw(GameOver_text);
+    if(highscore)
+    {
+        //Do stuff!
+    }
+    else
+    {
+        //Don't do stuff!
+    }
+}
+
+void GameOverView::readHighScores()
+{
+    HighScoreInfo highScoreEntry;
+    ifstream infile("res/highscore.txt");
+    string inputString{""};
+
+    while(infile >> inputString)
+    {
+        if(highScoreEntry.name == "")
+            highScoreEntry.name = inputString;
+        else
+        {
+            highScoreEntry.score = stoi(inputString);
+            highscores.push_back(highScoreEntry);
+            highScoreEntry.name = "";
+        }
+    }
+    infile.close();
+}
+
+int GameOverView::compareScore()
+{
+    readHighScores();
+    int pos{0};
+    while(score < (highscores.at(pos)).score && pos < 10)
+        ++pos;
+
+    return pos;
+}
+
+void GameOverView::checkScore()
+{
+    highscore = (compareScore() < 10);
 }
 
 void GameOverView::updateHighScore()
