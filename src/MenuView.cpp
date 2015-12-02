@@ -50,6 +50,7 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     Exit_text.setPosition(305, 400);
 
     window = windowptr;
+    focus = "GameView";
 }
 /*
 MenuView::~MenuView()
@@ -70,7 +71,7 @@ void MenuView::update()
 
 void MenuView::leftClick()
 {
-
+    cout << focus << endl;
 }
 
 void MenuView::rightClick()
@@ -98,16 +99,19 @@ void MenuView::upClick()
     if(StartGame_button.getOutlineColor() == highlight)
     {
         Exit_button.setOutlineColor(highlight);
+        focus = "Exit";
         StartGame_button.setOutlineColor(background);
     }
     else if(Highscore_button.getOutlineColor() == highlight)
     {
         StartGame_button.setOutlineColor(highlight);
+        focus = "GameView";
         Highscore_button.setOutlineColor(background);
     }
     else
     {
         Highscore_button.setOutlineColor(highlight);
+        focus = "HighScoreView";
         Exit_button.setOutlineColor(background);
     }
 }
@@ -118,17 +122,24 @@ void MenuView::downClick()
     if(StartGame_button.getOutlineColor() == highlight)
     {
         Highscore_button.setOutlineColor(highlight);
+        focus = "HighScoreView";
         StartGame_button.setOutlineColor(background);
     }
     else if(Highscore_button.getOutlineColor() == highlight)
     {
         Exit_button.setOutlineColor(highlight);
+        focus = "Exit";
         Highscore_button.setOutlineColor(background);
     }
     else
     {
         StartGame_button.setOutlineColor(highlight);
+        focus = "GameView";
         Exit_button.setOutlineColor(background);
     }
+}
 
+string MenuView::getFocus()
+{
+    return focus;
 }

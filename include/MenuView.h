@@ -19,6 +19,7 @@ private:
 
     sf::Font coolFont;
     sf::RenderWindow* window;
+    std::string focus;
 
 public:
     MenuView(sf::RenderWindow*);
@@ -31,6 +32,7 @@ public:
     void rightClick() override;
     void upClick()    override;
     void downClick()  override;
+    std::string getFocus();
 };
 
 #endif // MENUVIEW_H
