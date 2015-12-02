@@ -117,7 +117,7 @@ void ViewHandler::inputHandler()
 
             if (typeid(*currentView) == typeid(MenuView))
             {
-                cout << "hello\n";
+                changeView(menuView->getFocus());
             }
         }
     }
@@ -176,7 +176,7 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
     {
-        window.close();
+        changeView("MenuView");
     }
 }
 
