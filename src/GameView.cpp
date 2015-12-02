@@ -20,13 +20,24 @@
  * 1            940319  Ursprungsversion
  */
 #include "../include/GameView.h"
+#include <iostream>
 
 using namespace std;
+
 
 GameView::GameView(sf::RenderWindow* windowptr)
 {
     window = windowptr;
-    gameEngine = new GameEngine(700,800,640,580);
+    gameEngine = new GameEngine(700,800,500,640);
+
+    background.setPosition(100, 60);
+    background.setFillColor(sf::Color::Black);
+
+    scoreText.setFont(coolFont);
+    scoreText.setString("0");
+    //scoreText.setColor(textcolor);
+    scoreText.setCharacterSize(40);
+    scoreText.setPosition(255, 240);
 }
 
 /*
@@ -34,13 +45,21 @@ GameView::GameView(sf::RenderWindow* windowptr)
  */
 void GameView::update()
 {
-    gameEngine->update(12);
+    currentTime = clock.restart().asSeconds();
+    fps = 1.f / currentTime;
+    score = gameEngine->getScore();
+    gameEngine->update(fps);
 
-    sf::Texture texture;
-    if (!texture.loadFromFile("cb.bmp"))
-    {}
-    sf::Sprite sprite(texture);
-    window->draw(sprite);
+    //scoreText.setString(to_string(score));
+    draw();
+}
+/*
+ * Drawfunction for all the objects
+ */
+void GameView::draw()
+{
+    window->draw(scoreText);
+    window->draw(background);
 }
 
 /*

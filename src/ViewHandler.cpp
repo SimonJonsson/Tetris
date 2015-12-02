@@ -89,6 +89,13 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
+        leftTimer++;
+        if (leftTimer > noBounces)
+        {
+            leftBounce = false;
+            leftTimer = 0;
+        }
+
         if (!pause && !leftBounce)
         {
             cout << "left\n";
@@ -109,22 +116,30 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
+        rightTimer++;
+        if (rightTimer > noBounces)
+        {
+            rightBounce = false;
+            rightTimer = 0;
+        }
+
         if (!pause && !rightBounce)
         {
             cout << "right\n";
             rightBounce = true;
             currentView->rightClick();
 
+            // If we are in menuview we wanna be able to change view
             if (typeid(*currentView) == typeid(MenuView))
             {
-                string focus = menuView->getFocus();
+                focus = menuView->getFocus();
                 if (focus == "Exit")
                 {
                     window.close();
                 }
                 else
                 {
-                    changeView(menuView->getFocus());
+                    changeView(focus);
                 }
 
             }
@@ -137,6 +152,13 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
+        upTimer++;
+        if (upTimer > noBounces)
+        {
+            upBounce = false;
+            upTimer = 0;
+        }
+
         if (!pause && !upBounce)
         {
             cout << "up\n";
@@ -151,6 +173,24 @@ void ViewHandler::inputHandler()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
+        downTimer++;
+        if (typeid(*currentView) == typeid(GameView))
+        {
+            if (downTimer > gNoBounces)
+            {
+                downBounce = false;
+                downTimer = 0;
+            }
+        }
+        else
+        {
+            if (downTimer > noBounces)
+            {
+                downBounce = false;
+                downTimer = 0;
+            }
+        }
+
         if (!pause && !downBounce)
         {
             cout << "down\n";

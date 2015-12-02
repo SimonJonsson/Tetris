@@ -24,6 +24,9 @@
 #define UPDATEVIEW_H
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 class UpdateView
 {
@@ -37,6 +40,10 @@ public:
     virtual void rightClick()   = 0;
     virtual void upClick()      = 0;
     virtual void downClick()    = 0;
+
+    sf::Color background{120,120,120};
+    sf::Color highlight{180,180,180};
+    sf::Color textcolor{255,0,0};
 
 private:
 

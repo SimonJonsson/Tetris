@@ -57,6 +57,12 @@ private:
 
     int windowWidth     = 700;
     int windowHeight    = 800;
+    int rightTimer      = 0;
+    int leftTimer       = 0;
+    int upTimer         = 0;
+    int downTimer       = 0;
+    int noBounces       = 15; //Number of bounces before we debounce
+    int gNoBounces      = 5; //Number of bounces before we debounce in game
 
     bool pause          = false;
     bool upBounce       = false;
@@ -69,6 +75,8 @@ private:
     void inputHandler();
     void outputHandler();
     void changeView(std::string);
+
+    std::string focus = "";
 
 };
 
