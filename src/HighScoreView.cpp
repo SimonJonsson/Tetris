@@ -20,6 +20,9 @@ HighScoreView::HighScoreView(sf::RenderWindow* windowptr)
     HighScore_title.setStyle(sf::Text::Underlined);
 
     window = windowptr;
+
+    //Läser in highscores. Måste läsas in varje gång denna klass blir current view
+    readHighscore();
 }
 
 /*
@@ -32,28 +35,57 @@ HighScoreView::~HighScoreView()
 void HighScoreView::update()
 {
     window->draw(HighScore_title);
+    for(int i{0}; i < highscores.size(); ++i)
+    {
+        window->draw((highscores.at(i)).name);
+        window->draw((highscores.at(i)).score);
+    }
 }
 
 void HighScoreView::readHighscore()
 {
+    //Temporära objekt som används för att lägga in värden i
+    //hichscore-listan.
     HighScore highScoreEntry;
     sf::Text inputText;
 
     inputText.setFont(coolFont);
     inputText.setCharacterSize(30);
     inputText.setColor(sf::Color::Black);
-    inputText.setPosition(50, 100);
+    inputText.setPosition(200, 100);
 
     ifstream infile("res/highscore.txt");
     string inputString{""};
-    sf::Vector2f positionCheck;
+
+    //positionen är till för att utföra kontroller när vi läser från filen,
+    //samt ange var i fönstret textobjekten ska ligga.
+    sf::Vector2f positionCheck{200,100};
+
+    int place{1};
 
     while(infile >> inputString)
     {
-        if(positionCheck.x == 50)
+        //I första fallet så är det ett namn som ska läsas in.
+        if(positionCheck.x == 200)
         {
-
+            inputText.setString(to_string(place) + ". " + inputString);
+            highScoreEntry.name = inputText;
+            positionCheck.x += 250;
+            ++place;
         }
+        //Annars ska poängen läsas in
+        else
+        {
+            inputText.setString(inputString);
+            highScoreEntry.score = inputText;
+            highscores.push_back(highScoreEntry);
+            positionCheck.x = 200;
+            positionCheck.y += 50;
+        }
+
+        //Uppdatering av var nästa textobjekt ska
+        //vara i fönstret
+        inputText.setPosition(positionCheck);
     }
 
 
