@@ -112,6 +112,7 @@ void ViewHandler::inputHandler()
     else
     {
         leftBounce = false;
+        leftTimer = 0;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -148,6 +149,7 @@ void ViewHandler::inputHandler()
     else
     {
         rightBounce = false;
+        rightTimer = 0;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -169,6 +171,7 @@ void ViewHandler::inputHandler()
     else
     {
         upBounce = false;
+        upTimer = 0;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -201,6 +204,7 @@ void ViewHandler::inputHandler()
     else
     {
         downBounce = false;
+        downTimer = 0;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))

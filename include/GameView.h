@@ -66,7 +66,7 @@ private:
     float getFps();
 
     sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};
-    sf::RectangleShape nextFigureBox{sf::Vector2f(180, 180)};
+    sf::RectangleShape nextFigureBox{sf::Vector2f(220, 220)};
 
     sf::Text scoreText;
     sf::Text scoreNumText;

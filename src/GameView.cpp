@@ -40,15 +40,14 @@ GameView::GameView(sf::RenderWindow* windowptr)
     scoreText.setString("SCORE");
     scoreText.setColor(textcolor);
     scoreText.setCharacterSize(40);
-    scoreText.setPosition(fieldPosX,
-                        fieldPosY - fieldOffset - scoreText.getGlobalBounds().height - 20);
+    scoreText.setPosition(fieldPosX,fieldPosY - fieldOffset - scoreText.getGlobalBounds().height - 27);
 
     scoreNumText.setFont(coolFont);
     scoreNumText.setString("1337");
     scoreNumText.setColor(textcolor);
     scoreNumText.setCharacterSize(40);
     scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
-                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 20);
+                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 27);
 
     nextFigureText.setFont(coolFont);
     nextFigureText.setString("NEXT FIGURE");
@@ -72,7 +71,7 @@ void GameView::update()
     gameEngine->update(getFps());
 
     score = gameEngine->getScore();
-    scoreNumText.setString(to_string(score));
+    //scoreNumText.setString(to_string(score));
     draw();
 }
 
@@ -86,7 +85,7 @@ void GameView::draw()
 
     scoreWidth = scoreNumText.getGlobalBounds().width;
     scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
-                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 20);
+                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 27);
 
     window->draw(scoreNumText);
     window->draw(nextFigureBox);
