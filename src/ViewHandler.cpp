@@ -239,7 +239,7 @@ void ViewHandler::outputHandler()
     if (!pause)
     {
         // Clear screen, screen background is white.
-        window.clear(sf::Color(120,120,120));
+        window.clear(sf::Color(120/2,120/2,120/2));
         // Update for currentView.
         currentView->update();
         // Update the window

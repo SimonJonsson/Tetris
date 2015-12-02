@@ -26,10 +26,10 @@ using namespace std;
 
 GameView::GameView(sf::RenderWindow* windowptr)
 {
+    gameEngine = new GameEngine(700,800,fieldWidth,fieldHeight);
 
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
     window = windowptr;
-    gameEngine = new GameEngine(700,800,fieldWidth,fieldHeight);
 
     scoreWidth = scoreNumText.getGlobalBounds().width;
 
@@ -39,30 +39,29 @@ GameView::GameView(sf::RenderWindow* windowptr)
     scoreText.setFont(coolFont);
     scoreText.setString("SCORE");
     scoreText.setColor(textcolor);
-    scoreText.setCharacterSize(60);
+    scoreText.setCharacterSize(40);
     scoreText.setPosition(fieldPosX,
-                        fieldPosY - fieldOffset - 60);
+                        fieldPosY - fieldOffset - scoreText.getGlobalBounds().height - 20);
 
     scoreNumText.setFont(coolFont);
     scoreNumText.setString("1337");
     scoreNumText.setColor(textcolor);
-    scoreNumText.setCharacterSize(60);
+    scoreNumText.setCharacterSize(40);
     scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
-                            fieldPosY - fieldOffset - 60);
+                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 20);
 
     nextFigureText.setFont(coolFont);
     nextFigureText.setString("NEXT FIGURE");
     nextFigureText.setColor(textcolor);
     nextFigureText.setCharacterSize(40);
     nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset,
-                                fieldPosY - nextFigureText.getGlobalBounds().height);
+                                scoreNumText.getPosition().y);
 
-    //nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
-      //                          fieldPosY + nextFigureText.getGlobalBounds().);
+    nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
+                                fieldPosY);
     nextFigureBox.setFillColor(sf::Color::Black);
 
 
-    cout << fieldPosY - nextFigureText.getGlobalBounds().height << endl;
 }
 
 /*
@@ -87,11 +86,11 @@ void GameView::draw()
 
     scoreWidth = scoreNumText.getGlobalBounds().width;
     scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
-                            fieldPosY - fieldOffset - 60);
+                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 20);
 
     window->draw(scoreNumText);
-    window->draw(nextFigureText);
     window->draw(nextFigureBox);
+    window->draw(nextFigureText);
 
 }
 

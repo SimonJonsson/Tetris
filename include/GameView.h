@@ -50,10 +50,11 @@ private:
     GameEngine*         gameEngine;
 
     int fieldPosX = 50;
-    int fieldPosY = 60;
-    int fieldWidth = 500;
-    int fieldHeight = 640;
+    int fieldPosY = 40;
+    int fieldWidth = 360;
+    int fieldHeight = 2*fieldWidth;
     int fieldOffset = 10;
+    int blocksize = fieldWidth/10;
 
     long int score = 0;
     int scoreWidth;
@@ -65,7 +66,7 @@ private:
     float getFps();
 
     sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};
-    sf::RectangleShape nextFigureBox{sf::Vector2f(100, 100)};
+    sf::RectangleShape nextFigureBox{sf::Vector2f(180, 180)};
 
     sf::Text scoreText;
     sf::Text scoreNumText;
