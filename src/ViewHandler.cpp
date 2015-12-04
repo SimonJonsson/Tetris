@@ -44,6 +44,8 @@ void ViewHandler::initiate()
     //Creates a window with height, width, title and disables resizing of window
     window.create(sf::VideoMode(windowWidth,windowHeight),"Tetris",sf::Style::Close);
     window.setPosition(sf::Vector2i(0,100));
+    window.setFramerateLimit(60);
+
     // Start the game loop
     while (window.isOpen())
     {

@@ -69,7 +69,7 @@ GameView::GameView(sf::RenderWindow* windowptr)
 void GameView::update()
 {
     gameEngine->update(getFps());
-
+    cout << getFps() << endl;
     //blockField = gameEngine->getBlockField();
     currentFigure = gameEngine->getCurrentFigure();
     //nextFigure = gameEngine->getNextFigure();
