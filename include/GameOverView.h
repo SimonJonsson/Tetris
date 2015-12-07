@@ -17,11 +17,17 @@ class GameOverView : public UpdateView
 {
 private:
     std::string name{""};
-    int score{0};
+    int score{10};
+    int pos{0};
     std::vector<HighScoreInfo> highscores;
     bool highscore = false;
+    bool entered_name = false;
+
+    std::string input{""};
 
     sf::Text GameOver_text;
+    sf::RectangleShape Input_field{sf::Vector2f(300, 50)};
+    sf::Text Input_text;
 
     sf::Font coolFont;
     sf::RenderWindow* window;
@@ -39,6 +45,7 @@ public:
     void               setScore(const int&);
     std::string        getName();
     int                getScore();
+    bool               getHighScore();
 
     void leftClick()  override;
     void rightClick() override;

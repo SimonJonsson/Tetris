@@ -1,10 +1,10 @@
 axel 11
 axel 10
 axel 9
-Mathilda 3
-Simon 2
-Grayson 0
-Sofia 0
-Patrik 0 
-Simon 0
-Axel 0
+Mathilda 8
+Simon 7
+Grayson 6
+Sofia 5
+Patrik 4 
+Simon 3
+Axel 2

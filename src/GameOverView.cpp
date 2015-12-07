@@ -1,6 +1,7 @@
 #include "../include/GameOverView.h"
 #include <string>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -18,6 +19,15 @@ GameOverView::GameOverView(sf::RenderWindow* windowptr)
     GameOver_text.setPosition(100, 10);
     GameOver_text.setStyle(sf::Text::Underlined);
 
+    Input_text.setFont(coolFont);
+    Input_text.setColor(sf::Color::Black);
+    Input_text.setCharacterSize(20);
+    Input_text.setPosition(100, 250);
+
+    Input_field.setPosition(95, 245);
+    Input_field.setFillColor(sf::Color::White);
+
+
     window = windowptr;
 }
 
@@ -26,11 +36,12 @@ void GameOverView::update()
     window->draw(GameOver_text);
     if(highscore)
     {
-        //Do stuff!
-    }
-    else
-    {
-        //Don't do stuff!
+        window->draw(Input_field);
+        window->draw(Input_text);
+        if(Input_text.getString() != "")
+            entered_name = true;
+        else
+            entered_name = false;
     }
 }
 
@@ -57,7 +68,7 @@ void GameOverView::readHighScores()
 int GameOverView::compareScore()
 {
     readHighScores();
-    int pos{0};
+    pos = 0;
     while(score < (highscores.at(pos)).score && pos < 10)
         ++pos;
 
@@ -77,6 +88,7 @@ void GameOverView::updateHighScore()
 void GameOverView::setName(const string& newName)
 {
     name = newName;
+    Input_text.setString(name);
 }
 
 void GameOverView::setScore(const int& newScore)
@@ -87,6 +99,11 @@ void GameOverView::setScore(const int& newScore)
 string GameOverView::getName()
 {
     return name;
+}
+
+bool GameOverView::getHighScore()
+{
+    return highscore;
 }
 
 int GameOverView::getScore()

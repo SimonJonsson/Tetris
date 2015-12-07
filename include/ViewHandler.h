@@ -63,6 +63,7 @@ private:
     int downTimer       = 0;
     int noBounces       = 15; //Number of bounces before we debounce
     int gNoBounces      = 5; //Number of bounces before we debounce in GameView
+    std::string input{""};
 
     bool pause          = false;
     bool upBounce       = false;

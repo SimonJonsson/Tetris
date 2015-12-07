@@ -33,8 +33,9 @@ ViewHandler::ViewHandler()
     gameView        = new GameView(&window);
     gameOverView    = new GameOverView(&window);
 
-    //Changes currentView to menuView
-    changeView("MenuView");
+    //Preliminary test for gameOverView
+    gameOverView->checkScore();
+    changeView("GameOverView");
 }
 
 
@@ -77,6 +78,12 @@ void ViewHandler::eventHandler()
 
         if (event.type == sf::Event::LostFocus)
             pause = true;
+
+        if(currentView == gameOverView && gameOverView->getHighScore() && event.type == sf::Event::TextEntered)
+        {
+            char input = static_cast<char>(event.text.unicode);
+            gameOverView->setName(gameOverView->getName() + input);
+        }
     }
 }
 
