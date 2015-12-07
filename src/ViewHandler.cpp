@@ -35,7 +35,7 @@ ViewHandler::ViewHandler()
 
     //Preliminary test for gameOverView
     gameOverView->checkScore();
-    changeView("GameOverView");
+    changeView("MenuView");
 }
 
 

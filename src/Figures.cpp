@@ -68,7 +68,7 @@ void J::rotate()
             if(figmatrix[r][c] == 1)
             {
                 RectangleShape* block = blocks[index];
-                block->setPosition(Vector2f(20*r,20*c));
+                block->setPosition(Vector2f(20*r, 20*c));
                 index++;
             }
         }

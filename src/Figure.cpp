@@ -4,19 +4,42 @@
 using namespace std;
 using namespace sf;
 
+//enum class  Fig {I = 0, J, L, O, S, T,Z};
 
 Figure::Figure()
 {
+    //För varje unik figur finns ett motsvarande r
+    //r används för att skapa figuren i en switch sats => inga unika klasser behövs.
+    //random r mellan (0 6)
+    /*switch (r)
+    {
+        case 0:
+             figmatrix = {
+                 {1, 0, 0},
+                 {1, 1, 1},
+                 {0, 0, 0}
+                 };
+            break;
+        case 1:
+            figmatrix = {
+                {1, 1},
+                {1, 1}
+                };
+            break;
+            osv...
+    }*/
+
   figmatrix = {
          {1, 0, 0},
          {1, 1, 1},
          {0, 0, 0}
          };
+
     pos.x = 0;
     pos.y = 0;
- cout << "OK" << endl;
- cout << figmatrix.size();
- cout << "ok" << endl;
+     cout << "OK" << endl;
+     cout << figmatrix.size();
+     cout << "ok" << endl;
     for(int i = 0; i <= figmatrix.size() - 1; ++i)
     {
         for(int j = 0; j <= figmatrix[i].size() - 1; ++j)
@@ -47,6 +70,12 @@ return blocks;
 
 void Figure::rotate()
 {
+    //Ungefär som denna
+       /* for(int j = 0; j <= blocks.size() - 1; ++j)
+        {
+            RectangleShape* b = blocks[j];
+            b->setPosition(Vector2f(20*x + (b->getPosition()).x, 20*y + (b->getPosition()).y));
+        }*/
 }
 
 // x -1 , 20 pixlar vänster, x=1, 20 pix hög. y=-1 20 upp, y=1 20 ner.
@@ -60,6 +89,7 @@ void Figure::translate(int x, int y)
         {
             RectangleShape* b = blocks[j];
             b->setPosition(Vector2f(20*x + (b->getPosition()).x, 20*y + (b->getPosition()).y));
-     }
+        }
 
 }
+
