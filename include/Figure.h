@@ -5,9 +5,13 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
+
+
+
 class Figure
 {
 public:
+//static enum t;
     Figure();
     virtual ~Figure();
 

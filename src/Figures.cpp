@@ -23,6 +23,21 @@ void I::rotate()
         }
     }
     figmatrix = temp;
+
+    //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 3; ++r)
+    {
+        for (int c = 0; c <= 3 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
 }
 
 
@@ -43,6 +58,22 @@ void J::rotate()
         }
     }
     figmatrix = temp;
+
+    //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
+
 }
 
 void L::rotate()
@@ -62,6 +93,21 @@ void L::rotate()
         }
     }
     figmatrix = temp;
+
+        //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
 }
 
 void O::rotate()
@@ -80,6 +126,21 @@ void O::rotate()
         }
     }
     figmatrix = temp;
+
+        //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 1; ++r)
+    {
+        for (int c = 0; c <= 1 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
 }
 
 void S::rotate()
@@ -99,6 +160,21 @@ void S::rotate()
         }
     }
     figmatrix = temp;
+
+        //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
 }
 
 void T::rotate()
@@ -118,6 +194,21 @@ void T::rotate()
         }
     }
     figmatrix = temp;
+
+        //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
 }
 
 void Z::rotate()
@@ -137,4 +228,19 @@ void Z::rotate()
         }
     }
     figmatrix = temp;
+
+        //För att ändra blocks
+    int index = 0;
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(20*r,20*c));
+                index++;
+            }
+        }
+    }
 }

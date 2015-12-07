@@ -9,6 +9,7 @@
 
 class I final : public Figure
 {
+
     public:
         I()
         : Figure() {

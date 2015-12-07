@@ -34,6 +34,7 @@ Figure::Figure()
     }
 }
 
+
 Figure::~Figure()
 {
 }
