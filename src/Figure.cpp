@@ -4,7 +4,7 @@
 using namespace std;
 using namespace sf;
 
-//enum class  Fig {I = 0, J, L, O, S, T,Z};
+//enum class  Fig {I = 0, J, L, O, S, T, Z};
 
 Figure::Figure()
 {
@@ -13,14 +13,15 @@ Figure::Figure()
     //random r mellan (0 6)
     /*switch (r)
     {
-        case 0:
+        case 1:
              figmatrix = {
                  {1, 0, 0},
                  {1, 1, 1},
                  {0, 0, 0}
                  };
+        //Ska färgen också skrivas här?
             break;
-        case 1:
+        case 3:
             figmatrix = {
                 {1, 1},
                 {1, 1}
@@ -40,16 +41,16 @@ Figure::Figure()
      cout << "OK" << endl;
      cout << figmatrix.size();
      cout << "ok" << endl;
-    for(int i = 0; i <= figmatrix.size() - 1; ++i)
+    for(int j = 0; j <= figmatrix.size() - 1; ++j)
     {
-        for(int j = 0; j <= figmatrix[i].size() - 1; ++j)
+        for(int i = 0; i <= figmatrix[j].size() - 1; ++i)
         {
-            if(figmatrix[i][j] == 1)
+            if(figmatrix[j][i] == 1)
             {
                 cout << "1" << endl;
                 RectangleShape* block = new RectangleShape(sf::Vector2f(20,20));
                 block->setPosition(sf::Vector2f(20*i+100,20*j+100));
-                block->setFillColor(sf::Color::Blue);
+                block->setFillColor(sf::Color::Yellow);
                 blocks.push_back(block);
 
             }

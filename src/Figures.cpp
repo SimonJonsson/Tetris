@@ -5,6 +5,13 @@
 using namespace std;
 using namespace sf;
 
+/*void getReferencepoint
+{
+//xpos; Alt. en vector el struct m två medlemmar.
+//ypos;
+}
+*/
+
 void I::rotate()
 {
          vector<vector<int>> temp = {
@@ -49,6 +56,27 @@ void J::rotate()
          {0, 0, 0}
          };
 
+    int xpos{0};
+    int ypos{0};
+
+    bool found = false;
+
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1 && !(found))
+            {
+                xpos = blocks[0]->getPosition().x - 20*c;
+                ypos = blocks[0]->getPosition().y - 20*r;
+                found = true;
+            }
+        }
+    }
+
+    cout << xpos << endl;
+    cout << ypos << endl;
+
     for (int r = 0; r <= 2; ++r)
     {
         for (int c = 0; c <= 2 ; ++c)
@@ -57,9 +85,10 @@ void J::rotate()
             figmatrix[r][c];
         }
     }
+
     figmatrix = temp;
 
-    //För att ändra blocks
+    //För att sätta in blocks i den roterade matrisen
     int index = 0;
     for (int r = 0; r <= 2; ++r)
     {
@@ -68,12 +97,11 @@ void J::rotate()
             if(figmatrix[r][c] == 1)
             {
                 RectangleShape* block = blocks[index];
-                block->setPosition(Vector2f(20*r, 20*c));
+                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
                 index++;
             }
         }
     }
-
 }
 
 void L::rotate()
