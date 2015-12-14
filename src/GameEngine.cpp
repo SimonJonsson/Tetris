@@ -85,16 +85,17 @@ void GameEngine::update(long dt)
                 nextFigure = generateRandomFigure();
                 nextFigure->setPos(nextPos.x, nextPos.y);
                 timeStill = 0;
-                /*
                 if(collides(currentFigure)) //in default pos. -> can only collide with blockfield.
                 {
                     gameOver = true;
-                }*/
+                }
             }
         }
         int cleared = clearFullRows();
-       // increaseScore(scorePerRow*cleared*(difficulty+1)); //+1 due to initial diff=0
-       // updateDifficulty();
+        if(cleared != 0)
+        cout << "CLEARED: " << cleared;
+       increaseScore(scorePerRow*cleared*(difficulty+1)); //+1 due to initial diff=0
+       //updateDifficulty();
 
     }
 }
@@ -104,7 +105,10 @@ void GameEngine::update(long dt)
  */
 void GameEngine::leftClick()
 {
-    translate(currentFigure,-1,0);
+    if(!gameOver)
+    {
+        translate(currentFigure,-1,0);
+    }
 }
 
 /* FUNCTION void GameEngine::rightClick()
@@ -112,7 +116,10 @@ void GameEngine::leftClick()
  */
 void GameEngine::rightClick()
 {
-    translate(currentFigure,1,0);
+    if(!gameOver)
+    {
+        translate(currentFigure,1,0);
+    }
 }
 
 /* FUNCTION void GameEngine::upClick()
@@ -120,16 +127,19 @@ void GameEngine::rightClick()
  */
 void GameEngine::upClick()
 {
-    currentFigure->rotate();
-    if(collides(currentFigure))
+    if(!gameOver)
     {
-        currentFigure->translate(-1,0);
+        currentFigure->rotate();
         if(collides(currentFigure))
         {
-            currentFigure->translate(1,0);
-            currentFigure->rotate();
-            currentFigure->rotate();
-            currentFigure->rotate();
+            currentFigure->translate(-1,0);
+            if(collides(currentFigure))
+            {
+                currentFigure->translate(1,0);
+                currentFigure->rotate();
+                currentFigure->rotate();
+                currentFigure->rotate();
+            }
         }
     }
 }
@@ -139,12 +149,15 @@ void GameEngine::upClick()
  */
 void GameEngine::downClick()
 {
-    if(translate(currentFigure,0,1))
+    if(!gameOver)
     {
-        update(999999);
-    }else
-    {
-    timeStill = 0;
+        if(translate(currentFigure,0,1))
+        {
+            update(999999);
+        }else
+        {
+        timeStill = 0;
+        }
     }
 }
 
@@ -273,7 +286,7 @@ bool GameEngine::translate(Figure* fig, int x, int y)
  */
 bool GameEngine::translate(sf::RectangleShape* block, int x, int y)
 {
-    //block->setPosition(block->getPosition.x + x*blockSize, block->getPosition.y + y*blockSize);
+    block->setPosition(block->getPosition().x + x*blockSize, block->getPosition().y + y*blockSize);
 }
 
 /* FUNCTION bool GameEngine::collides(Figure* fig)
@@ -309,6 +322,38 @@ bool GameEngine::collides(Figure* fig)
     return false;
 }
 
+/* FUNCTION bool GameEngine::collides(Figure* fig)
+ * Check if figure collides with blockfield/borders
+ */
+bool GameEngine::collides(RectangleShape* block)
+{
+        Vector2f pos = block->getPosition();
+        if(pos.x < fieldPos.x || pos.x+blockSize > fieldPos.x+fWidth)
+        {
+            return true;
+        } else if(pos.y+blockSize > fieldPos.y + fHeight)
+        {
+            return true;
+        }
+        for(RectangleShape* bf : blockField)
+        {
+            if(bf != block)
+            {
+                if (bf->getGlobalBounds().intersects(block->getGlobalBounds()))
+                {
+                    if(bf->getPosition().y < pos.y+blockSize)
+                    {
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+    return false;
+}
+
 /* FUNCTION void GameEngine::placeFigure()
  * Place current figure onto blockfield.
  */
@@ -327,7 +372,9 @@ void GameEngine::placeFigure()
 Figure* GameEngine::generateRandomFigure()
 {
     int id = uniRand(); //[1,numFigure]
-    Figure* f = new Figure(Fig::J);
+    Fig type = static_cast<Fig>(id);
+    cout << type;
+    Figure* f = new Figure(type);
     return f;
 
 }
@@ -339,7 +386,7 @@ int GameEngine::uniRand()
 {
      mt19937 rng;
      rng.seed(random_device()());
-     uniform_int_distribution<mt19937::result_type> numGen(1,numFigures); //U(1,numFigures) distributed
+     uniform_int_distribution<mt19937::result_type> numGen(0,numFigures-1); //U(1,numFigures) distributed
      return numGen(rng); //Generate random number 1->#figures.
 }
 
@@ -348,7 +395,39 @@ int GameEngine::uniRand()
  */
 int GameEngine::clearFullRows()
 {
-    return 0;
+    int rc = 0;
+    int rowamount = fWidth/blockSize;
+    for(int row = fieldPos.y; row <= fieldPos.y+fHeight-blockSize;row+=blockSize)
+    {
+        int blocksInRow = 0;
+        for(RectangleShape* b : blockField)
+        {
+            if(b->getPosition().y == row)
+            {
+                blocksInRow++;
+
+            }
+        }
+        if(blocksInRow == rowamount)
+        {
+            rc++;
+            for(int index = 0; index < blockField.size();index++)
+            {
+                RectangleShape* b = blockField[index];
+                if(b->getPosition().y == row)
+                {
+                    delete b;
+                    blockField.erase(blockField.begin() + index);
+
+                } else if(b->getPosition().y < row)
+                {
+                    translate(b,0,1);
+                }
+            }
+
+        }
+    }
+    return rc;
 }
 
 /* FUNCTION void GameEngine::increaseScore(long amount)

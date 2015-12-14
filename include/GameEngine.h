@@ -48,7 +48,7 @@ private:
     int rowsCleared = 0; //Number of rows player has cleared.
     int diffCleared = 0; //Number of rows cleared on current difficulty
     int difficulty = 0; //Difficulty of game. Based on number of cleared rows.
-    long initMoveTime = 800; //Move time(ms) for difficulty 0.
+    long initMoveTime = 850;//850 //Move time(ms) for difficulty 0.
     int moveTime = 0; //Time(ms) until block should be moved. Based on difficulty.
     int timeStill = 0; //How long time(ms) has gone since block was moved.
     int blockSize = 20; //Width/Height of one block. This will be stepsize when translating.
@@ -61,6 +61,7 @@ private:
     bool translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
     bool translate(sf::RectangleShape* block, int x, int y); //Translate one tetris block. As above
     bool collides(Figure* fig); //Check if figure collides with blockfield/borders
+    bool collides(sf::RectangleShape* block); //Check if RectangleShape collides with blockfield/borders
     void placeFigure(); //Place current figure onto blockfield.
     Figure* generateRandomFigure(); //Generate a random figure.
     int uniRand(); //Generate random number in range 1->number of figures.
