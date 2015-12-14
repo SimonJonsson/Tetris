@@ -4,37 +4,81 @@
 using namespace std;
 using namespace sf;
 
-//enum class  Fig {I = 0, J, L, O, S, T, Z};
 
-Figure::Figure()
+
+Figure::Figure(Fig r)
 {
     //För varje unik figur finns ett motsvarande r
     //r används för att skapa figuren i en switch sats => inga unika klasser behövs.
     //random r mellan (0 6)
-    /*switch (r)
+    switch (r)
     {
-        case 1:
+
+        case Fig::I:
+            figmatrix =  {
+                {0, 0, 0, 0},
+                {1, 1, 1, 1},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+                };
+            color = sf::Color::Magenta;
+            break;
+
+        case Fig::J:
              figmatrix = {
                  {1, 0, 0},
                  {1, 1, 1},
                  {0, 0, 0}
                  };
-        //Ska färgen också skrivas här?
+            color = sf::Color::Blue;
             break;
-        case 3:
+        case Fig::L:
+            figmatrix = {
+                {0, 0, 1},
+                {1, 1, 1},
+                {0, 0, 0}
+                };
+            color = sf::Color::Green;
+            break;
+        case Fig::O:
             figmatrix = {
                 {1, 1},
                 {1, 1}
                 };
+            color = sf::Color::Red;
             break;
-            osv...
-    }*/
+        case Fig::S:
+            figmatrix = {
+                {0, 1, 1},
+                {1, 1, 0},
+                {0, 0, 0}
+                };
+            color = sf::Color::White;
+            break;
+        case Fig::T:
+            figmatrix = {
+                {0, 1, 0},
+                {1, 1, 1},
+                {0, 0, 0}
+                };
+            color = sf::Color(250, 150, 100);
+            break;
+        case Fig::Z:
+            figmatrix = {
+            {1, 1, 0},
+            {0, 1, 1},
+            {0, 0, 0}
+            };
+            color = sf::Color::Yellow;
+            break;
+    }
 
-  figmatrix = {
+/*  figmatrix = {
          {1, 0, 0},
          {1, 1, 1},
          {0, 0, 0}
          };
+*/
 
     pos.x = 0;
     pos.y = 0;
@@ -50,7 +94,7 @@ Figure::Figure()
                 cout << "1" << endl;
                 RectangleShape* block = new RectangleShape(sf::Vector2f(20,20));
                 block->setPosition(sf::Vector2f(20*i+100,20*j+100));
-                block->setFillColor(sf::Color::Yellow);
+                block->setFillColor(Figure::color); //innan stod det sf::Color::color, men det fungerade inte
                 blocks.push_back(block);
 
             }

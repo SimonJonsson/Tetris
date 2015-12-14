@@ -6,13 +6,13 @@
 #include <SFML/Graphics.hpp>
 
 
-
+enum class  Fig {I, J, L, O, S, T, Z};
 
 class Figure
 {
 public:
 //static enum t;
-    Figure();
+    Figure(Fig r);
     virtual ~Figure();
 
 /*  std::array <std::array<int, 3>, 3> Figure_J;

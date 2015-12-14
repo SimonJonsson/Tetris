@@ -11,25 +11,8 @@ class I final : public Figure
 {
 
     public:
-        I()
-        : Figure() {
-        /*
-        figmatrix = std::vector<std::vector<int>>{{
-         std::vector<int,4>{0, 0, 0, 0},
-         std::vector<int,4>{1, 1, 1, 1},
-         std::vector<int,4>{0, 0, 0, 0},
-         std::vector<int,4>{0, 0, 0, 0}
-         }}; */
+        I();
 
-         figmatrix = {
-         {0, 0, 0, 0},
-         {1, 1, 1, 1},
-         {0, 0, 0, 0},
-         {0, 0, 0, 0}
-         };
-
-        color = sf::Color::Magenta;
-        }
         ~I() = default;
         void rotate() override;
 
@@ -42,8 +25,8 @@ class I final : public Figure
 class J final : public Figure
 {
     public:
-        J()
-        : Figure() {
+        J();
+/*        : Figure() {
         figmatrix = {
          {1, 0, 0},
          {1, 1, 1},
@@ -52,6 +35,7 @@ class J final : public Figure
 
         color = sf::Color::Blue;
         }
+*/
         ~J() = default;
         void rotate() override;
 
@@ -70,7 +54,8 @@ class J final : public Figure
 class L final : public Figure
 {
     public:
-        L()
+        L();
+/*
         : Figure() {
         figmatrix = {
          {0, 0, 1},
@@ -80,6 +65,7 @@ class L final : public Figure
 
         color = sf::Color::Green;
         }
+*/
         ~L() = default;
         void rotate() override;
 
@@ -98,7 +84,8 @@ class L final : public Figure
 class O final : public Figure
 {
     public:
-        O()
+        O();
+/*
         : Figure() {
         figmatrix = {
          {1, 1},
@@ -107,6 +94,7 @@ class O final : public Figure
 
         color = sf::Color::Red;
         }
+*/
         ~O() = default;
         void rotate() override;
 
@@ -124,7 +112,8 @@ class O final : public Figure
 class S final : public Figure
 {
     public:
-        S()
+        S();
+/*
         : Figure() {
         figmatrix = {
          {0, 1, 1},
@@ -134,6 +123,7 @@ class S final : public Figure
 
         color = sf::Color::White;
         }
+*/
         ~S() = default;
         void rotate() override;
 
@@ -152,7 +142,8 @@ class S final : public Figure
 class T final : public Figure
 {
     public:
-        T()
+        T();
+/*
         : Figure() {
         figmatrix = {
          {0, 1, 0},
@@ -162,6 +153,7 @@ class T final : public Figure
 
         color = sf::Color(250, 150, 100);
         }
+*/
         ~T() = default;
         void rotate() override;
 
@@ -180,7 +172,8 @@ class T final : public Figure
 class Z final : public Figure
 {
     public:
-        Z()
+        Z();
+/*
         : Figure() {
         figmatrix = {
          {1, 1, 0},
@@ -190,6 +183,7 @@ class Z final : public Figure
 
         color = sf::Color::Yellow;
         }
+*/
         ~Z() = default;
         void rotate() override;
 
