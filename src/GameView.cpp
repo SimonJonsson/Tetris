@@ -24,11 +24,14 @@
 using namespace std;
 using namespace sf;
 
-GameView::GameView(sf::RenderWindow* windowptr)
+/*
+ * Constructor
+ */
+GameView::GameView(RenderWindow* windowptr)
 {
 
-    sf::Vector2<int> fieldPosition = sf::Vector2<int>(fieldPosX,fieldPosY);
-    sf::Vector2<int> nextPos = sf::Vector2<int>(480,120);
+    Vector2<int> fieldPosition = Vector2<int>(fieldPosX,fieldPosY);
+    Vector2<int> nextPos = Vector2<int>(440,60);
     gameEngine = new GameEngine(fieldPosition,fieldHeight,fieldWidth,nextPos);
 
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
@@ -66,12 +69,13 @@ void GameView::draw()
                             fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 27);
 
     window->draw(scoreNumText);
-    window->draw(nextFigureBox);
-    window->draw(nextFigureText);
 
+    // If we are paused, we do not wish to see the figures, nor the figure box (prevents cheating)
     if (!paused)
     {
         drawFigures();
+        window->draw(nextFigureBox);
+        window->draw(nextFigureText);
     }
     else
     {
@@ -103,6 +107,7 @@ void GameView::downClick()
     gameEngine->downClick();
 }
 
+// Gets the FPS
 float GameView::getFps()
 {
     currentTime = clock.restart().asSeconds();
@@ -110,6 +115,7 @@ float GameView::getFps()
     return fps;
 }
 
+// Returns the score
 int GameView::getScore()
 {
     return score;
@@ -117,15 +123,17 @@ int GameView::getScore()
 
 void GameView::drawFigures()
 {
+    // Draws the 'active' figure
     if (currentFigure != nullptr)
     {
-        for (sf::RectangleShape* i : currentFigure->getBlocks())
+        for (RectangleShape* i : currentFigure->getBlocks())
         {
             window->draw(*i);
            // cout << i->getPosition().x << "  " << i->getPosition().y;
         }
     }
 
+    // Draws the next figure
     if (nextFigure != nullptr)
     {
         for (auto i : nextFigure->getBlocks())
@@ -134,6 +142,7 @@ void GameView::drawFigures()
         }
     }
 
+    // Draws all the blocks in the block field (placed figures)
     for (auto i : blockField)
     {
         window->draw(*i);
@@ -158,12 +167,14 @@ void GameView::initGraphics()
     background.setPosition(fieldPosX, fieldPosY);
     background.setFillColor(sf::Color::Black);
 
+    // The score text "SCORE"
     scoreText.setFont(coolFont);
     scoreText.setString("SCORE");
     scoreText.setColor(textcolor);
     scoreText.setCharacterSize(40);
     scoreText.setPosition(fieldPosX,fieldPosY - fieldOffset - scoreText.getGlobalBounds().height - 27);
 
+    // The score number
     scoreNumText.setFont(coolFont);
     scoreNumText.setString("1337");
     scoreNumText.setColor(textcolor);
@@ -171,6 +182,7 @@ void GameView::initGraphics()
     scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
                             fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 27);
 
+    // The text that says "NEXT FIGURE"
     nextFigureText.setFont(coolFont);
     nextFigureText.setString("NEXT FIGURE");
     nextFigureText.setColor(textcolor);
@@ -178,11 +190,12 @@ void GameView::initGraphics()
     nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset,
                                 scoreNumText.getPosition().y);
 
+    // The box where the next figure is placed in
     nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
                                 fieldPosY);
     nextFigureBox.setFillColor(sf::Color::Black);
 
-
+    // The huge "PAUSE" text
     pauseText.setFont(coolFont);
     pauseText.setRotation(90);
     pauseText.setString("PAUSE");

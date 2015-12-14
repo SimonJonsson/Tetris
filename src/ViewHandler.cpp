@@ -90,9 +90,7 @@ void ViewHandler::eventHandler()
 
 /*
  * The keybindings for all views
- * This happens before the update so we can draw
- * instantaneously what happens.
- * This must also have a debounce function
+ * This must also have a debounce function, to prevent spam
  */
 void ViewHandler::inputHandler()
 {
@@ -165,7 +163,7 @@ void ViewHandler::inputHandler()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         upTimer++;
-        if (upTimer > noBounces)
+        if (upTimer > standardBounces)
         {
             upBounce = false;
             upTimer = 0;
@@ -240,7 +238,7 @@ void ViewHandler::inputHandler()
 void ViewHandler::outputHandler()
 {
     // Clear screen, screen background is white.
-    window.clear(sf::Color(120/2,120/2,120/2));
+    window.clear(sf::Color(60,60,60));
     // Update for currentView.
     currentView->update();
     // Update the window
@@ -252,7 +250,7 @@ void ViewHandler::outputHandler()
  */
 void ViewHandler::changeView(string newView)
 {
-    noBounces = 15;
+    noBounces = standardBounces;
     if(newView == "MenuView")
     {
         currentView = menuView;

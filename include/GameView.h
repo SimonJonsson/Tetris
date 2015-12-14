@@ -73,7 +73,7 @@ private:
 
     std::vector<sf::RectangleShape*> blockField;
     sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};
-    sf::RectangleShape nextFigureBox{sf::Vector2f(220, 220)};
+    sf::RectangleShape nextFigureBox{sf::Vector2f(100, 90)};
     sf::Text scoreText;
     sf::Text scoreNumText;
     sf::Text nextFigureText;

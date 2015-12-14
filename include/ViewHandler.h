@@ -61,8 +61,9 @@ private:
     int leftTimer       = 0;
     int upTimer         = 0;
     int downTimer       = 0;
-    int noBounces       = 15; //Number of bounces before we debounce
-    int gNoBounces      = 5; //Number of bounces before we debounce in GameView
+    int standardBounces    = 20; // The standard number of bounces, also prevents spamming 'up'(see Up keybinding)
+    int noBounces       = 20; //Number of bounces before we debounce
+    int gNoBounces      = 3; //Number of bounces before we debounce in GameView
     std::string input{""};
 
     bool pause          = false;
