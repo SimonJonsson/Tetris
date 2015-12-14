@@ -94,7 +94,6 @@ void GameEngine::update(long dt)
         }
         int cleared = clearFullRows();
         if(cleared != 0)
-        cout << "CLEARED: " << cleared;
        increaseScore(scorePerRow*cleared*((difficulty+1)*(difficulty+1))); //+1 due to initial diff=0
        updateDifficulty();
 
