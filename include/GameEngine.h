@@ -87,7 +87,7 @@ public:
     sf::Vector2<int> getFieldPos(); //Gets x,y pos of board
     int getRowsCleared(); //Gets number of rows cleared.
 
-    void operator=(GameEngine& )= delete; //Only one GameEngine can exist at one time.
+    void operator=(GameEngine& )= delete; //Only one GameEngine can exis
 
 };
 
