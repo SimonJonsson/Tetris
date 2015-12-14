@@ -80,14 +80,16 @@ void GameEngine::update(long dt)
             if (shouldPlace)
             {
                 placeFigure();
-                //nextFigure->translate(startPos);
+                nextFigure->setPos(startPos.x,startPos.y);
                 currentFigure = nextFigure;
                 nextFigure = generateRandomFigure();
+                nextFigure->setPos(nextPos.x, nextPos.y);
                 timeStill = 0;
+                /*
                 if(collides(currentFigure)) //in default pos. -> can only collide with blockfield.
                 {
                     gameOver = true;
-                }
+                }*/
             }
         }
         int cleared = clearFullRows();
@@ -238,11 +240,11 @@ bool GameEngine::translate(Figure* fig, int x, int y)
         {
             return true;
         }
-        /*
         for(RectangleShape* bf : blockField)
         {
-            if (bf->getLocalBounds().intersects(b->getLocalBounds()))
+            if (bf->getGlobalBounds().intersects(b->getGlobalBounds()))
             {
+                 return true;
                 if(bf->getPosition().y < pos.y+blockSize)
                 {
                     return true;
@@ -252,7 +254,7 @@ bool GameEngine::translate(Figure* fig, int x, int y)
                 }
             }
         }
-        */
+
     }
     return false;
 }
