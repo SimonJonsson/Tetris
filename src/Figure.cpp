@@ -94,7 +94,7 @@ Figure::Figure(Fig r)
             {
                 cout << "1" << endl;
                 RectangleShape* block = new RectangleShape(sf::Vector2f(blocksize,blocksize));
-                block->setPosition(sf::Vector2f(blocksize*i+100,blocksize*j+100));
+                block->setPosition(sf::Vector2f(blocksize*i,blocksize*j));
                 block->setFillColor(Figure::color); //innan stod det sf::Color::color, men det fungerade inte
                 blocks.push_back(block);
 
