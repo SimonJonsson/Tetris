@@ -150,6 +150,11 @@ void ViewHandler::inputHandler()
                 }
 
             }
+
+            if (typeid(*currentView) == typeid(GameOverView))
+            {
+                changeView("HighScoreView");
+            }
         }
     }
     else
@@ -279,6 +284,8 @@ void ViewHandler::changeView(string newView)
     }
     else if (newView == "GameOverView")
     {
+        delete gameOverView;
+        gameOverView = new GameOverView(&window);
         currentView = gameOverView;
         gameOverView->setScore(gameView->getScore());
     }
