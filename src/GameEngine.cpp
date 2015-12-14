@@ -32,10 +32,9 @@ using namespace sf;
 * CONSTRUCTOR GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty);
 * Creates a new Tetris game engine with specified dimensions.
 */
-GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty)
+GameEngine::GameEngine(Vector2<int> fieldPosition, int boardHeight, int boardWidth, int initialDifficulty)
 {
-    wHeight = windowHeight;
-    wWidth = windowWidth;
+
     fHeight = boardHeight;
     fWidth = boardWidth;
     difficulty = initialDifficulty;
@@ -220,17 +219,21 @@ void GameEngine::updateDifficulty()
 
 /* FUNCTION void GameEngine::translate(Figure* fig, int x, int y)
  * Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
- * Returns false if figure lower bound is touching blockfield->needs to be placed.
- * Else true.
+ * Returns true if figure lower bound is touching blockfield->needs to be placed.
+ * Else false.
  */
 bool GameEngine::translate(Figure* fig, int x, int y)
 {
     fig->translate(x, y);
     vector<RectangleShape*> figblocks = fig->getBlocks();
-    //for(RectangleShape* rs : figblocks)
-    //{
-
-    //}
+    for(RectangleShape* b : figblocks)
+    {
+        Vector2f pos = b->getPosition();
+        if(pos.x < fieldPos.x || pos.x > fieldPos.x+fWidth)
+        {
+            cout << "OJ" << endl;
+        }
+    }
     return false;
 }
 

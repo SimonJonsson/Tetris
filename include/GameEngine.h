@@ -67,7 +67,7 @@ private:
     void increaseScore(long amount); //Increases score by specified amount of points.
 
 public:
-    GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty=0); //Constructor.
+    GameEngine(sf::Vector2<int> fieldPosition, int boardHeight, int boardWidth, int initialDifficulty=0); //Constructor.
     ~GameEngine(); //Destructor.
 
     void update(long dt); //Logic loop. dt is time since last update was performed.
