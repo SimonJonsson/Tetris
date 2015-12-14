@@ -13,6 +13,7 @@ private:
     sf::RectangleShape Highscore_button{sf::Vector2f(200, 50)};
     sf::RectangleShape Exit_button{sf::Vector2f(200, 50)};
 
+    sf::Text Game_text;
     sf::Text StartGame_text;
     sf::Text Highscore_text;
     sf::Text Exit_text;

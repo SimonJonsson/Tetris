@@ -79,10 +79,9 @@ void ViewHandler::eventHandler()
         if (event.type == sf::Event::LostFocus)
             pause = true;
 
-        if(currentView == gameOverView && gameOverView->getHighScore() && event.type == sf::Event::TextEntered)
+        if(currentView == gameOverView)
         {
-            char input = static_cast<char>(event.text.unicode);
-            gameOverView->setName(gameOverView->getName() + input);
+            gameOverView->eventhandler(event);
         }
     }
 }
