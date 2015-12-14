@@ -28,7 +28,8 @@ GameView::GameView(sf::RenderWindow* windowptr)
 {
 
     sf::Vector2<int> fieldPosition = sf::Vector2<int>(fieldPosX,fieldPosY);
-    gameEngine = new GameEngine(fieldPosition,fieldHeight,fieldWidth);
+    sf::Vector2<int> nextPos = sf::Vector2<int>(480,120);
+    gameEngine = new GameEngine(fieldPosition,fieldHeight,fieldWidth,nextPos);
 
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
     window = windowptr;
@@ -45,7 +46,7 @@ void GameView::update()
     //cout << getFps() << endl;
     //blockField = gameEngine->getBlockField();
     currentFigure = gameEngine->getCurrentFigure();
-    //nextFigure = gameEngine->getNextFigure();
+    nextFigure = gameEngine->getNextFigure();
     score = gameEngine->getScore();
     scoreNumText.setString(to_string(score));
     draw();
@@ -115,14 +116,14 @@ void GameView::drawFigures()
            // cout << i->getPosition().x << "  " << i->getPosition().y;
         }
     }
-/*
+
     if (nextFigure != nullptr)
     {
         for (auto i : nextFigure->getBlocks())
         {
             window->draw(*i);
         }
-    }*/
+    }
     /*
     for (auto i : blockField)
     {
