@@ -39,6 +39,7 @@ private:
     int fWidth; //Width of playing field.
     Position fieldPos; //Upper left corner of playing field.
     Position startPos; //Start posiion of new figures.
+    Position nextPos;
     std::vector<sf::RectangleShape*> blockField; //Vector with pointers to all blocks that have been placed.
     Figure* currentFigure; //Current tetris figure falling down.
     Figure* nextFigure; //Next figure to be placed.
@@ -67,7 +68,7 @@ private:
     void increaseScore(long amount); //Increases score by specified amount of points.
 
 public:
-    GameEngine(sf::Vector2<int> fieldPosition, int boardHeight, int boardWidth, int initialDifficulty=0); //Constructor.
+    GameEngine(sf::Vector2<int> fieldPosition, int boardHeight, int boardWidth, sf::Vector2<int> nextPosition, int initialDifficulty=0); //Constructor.
     ~GameEngine(); //Destructor.
 
     void update(long dt); //Logic loop. dt is time since last update was performed.

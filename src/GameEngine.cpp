@@ -32,7 +32,7 @@ using namespace sf;
 * CONSTRUCTOR GameEngine::GameEngine(int windowHeight, int windowWidth, int boardHeight, int boardWidth, int initialDifficulty);
 * Creates a new Tetris game engine with specified dimensions.
 */
-GameEngine::GameEngine(Vector2<int> fieldPosition, int boardHeight, int boardWidth, int initialDifficulty)
+GameEngine::GameEngine(Vector2<int> fieldPosition, int boardHeight, int boardWidth,Vector2<int> nextPosition, int initialDifficulty)
 {
 
     fHeight = boardHeight;
@@ -40,11 +40,13 @@ GameEngine::GameEngine(Vector2<int> fieldPosition, int boardHeight, int boardWid
     difficulty = initialDifficulty;
     moveTime = initMoveTime;
 
-    fieldPos = Position((wWidth - fWidth) / 2, (wHeight - fHeight) / 2);
-    startPos = Position(fieldPos.x + fWidth / 2  /* - figuresize / 2 */, fieldPos.y);
-
+    fieldPos = fieldPosition;
+    startPos = Position(fieldPos.x + fWidth / 2  - blockSize, fieldPos.y);
+    nextPos = nextPosition;
     currentFigure = generateRandomFigure();
+    currentFigure->setPos(startPos.x, startPos.y);
     nextFigure = generateRandomFigure();
+    nextFigure->setPos(nextPos.x, nextPos.y);
 
 }
 
@@ -78,7 +80,7 @@ void GameEngine::update(long dt)
             if (shouldPlace)
             {
                 placeFigure();
-                //nextFigure->translate(defaultPos);
+                //nextFigure->translate(startPos);
                 currentFigure = nextFigure;
                 nextFigure = generateRandomFigure();
                 timeStill = 0;
@@ -229,10 +231,28 @@ bool GameEngine::translate(Figure* fig, int x, int y)
     for(RectangleShape* b : figblocks)
     {
         Vector2f pos = b->getPosition();
-        if(pos.x < fieldPos.x || pos.x > fieldPos.x+fWidth)
+        if(pos.x < fieldPos.x || pos.x+blockSize > fieldPos.x+fWidth)
         {
-            cout << "OJ" << endl;
+            translate(fig,-x,-y);
+        } else if(pos.y+blockSize > fieldPos.y + fHeight)
+        {
+            return true;
         }
+        /*
+        for(RectangleShape* bf : blockField)
+        {
+            if (bf->getLocalBounds().intersects(b->getLocalBounds()))
+            {
+                if(bf->getPosition().y < pos.y+blockSize)
+                {
+                    return true;
+                } else
+                {
+                    translate(fig,-x,-y);
+                }
+            }
+        }
+        */
     }
     return false;
 }
@@ -251,7 +271,19 @@ bool GameEngine::translate(sf::RectangleShape* block, int x, int y)
  */
 bool GameEngine::collides(Figure* fig)
 {
-    //need intersects from figure.
+    vector<RectangleShape*> figblocks = fig->getBlocks();
+    for(RectangleShape* b : figblocks)
+    {
+        vector<RectangleShape*> figblocks = fig->getBlocks();
+        for(RectangleShape* bf : blockField)
+        {
+            if (bf->getGlobalBounds().intersects(b->getGlobalBounds()))
+            {
+               return true;
+            }
+        }
+    }
+        return false;
 }
 
 /* FUNCTION void GameEngine::placeFigure()
@@ -259,7 +291,11 @@ bool GameEngine::collides(Figure* fig)
  */
 void GameEngine::placeFigure()
 {
-    //need getBlocks from figure
+    vector<RectangleShape*> figblocks = currentFigure->getBlocks();
+    for(RectangleShape* b : figblocks)
+    {
+        blockField.push_back(b);
+    }
 }
 
 /* FUNCTION Figure* GameEngine::generateRandomFigure()
