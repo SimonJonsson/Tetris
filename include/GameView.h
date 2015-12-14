@@ -37,8 +37,9 @@ public:
     ~GameView() = default;
 
     void update() override;
-    void draw();
     void pauseSplash();
+    void draw();
+    void pause(bool state);
 
     void leftClick()  override;
     void rightClick() override;
@@ -60,14 +61,15 @@ private:
     int fieldHeight = 2*fieldWidth;
     int fieldOffset = 10;
     int blocksize = fieldWidth/10;
+    int scoreWidth;
 
     long int score = 0;
-    int scoreWidth;
 
     float fps = 0;
     float lastTime = 0;
     float currentTime;
 
+    bool paused = false;
 
     std::vector<sf::RectangleShape*> blockField;
     sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};
