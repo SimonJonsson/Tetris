@@ -120,14 +120,18 @@ void GameEngine::rightClick()
  */
 void GameEngine::upClick()
 {
-    // Figure* temp = currentFigure->clone();
-    // temp->rotate();
-    // bool coll = collides(temp);
-    // if (!coll)
-    //{
     currentFigure->rotate();
-    //}
-    //
+    if(collides(currentFigure))
+    {
+        translate(currentFigure,-1,0);
+        if(collides(currentFigure))
+        {
+            translate(currentFigure,1,0);
+            currentFigure->rotate();
+            currentFigure->rotate();
+            currentFigure->rotate();
+        }
+    }
 }
 
 /* FUNCTION void GameEngine::downClick()
@@ -277,16 +281,29 @@ bool GameEngine::collides(Figure* fig)
     vector<RectangleShape*> figblocks = fig->getBlocks();
     for(RectangleShape* b : figblocks)
     {
-        vector<RectangleShape*> figblocks = fig->getBlocks();
+        Vector2f pos = b->getPosition();
+        if(pos.x < fieldPos.x || pos.x+blockSize > fieldPos.x+fWidth)
+        {
+            return true;
+        } else if(pos.y+blockSize > fieldPos.y + fHeight)
+        {
+            return true;
+        }
         for(RectangleShape* bf : blockField)
         {
             if (bf->getGlobalBounds().intersects(b->getGlobalBounds()))
             {
-               return true;
+                if(bf->getPosition().y < pos.y+blockSize)
+                {
+                    return true;
+                } else
+                {
+                    return true;
+                }
             }
         }
     }
-        return false;
+    return false;
 }
 
 /* FUNCTION void GameEngine::placeFigure()
