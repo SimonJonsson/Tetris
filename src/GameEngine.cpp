@@ -94,8 +94,8 @@ void GameEngine::update(long dt)
         int cleared = clearFullRows();
         if(cleared != 0)
         cout << "CLEARED: " << cleared;
-       increaseScore(scorePerRow*cleared*(difficulty+1)); //+1 due to initial diff=0
-       //updateDifficulty();
+       increaseScore(scorePerRow*cleared*((difficulty+1)*(difficulty+1))); //+1 due to initial diff=0
+       updateDifficulty();
 
     }
 }
@@ -233,10 +233,10 @@ int GameEngine::getRowsCleared()
  */
 void GameEngine::updateDifficulty()
 {
-    if(diffCleared > 2 + difficulty) //Needs to be tested until good feel.
+    if(diffCleared > 1) //Needs to be tested until good feel.
     {
         ++difficulty;
-        moveTime = initMoveTime / log(exp(1) + difficulty); //Also needs testing for feel.
+        moveTime = initMoveTime / log(exp(1) + (difficulty+1)*(difficulty+1)); //Also needs testing for feel.
         diffCleared = 0;
     }
 }
@@ -418,6 +418,7 @@ int GameEngine::clearFullRows()
                 {
                     delete b;
                     blockField.erase(blockField.begin() + index);
+                    index--;
 
                 } else if(b->getPosition().y < row)
                 {
@@ -427,6 +428,8 @@ int GameEngine::clearFullRows()
 
         }
     }
+    rowsCleared += rc;
+    diffCleared += rc;
     return rc;
 }
 
