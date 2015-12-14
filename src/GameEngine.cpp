@@ -231,6 +231,7 @@ bool GameEngine::translate(Figure* fig, int x, int y)
     //{
 
     //}
+    return false;
 }
 
 /* FUNCTION void GameEngine::translate(sf::RectangleShape* block, int x, int y)
@@ -264,7 +265,7 @@ void GameEngine::placeFigure()
 Figure* GameEngine::generateRandomFigure()
 {
     int id = uniRand(); //[1,numFigure]
-    Figure* f = new J();
+    Figure* f = new Figure(Fig::J);
     return f;
 
 }
