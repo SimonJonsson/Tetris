@@ -12,6 +12,8 @@ using namespace sf;
 }
 */
 
+
+/*
 void I::rotate()
 {
          vector<vector<int>> temp = {
@@ -272,3 +274,6 @@ void Z::rotate()
         }
     }
 }
+
+
+*/

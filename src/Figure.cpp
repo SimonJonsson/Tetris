@@ -8,12 +8,13 @@ using namespace sf;
 
 Figure::Figure(Fig r)
 {
+
     //För varje unik figur finns ett motsvarande r
     //r används för att skapa figuren i en switch sats => inga unika klasser behövs.
     //random r mellan (0 6)
     switch (r)
     {
-
+        figenum = r;
         case Fig::I:
             figmatrix =  {
                 {0, 0, 0, 0},
@@ -115,6 +116,178 @@ return blocks;
 
 void Figure::rotate()
 {
+if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig::T || figenum == Fig::Z)
+{
+        vector<vector<int>> temp = {
+         {0, 0, 0},
+         {0, 0, 0},
+         {0, 0, 0}
+         };
+
+    int xpos{0};
+    int ypos{0};
+
+    bool found = false;
+
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1 && !(found))
+            {
+                xpos = blocks[0]->getPosition().x - 20*c;
+                ypos = blocks[0]->getPosition().y - 20*r;
+                found = true;
+            }
+        }
+    }
+
+    cout << xpos << endl;
+    cout << ypos << endl;
+
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            temp[c][2-r] =
+            figmatrix[r][c];
+        }
+    }
+
+    figmatrix = temp;
+
+    //För att sätta in blocks i den roterade matrisen
+    int index = 0;
+    for (int r = 0; r <= 2; ++r)
+    {
+        for (int c = 0; c <= 2 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
+                index++;
+            }
+        }
+    }
+
+}
+
+else if(figenum == Fig::I)
+{
+        vector<vector<int>> temp = {
+         {0, 0, 0, 0},
+         {0, 0, 0, 0},
+         {0, 0, 0, 0},
+         {0, 0, 0, 0}
+         };
+
+    int xpos{0};
+    int ypos{0};
+
+    bool found = false;
+
+    for (int r = 0; r <= 3; ++r)
+    {
+        for (int c = 0; c <= 3 ; ++c)
+        {
+            if(figmatrix[r][c] == 1 && !(found))
+            {
+                xpos = blocks[0]->getPosition().x - 20*c;
+                ypos = blocks[0]->getPosition().y - 20*r;
+                found = true;
+            }
+        }
+    }
+
+    cout << xpos << endl;
+    cout << ypos << endl;
+
+    for (int r = 0; r <= 3; ++r)
+    {
+        for (int c = 0; c <= 3 ; ++c)
+        {
+            temp[c][3-r] =
+            figmatrix[r][c];
+        }
+    }
+
+    figmatrix = temp;
+
+    //För att sätta in blocks i den roterade matrisen
+    int index = 0;
+    for (int r = 0; r <= 3; ++r)
+    {
+        for (int c = 0; c <= 3 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
+                index++;
+            }
+        }
+    }
+}
+
+else
+{
+        vector<vector<int>> temp = {
+         {0, 0},
+         {0, 0},
+         };
+
+    int xpos{0};
+    int ypos{0};
+
+    bool found = false;
+
+    for (int r = 0; r <= 1; ++r)
+    {
+        for (int c = 0; c <= 1 ; ++c)
+        {
+            if(figmatrix[r][c] == 1 && !(found))
+            {
+                xpos = blocks[0]->getPosition().x - 20*c;
+                ypos = blocks[0]->getPosition().y - 20*r;
+                found = true;
+            }
+        }
+    }
+
+    cout << xpos << endl;
+    cout << ypos << endl;
+
+    for (int r = 0; r <= 1; ++r)
+    {
+        for (int c = 0; c <= 1 ; ++c)
+        {
+            temp[c][1-r] =
+            figmatrix[r][c];
+        }
+    }
+
+    figmatrix = temp;
+
+    //För att sätta in blocks i den roterade matrisen
+    int index = 0;
+    for (int r = 0; r <= 1; ++r)
+    {
+        for (int c = 0; c <= 1 ; ++c)
+        {
+            if(figmatrix[r][c] == 1)
+            {
+                RectangleShape* block = blocks[index];
+                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
+                index++;
+            }
+        }
+    }
+
+
+}
+
+
     //Ungefär som denna
        /* for(int j = 0; j <= blocks.size() - 1; ++j)
         {

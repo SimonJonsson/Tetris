@@ -14,7 +14,7 @@ class I final : public Figure
         I();
 
         ~I() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
 
@@ -37,7 +37,7 @@ class J final : public Figure
         }
 */
         ~J() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
     private:
@@ -67,7 +67,7 @@ class L final : public Figure
         }
 */
         ~L() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
     private:
@@ -96,7 +96,7 @@ class O final : public Figure
         }
 */
         ~O() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
     private:
@@ -125,7 +125,7 @@ class S final : public Figure
         }
 */
         ~S() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
     private:
@@ -155,7 +155,7 @@ class T final : public Figure
         }
 */
         ~T() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
     private:
@@ -185,7 +185,7 @@ class Z final : public Figure
         }
 */
         ~Z() = default;
-        void rotate() override;
+//        void rotate() override;
 
     protected:
     private:

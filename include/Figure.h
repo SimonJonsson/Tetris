@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 
-enum class  Fig {I, J, L, O, S, T, Z};
+enum Fig {I, J, L, O, S, T, Z};
 
 class Figure
 {
@@ -25,7 +25,7 @@ public:
 */
 
 
-    virtual void rotate() = 0;
+    void rotate();
     void translate(int x, int y);
 
 
@@ -34,6 +34,7 @@ std::vector<sf::RectangleShape*> getBlocks();
 
 
 protected:
+Fig figenum;
 std::vector<std::vector<int>> temp;
 
 
