@@ -8,10 +8,10 @@ using namespace sf;
 
 Figure::Figure(Fig r)
 {
-
-    //För varje unik figur finns ett motsvarande r
-    //r används för att skapa figuren i en switch sats => inga unika klasser behövs.
-    //random r mellan (0 6)
+//Vi använder enum för att hantera alla figurer i
+//konstruktorn för Figure istället för att göra en
+//ny klass för varje enskild figur.
+//För varje unik figur finns ett motsvarande r.
     figenum = r;
     switch (r)
     {
@@ -74,28 +74,19 @@ Figure::Figure(Fig r)
             break;
     }
 
-/*  figmatrix = {
-         {1, 0, 0},
-         {1, 1, 1},
-         {0, 0, 0}
-         };
-*/
-
     pos.x = 0;
     pos.y = 0;
-     cout << "OK" << endl;
-     cout << figmatrix.size();
-     cout << "ok" << endl;
+
+    //För att sätta in blocks i matrisen
     for(int j = 0; j <= figmatrix.size() - 1; ++j)
     {
         for(int i = 0; i <= figmatrix[j].size() - 1; ++i)
         {
             if(figmatrix[j][i] == 1)
             {
-                cout << "1" << endl;
                 RectangleShape* block = new RectangleShape(sf::Vector2f(blocksize,blocksize));
                 block->setPosition(sf::Vector2f(blocksize*i,blocksize*j));
-                block->setFillColor(Figure::color); //innan stod det sf::Color::color, men det fungerade inte
+                block->setFillColor(Figure::color);
                 blocks.push_back(block);
 
             }
@@ -118,12 +109,16 @@ void Figure::rotate()
 {
 if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig::T || figenum == Fig::Z)
 {
+//Tar in en temporär tom matris som vi utför rotationen på
+//för att slippa rotera den ursprungliga matrisen.
+
         vector<vector<int>> temp = {
          {0, 0, 0},
          {0, 0, 0},
          {0, 0, 0}
          };
 
+//Beräknar positionen på figurmatrisens övre vänstra hörn
     int xpos{0};
     int ypos{0};
     bool found = false;
@@ -141,15 +136,12 @@ if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig
         }
     }
 
-    cout << xpos << endl;
-    cout << ypos << endl;
-
-    for (int r = 0; r <= 2; ++r)
+//Rotationsfunktionen
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 2 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
-            temp[c][2-r] =
-            figmatrix[r][c];
+            temp[c][figmatrix.size() - 1 -r] = figmatrix[r][c];
         }
     }
 
@@ -157,9 +149,9 @@ if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig
 
     //För att sätta in blocks i den roterade matrisen
     int index = 0;
-    for (int r = 0; r <= 2; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 2 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
             if(figmatrix[r][c] == 1)
             {
@@ -186,9 +178,9 @@ else if(figenum == Fig::I)
 
     bool found = false;
 
-    for (int r = 0; r <= 3; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 3 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
             if(figmatrix[r][c] == 1 && !(found))
             {
@@ -202,11 +194,11 @@ else if(figenum == Fig::I)
     cout << xpos << endl;
     cout << ypos << endl;
 
-    for (int r = 0; r <= 3; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 3 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
-            temp[c][3-r] =
+            temp[c][figmatrix.size() - 1 -r] =
             figmatrix[r][c];
         }
     }
@@ -215,9 +207,9 @@ else if(figenum == Fig::I)
 
     //För att sätta in blocks i den roterade matrisen
     int index = 0;
-    for (int r = 0; r <= 3; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 3 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
             if(figmatrix[r][c] == 1)
             {
@@ -241,9 +233,9 @@ else
 
     bool found = false;
 
-    for (int r = 0; r <= 1; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 1 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
             if(figmatrix[r][c] == 1 && !(found))
             {
@@ -257,11 +249,11 @@ else
     cout << xpos << endl;
     cout << ypos << endl;
 
-    for (int r = 0; r <= 1; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 1 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
-            temp[c][1-r] =
+            temp[c][figmatrix.size() - 1 -r] =
             figmatrix[r][c];
         }
     }
@@ -270,9 +262,9 @@ else
 
     //För att sätta in blocks i den roterade matrisen
     int index = 0;
-    for (int r = 0; r <= 1; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 1 ; ++c)
+        for (int c = 0; c < figmatrix.size() ; ++c)
         {
             if(figmatrix[r][c] == 1)
             {
@@ -287,19 +279,14 @@ else
 
 }
 
-// x -1 , 20 pixlar vänster, x=1, 20 pix hög. y=-1 20 upp, y=1 20 ner.
 
 void Figure::translate(int x, int y)
 {
-    //pos.x = pos.x + 20*x;
-    //pos.y = pos.y + 20*y;
-
         for(int j = 0; j <= blocks.size() - 1; ++j)
         {
             RectangleShape* b = blocks[j];
             b->setPosition(Vector2f(blocksize*x + (b->getPosition()).x, blocksize*y + (b->getPosition()).y));
         }
-
 }
 
 void Figure::setPos(int x, int y)
@@ -317,6 +304,5 @@ void Figure::setPos(int x, int y)
             RectangleShape* b = blocks[j];
             b->setPosition(Vector2f(x + (b->getPosition()).x, y + (b->getPosition()).y));
         }
-
 }
 
