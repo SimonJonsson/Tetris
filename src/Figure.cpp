@@ -283,7 +283,6 @@ else
         }
     }
 
-
 }
 
 }
@@ -299,6 +298,18 @@ void Figure::translate(int x, int y)
         {
             RectangleShape* b = blocks[j];
             b->setPosition(Vector2f(blocksize*x + (b->getPosition()).x, blocksize*y + (b->getPosition()).y));
+        }
+
+}
+
+void Figure::setPos(int x, int y)
+{
+    pos.x = x;
+    pos.y = y;
+     for(int j = 0; j <= blocks.size() - 1; ++j)
+        {
+            RectangleShape* b = blocks[j];
+            b->setPosition(Vector2f(x + (b->getPosition()).x, y + (b->getPosition()).y));
         }
 
 }

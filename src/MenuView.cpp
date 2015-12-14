@@ -12,6 +12,12 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
 
     //Finjusterar de olika datamedlemmarna med avseende på
     //position, storlek, färg, osv.
+    Game_text.setFont(coolFont);
+    Game_text.setString("teTRis");
+    Game_text.setColor(textcolor);
+    Game_text.setCharacterSize(160);
+    Game_text.setPosition(160,0);
+
     StartGame_button.setPosition(245, 250);
     StartGame_button.setFillColor(sf::Color::Black);
     StartGame_button.setOutlineThickness(5);
@@ -57,6 +63,7 @@ MenuView::~MenuView()
 */
 void MenuView::update()
 {
+    window->draw(Game_text);
     window->draw(StartGame_button);
     window->draw(StartGame_text);
     window->draw(Highscore_button);

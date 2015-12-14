@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ GameOverView::GameOverView(sf::RenderWindow* windowptr)
     //position, storlek, färg, osv.
     GameOver_text.setFont(coolFont);
     GameOver_text.setString("Game over");
-    GameOver_text.setColor(sf::Color::Blue);
+    GameOver_text.setColor(textcolor);
     GameOver_text.setCharacterSize(100);
     GameOver_text.setPosition(100, 10);
     GameOver_text.setStyle(sf::Text::Underlined);
@@ -111,6 +112,16 @@ int GameOverView::getScore()
     return score;
 }
 
+void GameOverView::eventhandler(sf::Event& event)
+{
+    if(highscore && event.type == sf::Event::TextEntered && getName().size() < 12)
+    {
+        char input = static_cast<char>(event.text.unicode);
+        if(isalnum(input))
+            setName(getName()+ input);
+    }
+}
+
 void GameOverView::leftClick()
 {
 
@@ -118,7 +129,34 @@ void GameOverView::leftClick()
 
 void GameOverView::rightClick()
 {
+    if(getName().size() > 0)
+    {
+        HighScoreInfo input;
+        input.name = getName();
+        input.score = getScore();
+        vector<HighScoreInfo>::iterator it = highscores.begin();
+        ofstream outfile;
+        outfile.open("res/highscore.txt", ostream::trunc);
+        int n{0};
+        const char* spacechar = " ";
+        const char* newlinechar = "\n";
 
+        while(n < highscores.size())
+        {
+            if(n == pos)
+                highscores.insert(it, input);
+
+            outfile.write(highscores[n].name.c_str(), highscores[n].name.size());
+            outfile.write(spacechar, 1);
+            outfile.write((to_string(highscores[n].score)).c_str(), to_string(highscores[n].score).size());
+            outfile.write(newlinechar, 1);
+
+            if(n != pos)
+                ++it;
+            ++n;
+        }
+        outfile.close();
+    }
 }
 
 void GameOverView::upClick()

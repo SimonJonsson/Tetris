@@ -46,6 +46,7 @@ public:
     std::string        getName();
     int                getScore();
     bool               getHighScore();
+    void               eventhandler(sf::Event&);
 
     void leftClick()  override;
     void rightClick() override;

@@ -27,6 +27,7 @@ public:
 
     void rotate();
     void translate(int x, int y);
+    void setPos(int x, int y);
 
 
 std::vector<sf::RectangleShape*> getBlocks();
@@ -49,8 +50,6 @@ sf::Color color;
 private:
 
 int blocksize = 20;
-int x{0};
-int y{0};
 
 };
 
