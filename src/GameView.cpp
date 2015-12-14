@@ -42,9 +42,10 @@ GameView::GameView(sf::RenderWindow* windowptr)
  */
 void GameView::update()
 {
-    gameEngine->update(getFps());
-    //cout << getFps() << endl;
-    //blockField = gameEngine->getBlockField();
+    if (!paused)
+        gameEngine->update(getFps());
+
+    blockField = gameEngine->getBlockField();
     currentFigure = gameEngine->getCurrentFigure();
     nextFigure = gameEngine->getNextFigure();
     score = gameEngine->getScore();
@@ -67,7 +68,15 @@ void GameView::draw()
     window->draw(scoreNumText);
     window->draw(nextFigureBox);
     window->draw(nextFigureText);
-    drawFigures();
+
+    if (!paused)
+    {
+        drawFigures();
+    }
+    else
+    {
+        pauseSplash();
+    }
 
 }
 
@@ -124,11 +133,11 @@ void GameView::drawFigures()
             window->draw(*i);
         }
     }
-    /*
+
     for (auto i : blockField)
     {
         window->draw(*i);
-    }*/
+    }
 }
 
 /*
@@ -175,8 +184,14 @@ void GameView::initGraphics()
 
 
     pauseText.setFont(coolFont);
+    pauseText.setRotation(90);
     pauseText.setString("PAUSE");
     pauseText.setColor(textcolor);
     pauseText.setCharacterSize(200);
-    pauseText.setPosition(0,0);
+    pauseText.setPosition(400,100);
+}
+
+void GameView::pause(bool state)
+{
+    paused = state;
 }

@@ -39,7 +39,9 @@ ViewHandler::ViewHandler()
 }
 
 
-//Main function for updating the window
+/*
+ * Main function for updating the window
+ */
 void ViewHandler::initiate()
 {
     //Creates a window with height, width, title and disables resizing of window
@@ -50,9 +52,9 @@ void ViewHandler::initiate()
     // Start the game loop
     while (window.isOpen())
     {
+        outputHandler();
         eventHandler();
         inputHandler();
-        outputHandler();
     }
 }
 
@@ -217,6 +219,7 @@ void ViewHandler::inputHandler()
             {
                 pause = true;
             }
+            gameView->pause(pause);
         }
     }
     else
@@ -236,23 +239,12 @@ void ViewHandler::inputHandler()
  */
 void ViewHandler::outputHandler()
 {
-    // We want to render only if we are not paused.
-    if (!pause)
-    {
-        // Clear screen, screen background is white.
-        window.clear(sf::Color(120/2,120/2,120/2));
-        // Update for currentView.
-        currentView->update();
-        // Update the window
-        window.display();
-    }
-    else
-    {
-        // Clear screen
-        window.clear(sf::Color(120/2,120/2,120/2));
-        //gameView->draw();
-        //gameView->pauseSplash();
-    }
+    // Clear screen, screen background is white.
+    window.clear(sf::Color(120/2,120/2,120/2));
+    // Update for currentView.
+    currentView->update();
+    // Update the window
+    window.display();
 }
 
 /*
