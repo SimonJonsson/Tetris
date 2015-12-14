@@ -73,9 +73,9 @@ void GameView::draw()
     // If we are paused, we do not wish to see the figures, nor the figure box (prevents cheating)
     if (!paused)
     {
-        drawFigures();
         window->draw(nextFigureBox);
         window->draw(nextFigureText);
+        drawFigures();
     }
     else
     {
@@ -126,7 +126,7 @@ void GameView::drawFigures()
     // Draws the 'active' figure
     if (currentFigure != nullptr)
     {
-        for (RectangleShape* i : currentFigure->getBlocks())
+        for (auto i : currentFigure->getBlocks())
         {
             window->draw(*i);
            // cout << i->getPosition().x << "  " << i->getPosition().y;

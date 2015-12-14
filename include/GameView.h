@@ -54,7 +54,6 @@ private:
     Figure*             currentFigure;
     Figure*             nextFigure;
 
-
     int fieldPosX = 50;
     int fieldPosY = 40;
     int fieldWidth = 360;

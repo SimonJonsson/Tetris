@@ -98,7 +98,7 @@ void ViewHandler::inputHandler()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         leftTimer++;
-        if (leftTimer > noBounces)
+        if (leftTimer > noBounces*2)
         {
             leftBounce = false;
             leftTimer = 0;
@@ -126,7 +126,7 @@ void ViewHandler::inputHandler()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         rightTimer++;
-        if (rightTimer > noBounces)
+        if (rightTimer > noBounces*2)
         {
             rightBounce = false;
             rightTimer = 0;
