@@ -238,15 +238,16 @@ bool GameEngine::translate(Figure* fig, int x, int y)
             translate(fig,-x,-y);
         } else if(pos.y+blockSize > fieldPos.y + fHeight)
         {
+            translate(fig,-x,-y);
             return true;
         }
         for(RectangleShape* bf : blockField)
         {
             if (bf->getGlobalBounds().intersects(b->getGlobalBounds()))
             {
-                 return true;
                 if(bf->getPosition().y < pos.y+blockSize)
                 {
+                    translate(fig,-x,-y);
                     return true;
                 } else
                 {
