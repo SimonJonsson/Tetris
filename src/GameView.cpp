@@ -33,36 +33,7 @@ GameView::GameView(sf::RenderWindow* windowptr)
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
     window = windowptr;
 
-    scoreWidth = scoreNumText.getGlobalBounds().width;
-
-    background.setPosition(fieldPosX, fieldPosY);
-    background.setFillColor(sf::Color::Black);
-
-    scoreText.setFont(coolFont);
-    scoreText.setString("SCORE");
-    scoreText.setColor(textcolor);
-    scoreText.setCharacterSize(40);
-    scoreText.setPosition(fieldPosX,fieldPosY - fieldOffset - scoreText.getGlobalBounds().height - 27);
-
-    scoreNumText.setFont(coolFont);
-    scoreNumText.setString("1337");
-    scoreNumText.setColor(textcolor);
-    scoreNumText.setCharacterSize(40);
-    scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
-                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 27);
-
-    nextFigureText.setFont(coolFont);
-    nextFigureText.setString("NEXT FIGURE");
-    nextFigureText.setColor(textcolor);
-    nextFigureText.setCharacterSize(40);
-    nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset,
-                                scoreNumText.getPosition().y);
-
-    nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
-                                fieldPosY);
-    nextFigureBox.setFillColor(sf::Color::Black);
-
-
+    initGraphics();
 }
 
 /*
@@ -76,7 +47,7 @@ void GameView::update()
     currentFigure = gameEngine->getCurrentFigure();
     //nextFigure = gameEngine->getNextFigure();
     score = gameEngine->getScore();
-    //scoreNumText.setString(to_string(score));
+    scoreNumText.setString(to_string(score));
     draw();
 }
 
@@ -157,4 +128,54 @@ void GameView::drawFigures()
     {
         window->draw(*i);
     }*/
+}
+
+/*
+ * Splashes the gamescreen, so we cannot pause cheat
+ */
+void GameView::pauseSplash()
+{
+    window->draw(pauseText);
+}
+
+/*
+ * Initializes the graphics
+ */
+void GameView::initGraphics()
+{
+    scoreWidth = scoreNumText.getGlobalBounds().width;
+
+    background.setPosition(fieldPosX, fieldPosY);
+    background.setFillColor(sf::Color::Black);
+
+    scoreText.setFont(coolFont);
+    scoreText.setString("SCORE");
+    scoreText.setColor(textcolor);
+    scoreText.setCharacterSize(40);
+    scoreText.setPosition(fieldPosX,fieldPosY - fieldOffset - scoreText.getGlobalBounds().height - 27);
+
+    scoreNumText.setFont(coolFont);
+    scoreNumText.setString("1337");
+    scoreNumText.setColor(textcolor);
+    scoreNumText.setCharacterSize(40);
+    scoreNumText.setPosition(fieldPosX + fieldWidth - scoreWidth,
+                            fieldPosY - fieldOffset - scoreNumText.getGlobalBounds().height - 27);
+
+    nextFigureText.setFont(coolFont);
+    nextFigureText.setString("NEXT FIGURE");
+    nextFigureText.setColor(textcolor);
+    nextFigureText.setCharacterSize(40);
+    nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset,
+                                scoreNumText.getPosition().y);
+
+    nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
+                                fieldPosY);
+    nextFigureBox.setFillColor(sf::Color::Black);
+
+
+    pauseText.setFont(coolFont);
+    pauseText.setString("PAUSE");
+    pauseText.setColor(textcolor);
+    pauseText.setCharacterSize(200);
+    pauseText.setPosition(0,0);
 }

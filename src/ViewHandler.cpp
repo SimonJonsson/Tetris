@@ -73,10 +73,10 @@ void ViewHandler::eventHandler()
         /*
          *  If we lose focus of the screen we pause, if we gain focus again we unpause.
          */
-        if (event.type == sf::Event::GainedFocus && typeid(*currentView) != typeid(GameView))
+        if (event.type == sf::Event::GainedFocus && typeid(*currentView) == typeid(GameView))
             pause = false;
 
-        if (event.type == sf::Event::LostFocus)
+        if (event.type == sf::Event::LostFocus && typeid(*currentView) == typeid(GameView))
             pause = true;
 
         if(currentView == gameOverView && gameOverView->getHighScore() && event.type == sf::Event::TextEntered)
@@ -186,21 +186,10 @@ void ViewHandler::inputHandler()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         downTimer++;
-        if (typeid(*currentView) == typeid(GameView))
+        if (downTimer > noBounces)
         {
-            if (downTimer > gNoBounces)
-            {
-                downBounce = false;
-                downTimer = 0;
-            }
-        }
-        else
-        {
-            if (downTimer > noBounces)
-            {
-                downBounce = false;
-                downTimer = 0;
-            }
+            downBounce = false;
+            downTimer = 0;
         }
 
         if (!pause && !downBounce)
@@ -251,12 +240,22 @@ void ViewHandler::outputHandler()
     // We want to render only if we are not paused.
     if (!pause)
     {
+        cout << "här vill inte vara" << endl;
         // Clear screen, screen background is white.
         window.clear(sf::Color(120/2,120/2,120/2));
         // Update for currentView.
         currentView->update();
         // Update the window
         window.display();
+    }
+    else
+    {
+        cout << "hej" << endl;
+        // Clear screen
+        window.clear(sf::Color(120/2,120/2,120/2));
+        cout << "då" << endl;
+        //gameView->draw();
+        //gameView->pauseSplash();
     }
 }
 
@@ -265,6 +264,7 @@ void ViewHandler::outputHandler()
  */
 void ViewHandler::changeView(string newView)
 {
+    noBounces = 15;
     if(newView == "MenuView")
     {
         currentView = menuView;
@@ -276,6 +276,7 @@ void ViewHandler::changeView(string newView)
     }
     else if (newView == "GameView")
     {
+        noBounces = gNoBounces;
         currentView = gameView;
     }
     else if (newView == "GameOverView")

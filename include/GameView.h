@@ -38,6 +38,7 @@ public:
 
     void update() override;
     void draw();
+    void pauseSplash();
 
     void leftClick()  override;
     void rightClick() override;
@@ -74,11 +75,13 @@ private:
     sf::Text scoreText;
     sf::Text scoreNumText;
     sf::Text nextFigureText;
+    sf::Text pauseText;
     sf::Font coolFont;
     sf::Clock clock;
 
     float getFps();
     void drawFigures();
+    void initGraphics();
 };
 
 #endif
