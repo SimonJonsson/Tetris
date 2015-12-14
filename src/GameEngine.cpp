@@ -60,6 +60,7 @@ GameEngine::~GameEngine()
     {
         delete block;
     }
+    blockField.clear();
     delete currentFigure;
     delete nextFigure;
 }
