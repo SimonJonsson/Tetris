@@ -46,7 +46,7 @@ Figure::Figure(Fig r)
                 {1, 1},
                 {1, 1}
                 };
-            color = sf::Color::Red;
+            color = sf::Color(255, 51, 0);
             break;
         case Fig::S:
             figmatrix = {
@@ -54,7 +54,7 @@ Figure::Figure(Fig r)
                 {1, 1, 0},
                 {0, 0, 0}
                 };
-            color = sf::Color::White;
+            color = sf::Color(0,255,255);
             break;
         case Fig::T:
             figmatrix = {
@@ -62,7 +62,7 @@ Figure::Figure(Fig r)
                 {1, 1, 1},
                 {0, 0, 0}
                 };
-            color = sf::Color(250, 150, 100);
+            color = sf::Color(153, 102, 255);
             break;
         case Fig::Z:
             figmatrix = {
