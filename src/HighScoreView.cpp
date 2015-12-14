@@ -14,7 +14,7 @@ HighScoreView::HighScoreView(sf::RenderWindow* windowptr)
     //position, storlek, färg, osv.
     HighScore_title.setFont(coolFont);
     HighScore_title.setString("higH Score");
-    HighScore_title.setColor(sf::Color::Blue);
+    HighScore_title.setColor(textcolor);
     HighScore_title.setCharacterSize(70);
     HighScore_title.setPosition(200, 10);
     HighScore_title.setStyle(sf::Text::Underlined);
@@ -45,13 +45,14 @@ void HighScoreView::update()
 void HighScoreView::readHighscore()
 {
     //Temporära objekt som används för att lägga in värden i
-    //hichscore-listan.
+    //highscore-listan.
+    highscores.clear();
     HighScore highScoreEntry;
     sf::Text inputText;
 
     inputText.setFont(coolFont);
     inputText.setCharacterSize(30);
-    inputText.setColor(sf::Color::Black);
+    inputText.setColor(sf::Color::White);
     inputText.setPosition(200, 100);
 
     ifstream infile("res/highscore.txt");
