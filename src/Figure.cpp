@@ -12,9 +12,9 @@ Figure::Figure(Fig r)
     //För varje unik figur finns ett motsvarande r
     //r används för att skapa figuren i en switch sats => inga unika klasser behövs.
     //random r mellan (0 6)
+    figenum = r;
     switch (r)
     {
-        figenum = r;
         case Fig::I:
             figmatrix =  {
                 {0, 0, 0, 0},
@@ -93,8 +93,8 @@ Figure::Figure(Fig r)
             if(figmatrix[j][i] == 1)
             {
                 cout << "1" << endl;
-                RectangleShape* block = new RectangleShape(sf::Vector2f(20,20));
-                block->setPosition(sf::Vector2f(20*i+100,20*j+100));
+                RectangleShape* block = new RectangleShape(sf::Vector2f(blocksize,blocksize));
+                block->setPosition(sf::Vector2f(blocksize*i+100,blocksize*j+100));
                 block->setFillColor(Figure::color); //innan stod det sf::Color::color, men det fungerade inte
                 blocks.push_back(block);
 
@@ -126,17 +126,16 @@ if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig
 
     int xpos{0};
     int ypos{0};
-
     bool found = false;
 
-    for (int r = 0; r <= 2; ++r)
+    for (int r = 0; r < figmatrix.size(); ++r)
     {
-        for (int c = 0; c <= 2 ; ++c)
+        for (int c = 0; c < figmatrix.size(); ++c)
         {
             if(figmatrix[r][c] == 1 && !(found))
             {
-                xpos = blocks[0]->getPosition().x - 20*c;
-                ypos = blocks[0]->getPosition().y - 20*r;
+                xpos = blocks[0]->getPosition().x - blocksize*c;
+                ypos = blocks[0]->getPosition().y - blocksize*r;
                 found = true;
             }
         }
@@ -165,7 +164,7 @@ if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig
             if(figmatrix[r][c] == 1)
             {
                 RectangleShape* block = blocks[index];
-                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
+                block->setPosition(Vector2f(xpos+ blocksize*c, ypos + blocksize*r));
                 index++;
             }
         }
@@ -193,8 +192,8 @@ else if(figenum == Fig::I)
         {
             if(figmatrix[r][c] == 1 && !(found))
             {
-                xpos = blocks[0]->getPosition().x - 20*c;
-                ypos = blocks[0]->getPosition().y - 20*r;
+                xpos = blocks[0]->getPosition().x - blocksize*c;
+                ypos = blocks[0]->getPosition().y - blocksize*r;
                 found = true;
             }
         }
@@ -223,7 +222,7 @@ else if(figenum == Fig::I)
             if(figmatrix[r][c] == 1)
             {
                 RectangleShape* block = blocks[index];
-                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
+                block->setPosition(Vector2f(xpos+ blocksize*c, ypos + blocksize*r));
                 index++;
             }
         }
@@ -248,8 +247,8 @@ else
         {
             if(figmatrix[r][c] == 1 && !(found))
             {
-                xpos = blocks[0]->getPosition().x - 20*c;
-                ypos = blocks[0]->getPosition().y - 20*r;
+                xpos = blocks[0]->getPosition().x - blocksize*c;
+                ypos = blocks[0]->getPosition().y - blocksize*r;
                 found = true;
             }
         }
@@ -278,7 +277,7 @@ else
             if(figmatrix[r][c] == 1)
             {
                 RectangleShape* block = blocks[index];
-                block->setPosition(Vector2f(xpos+ 20*c, ypos + 20*r));
+                block->setPosition(Vector2f(xpos+ blocksize*c, ypos + blocksize*r));
                 index++;
             }
         }
@@ -287,13 +286,6 @@ else
 
 }
 
-
-    //Ungefär som denna
-       /* for(int j = 0; j <= blocks.size() - 1; ++j)
-        {
-            RectangleShape* b = blocks[j];
-            b->setPosition(Vector2f(20*x + (b->getPosition()).x, 20*y + (b->getPosition()).y));
-        }*/
 }
 
 // x -1 , 20 pixlar vänster, x=1, 20 pix hög. y=-1 20 upp, y=1 20 ner.
@@ -306,7 +298,7 @@ void Figure::translate(int x, int y)
         for(int j = 0; j <= blocks.size() - 1; ++j)
         {
             RectangleShape* b = blocks[j];
-            b->setPosition(Vector2f(20*x + (b->getPosition()).x, 20*y + (b->getPosition()).y));
+            b->setPosition(Vector2f(blocksize*x + (b->getPosition()).x, blocksize*y + (b->getPosition()).y));
         }
 
 }

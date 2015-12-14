@@ -48,6 +48,7 @@ sf::Color color;
 
 private:
 
+int blocksize = 20;
 int x{0};
 int y{0};
 
