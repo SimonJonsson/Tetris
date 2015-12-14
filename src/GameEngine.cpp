@@ -123,10 +123,10 @@ void GameEngine::upClick()
     currentFigure->rotate();
     if(collides(currentFigure))
     {
-        translate(currentFigure,-1,0);
+        currentFigure->translate(-1,0);
         if(collides(currentFigure))
         {
-            translate(currentFigure,1,0);
+            currentFigure->translate(1,0);
             currentFigure->rotate();
             currentFigure->rotate();
             currentFigure->rotate();
