@@ -26,6 +26,7 @@ private:
     std::string input{""};
 
     sf::Text GameOver_text;
+    sf::Text GameOver_message;
     sf::RectangleShape Input_field{sf::Vector2f(300, 50)};
     sf::Text Input_text;
 

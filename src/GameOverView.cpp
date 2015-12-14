@@ -20,6 +20,11 @@ GameOverView::GameOverView(sf::RenderWindow* windowptr)
     GameOver_text.setPosition(100, 10);
     GameOver_text.setStyle(sf::Text::Underlined);
 
+    GameOver_message.setFont(coolFont);
+    GameOver_message.setColor(textcolor);
+    GameOver_message.setCharacterSize(50);
+    GameOver_message.setPosition(100, 150);
+
     Input_text.setFont(coolFont);
     Input_text.setColor(sf::Color::Black);
     Input_text.setCharacterSize(20);
@@ -37,6 +42,7 @@ void GameOverView::update()
     window->draw(GameOver_text);
     if(highscore)
     {
+        GameOver_message.setString("You got a high score!");
         window->draw(Input_field);
         window->draw(Input_text);
         if(Input_text.getString() != "")
@@ -44,6 +50,9 @@ void GameOverView::update()
         else
             entered_name = false;
     }
+    else
+        GameOver_message.setString("You did not get a high score. Therefore you suck!");
+    window->draw(GameOver_message);
 }
 
 void GameOverView::readHighScores()
@@ -164,6 +173,7 @@ void GameOverView::rightClick()
         }
         outfile.close();
     }
+
 }
 
 void GameOverView::upClick()
