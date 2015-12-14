@@ -28,7 +28,7 @@ GameView::GameView(sf::RenderWindow* windowptr)
 {
 
     sf::Vector2<int> fieldPosition = sf::Vector2<int>(fieldPosX,fieldPosY);
-    gameEngine = new GameEngine(fieldPosition,fieldWidth,fieldHeight);
+    gameEngine = new GameEngine(fieldPosition,fieldHeight,fieldWidth);
 
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
     window = windowptr;
