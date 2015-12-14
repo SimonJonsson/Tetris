@@ -141,7 +141,10 @@ void GameEngine::downClick()
 {
     if(translate(currentFigure,0,1))
     {
-        timeStill = 0;
+        update(999999);
+    }else
+    {
+    timeStill = 0;
     }
 }
 
