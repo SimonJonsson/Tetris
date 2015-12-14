@@ -304,6 +304,12 @@ void Figure::translate(int x, int y)
 
 void Figure::setPos(int x, int y)
 {
+     for(int j = 0; j <= blocks.size() - 1; ++j)
+        {
+            RectangleShape* b = blocks[j];
+            b->setPosition(Vector2f(-pos.x + (b->getPosition()).x, -pos.y + (b->getPosition()).y));
+        }
+
     pos.x = x;
     pos.y = y;
      for(int j = 0; j <= blocks.size() - 1; ++j)
