@@ -239,7 +239,6 @@ void ViewHandler::outputHandler()
     // We want to render only if we are not paused.
     if (!pause)
     {
-        cout << "här vill inte vara" << endl;
         // Clear screen, screen background is white.
         window.clear(sf::Color(120/2,120/2,120/2));
         // Update for currentView.
@@ -249,10 +248,8 @@ void ViewHandler::outputHandler()
     }
     else
     {
-        cout << "hej" << endl;
         // Clear screen
         window.clear(sf::Color(120/2,120/2,120/2));
-        cout << "då" << endl;
         //gameView->draw();
         //gameView->pauseSplash();
     }

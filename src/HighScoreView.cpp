@@ -52,7 +52,7 @@ void HighScoreView::readHighscore()
 
     inputText.setFont(coolFont);
     inputText.setCharacterSize(30);
-    inputText.setColor(sf::Color::White);
+    inputText.setColor(textcolor); //färgschemat ska vara entydigt
     inputText.setPosition(200, 100);
 
     ifstream infile("res/highscore.txt");
