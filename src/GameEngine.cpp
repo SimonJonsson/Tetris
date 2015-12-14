@@ -226,6 +226,11 @@ void GameEngine::updateDifficulty()
 bool GameEngine::translate(Figure* fig, int x, int y)
 {
     fig->translate(x, y);
+    vector<RectangleShape*> figblocks = fig->getBlocks();
+    //for(RectangleShape* rs : figblocks)
+    //{
+
+    //}
 }
 
 /* FUNCTION void GameEngine::translate(sf::RectangleShape* block, int x, int y)
