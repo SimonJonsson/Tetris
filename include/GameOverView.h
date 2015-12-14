@@ -17,7 +17,7 @@ class GameOverView : public UpdateView
 {
 private:
     std::string name{""};
-    int score{10};
+    int score{0};
     int pos{0};
     std::vector<HighScoreInfo> highscores;
     bool highscore = false;

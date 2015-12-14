@@ -70,8 +70,11 @@ int GameOverView::compareScore()
 {
     readHighScores();
     pos = 0;
-    while(score < (highscores.at(pos)).score && pos < 10)
-        ++pos;
+    if(highscores.size() > 0)
+    {
+        while(score < (highscores.at(pos)).score && pos < 10)
+            ++pos;
+    }
 
     return pos;
 }
@@ -131,29 +134,33 @@ void GameOverView::rightClick()
 {
     if(getName().size() > 0)
     {
-        HighScoreInfo input;
-        input.name = getName();
-        input.score = getScore();
-        vector<HighScoreInfo>::iterator it = highscores.begin();
-        ofstream outfile;
-        outfile.open("res/highscore.txt", ostream::trunc);
-        int n{0};
-        const char* spacechar = " ";
-        const char* newlinechar = "\n";
+        ofstream outfile("res/highscore.txt", ios::out);
 
-        while(n < highscores.size())
+        if(highscores.size() == 0)
+            outfile << getName() << " " << getScore() << endl;
+        else
         {
-            if(n == pos)
-                highscores.insert(it, input);
+            HighScoreInfo input;
+            input.name = getName();
+            input.score = getScore();
+            cout << "Score: " << score << endl;
+            vector<HighScoreInfo>::iterator it = highscores.begin();
 
-            outfile.write(highscores[n].name.c_str(), highscores[n].name.size());
-            outfile.write(spacechar, 1);
-            outfile.write((to_string(highscores[n].score)).c_str(), to_string(highscores[n].score).size());
-            outfile.write(newlinechar, 1);
+            int n{0};
+            const char* spacechar = " ";
+            const char* newlinechar = "\n";
 
-            if(n != pos)
-                ++it;
-            ++n;
+            while(n < highscores.size() && n < 10)
+            {
+                if(n == pos)
+                    highscores.insert(it, input);
+
+                outfile << highscores[n].name << " " << highscores[n].score << endl;
+
+                if(n != pos)
+                    ++it;
+                ++n;
+            }
         }
         outfile.close();
     }
