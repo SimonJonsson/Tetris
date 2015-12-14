@@ -106,7 +106,6 @@ void ViewHandler::inputHandler()
 
         if (!pause && !leftBounce)
         {
-            cout << "left\n";
             leftBounce = true;
             currentView->leftClick();
 
@@ -134,7 +133,6 @@ void ViewHandler::inputHandler()
 
         if (!pause && !rightBounce)
         {
-            cout << "right\n";
             rightBounce = true;
             currentView->rightClick();
 
@@ -171,7 +169,6 @@ void ViewHandler::inputHandler()
 
         if (!pause && !upBounce)
         {
-            cout << "up\n";
             upBounce = true;
             currentView->upClick();
         }
@@ -193,7 +190,6 @@ void ViewHandler::inputHandler()
 
         if (!pause && !downBounce)
         {
-            cout << "down\n";
             downBounce = true;
             currentView->downClick();
         }
@@ -243,6 +239,20 @@ void ViewHandler::outputHandler()
     currentView->update();
     // Update the window
     window.display();
+
+    if (typeid(*currentView) == typeid(GameView))
+    {
+        if (gameView->isGameOver())
+        {
+            gameOverView->setScore(gameView->getScore());
+            gameOverView->checkScore();
+            currentView = gameOverView;
+        }
+        else
+        {
+
+        }
+    }
 }
 
 /*
@@ -262,7 +272,9 @@ void ViewHandler::changeView(string newView)
     }
     else if (newView == "GameView")
     {
+        delete gameView;
         noBounces = gNoBounces;
+        gameView = new GameView(&window);
         currentView = gameView;
     }
     else if (newView == "GameOverView")

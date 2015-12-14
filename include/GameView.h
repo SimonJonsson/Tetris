@@ -47,6 +47,7 @@ public:
     void downClick()  override;
 
     int getScore();
+    bool isGameOver();
 
 private:
     sf::RenderWindow*   window;
@@ -68,7 +69,8 @@ private:
     float lastTime = 0;
     float currentTime;
 
-    bool paused = false;
+    bool paused     = false;
+    bool gameOver   = false;
 
     std::vector<sf::RectangleShape*> blockField;
     sf::RectangleShape background{sf::Vector2f(fieldWidth, fieldHeight)};

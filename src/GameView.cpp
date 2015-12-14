@@ -54,6 +54,11 @@ void GameView::update()
     score = gameEngine->getScore();
     scoreNumText.setString(to_string(score));
     draw();
+
+    if (gameEngine->isGameOver())
+    {
+        gameOver = true;
+    }
 }
 
 /*
@@ -207,4 +212,9 @@ void GameView::initGraphics()
 void GameView::pause(bool state)
 {
     paused = state;
+}
+
+bool GameView::isGameOver()
+{
+    return gameOver;
 }
