@@ -1,4 +1,16 @@
-//Sofia & Patrik
+/*
+ * TDDC76 - MAT3 - Group 5
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:    Figure.h
+ * Skriven av: Sofia Svensson & Patrik Petters
+ *
+ *
+ *
+ *
+ */
+
 #ifndef FIGURE_H
 #define FIGURE_H
 #include <array>
@@ -33,4 +45,4 @@ private:
 
 };
 
-#endif // FIGURE_H
+#endif

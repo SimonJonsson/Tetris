@@ -1,3 +1,20 @@
+/*
+ * TDDC76 - MAT3 - Group 5
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:    Figure.cpp
+ * Skriven av: Sofia Svensson & Patrik Petters
+ *
+ *
+ * BESKRIVNING
+ *
+ * Skapar tetromino-figurerna
+ * Roterar och translaterar tetromoino-figurerna
+ *
+ *
+ */
+
 #include "../include/Figure.h"
 #include <vector>
 #include <iostream>
