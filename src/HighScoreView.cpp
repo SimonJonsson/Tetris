@@ -52,7 +52,7 @@ void HighScoreView::readHighscore()
 
     inputText.setFont(coolFont);
     inputText.setCharacterSize(30);
-    inputText.setColor(textcolor); //färgschemat ska vara entydigt
+    inputText.setColor(textcolor);
     inputText.setPosition(200, 100);
 
     ifstream infile("res/highscore.txt");
@@ -89,7 +89,6 @@ void HighScoreView::readHighscore()
         inputText.setPosition(positionCheck);
     }
     infile.close();
-    cout << "Success! Highscoreview OK!" << endl;
 }
 
 void HighScoreView::leftClick()
