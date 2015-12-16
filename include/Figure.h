@@ -14,17 +14,15 @@ public:
     Figure(Fig r);
     virtual ~Figure();
 
+    sf::Vector2f pos;
     void rotate();
     void translate(int x, int y);
     void setPos(int x, int y);
-
+    Fig figenum;
     std::vector<sf::RectangleShape*> getBlocks();
 
 protected:
-    Fig figenum;
     std::vector<std::vector<int>> temp;
-
-    sf::Vector2f pos;
     std::vector<std::vector<int>> figmatrix;
     std::vector<sf::RectangleShape*> blocks;
 

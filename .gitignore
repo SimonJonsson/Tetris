@@ -3,6 +3,7 @@ bin/*
 obj/*
 *.cbp
 *.depend
+res/highscore.txt
 *.layout
 cb.bmp
 

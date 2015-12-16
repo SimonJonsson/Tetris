@@ -94,6 +94,7 @@ private:
     void drawGrid();
     float getFps();
     void drawFigures();
+    void drawGhost();
     void initGraphics();
 };
 

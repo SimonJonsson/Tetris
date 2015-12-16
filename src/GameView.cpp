@@ -82,6 +82,7 @@ void GameView::draw()
         window->draw(nextFigureBox);
         window->draw(nextFigureText);
         drawFigures();
+        drawGhost();
     }
     else
     {
@@ -245,4 +246,36 @@ for(int col = fieldPosX; col <= fieldPosX+fieldWidth; col += 20)
     window->draw(line, 2,Lines);
 }
 
+}
+
+void GameView::drawGhost()
+{
+    vector<RectangleShape*> figblocks = currentFigure->getBlocks();
+    Vector2f currentPosition(currentFigure->pos.x, currentFigure->pos.y);
+    int moveCount=0;
+    for(RectangleShape* b : figblocks)
+    {
+        b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 128));
+    }
+    while(!gameEngine->collides(currentFigure))
+    {
+        moveCount++;
+        currentFigure->translate(0,1);
+    }
+    currentFigure->translate(0,-1);
+    moveCount--;
+
+   for(RectangleShape* b : figblocks)
+    {
+       window->draw(*b);
+    }
+
+    for(RectangleShape* b : figblocks)
+    {
+       b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 255));
+    }
+    for(int i = 0; i < moveCount; i++)
+    {
+        currentFigure->translate(0,-1);
+    }
 }

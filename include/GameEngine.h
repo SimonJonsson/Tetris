@@ -58,9 +58,9 @@ private:
     bool gamePaused = false; //Has the game been paused.
 
     void updateDifficulty(); //Update moveTime.
-    bool translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
+
     bool translate(sf::RectangleShape* block, int x, int y); //Translate one tetris block. As above
-    bool collides(Figure* fig); //Check if figure collides with blockfield/borders
+
     bool collides(sf::RectangleShape* block); //Check if RectangleShape collides with blockfield/borders
     void placeFigure(); //Place current figure onto blockfield.
     Figure* generateRandomFigure(); //Generate a random figure.
@@ -69,6 +69,8 @@ private:
     void increaseScore(long amount); //Increases score by specified amount of points.
 
 public:
+ bool translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
+    bool collides(Figure* fig); //Check if figure collides with blockfield/borders
     GameEngine(sf::Vector2<int> fieldPosition, int boardHeight, int boardWidth, sf::Vector2<int> nextPosition, int initialDifficulty=0); //Constructor.
     ~GameEngine(); //Destructor.
 
