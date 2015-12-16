@@ -81,12 +81,12 @@ void GameView::draw()
         window->draw(nextFigureBox);
         window->draw(nextFigureText);
         drawFigures();
+        drawGrid();
     }
     else
     {
         pauseSplash();
     }
-    drawGrid();
 }
 
 /*
