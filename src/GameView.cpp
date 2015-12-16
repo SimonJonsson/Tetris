@@ -75,13 +75,13 @@ void GameView::draw()
 
     window->draw(scoreNumText);
 
+    drawGrid();
     // If we are paused, we do not wish to see the figures, nor the figure box (prevents cheating)
     if (!paused)
     {
         window->draw(nextFigureBox);
         window->draw(nextFigureText);
         drawFigures();
-        drawGrid();
     }
     else
     {
