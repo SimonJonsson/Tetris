@@ -50,6 +50,7 @@ public:
     bool isGameOver();
 
 private:
+    int cleared = 0;
     sf::RenderWindow*   window;
     GameEngine*         gameEngine;
     Figure*             currentFigure;
@@ -82,14 +83,15 @@ private:
     sf::Font coolFont;
     sf::Clock clock;
 
-    int rfac = (rand() % 55)+200;
-    int c1 = std::rand() % rfac;
-    int c2 = rand() % rfac;
+    int rfac = (rand() % 35)+220;
+    int rfac2 = (rand() % 65)+190;
+    int c1 = std::rand() % rfac2;
+    int c2 = rand() % rfac2;
     int c3 = rand() % rfac;
 
     int c4 = rand() % rfac;
-    int c5 = rand() % rfac;
-    int c6 = rand() % rfac;
+    int c5 = rand() % rfac2;
+    int c6 = rand() % rfac2;
 
     void drawGrid();
     float getFps();

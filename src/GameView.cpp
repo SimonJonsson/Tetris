@@ -135,7 +135,6 @@ void GameView::drawFigures()
         for (auto i : currentFigure->getBlocks())
         {
             window->draw(*i);
-           // cout << i->getPosition().x << "  " << i->getPosition().y;
         }
     }
 
@@ -222,16 +221,31 @@ bool GameView::isGameOver()
 
 void GameView::drawGrid()
 {
+if(gameEngine->getRowsCleared() > cleared)
+{
+     rfac = (rand() % 35)+220;
+     rfac2 = (rand() % 65)+190;
+     c1 = std::rand() % rfac2;
+     c2 = rand() % rfac2;
+     c3 = rand() % rfac;
+
+     c4 = rand() % rfac;
+     c5 = rand() % rfac2;
+     c6 = rand() % rfac2;
+     cleared = gameEngine->getRowsCleared();
+
+}
+
 int first = rand() % 255;
 int last;
+int count = 0;
 for(int row = fieldPosY; row <= fieldPosY+fieldHeight; row += 20)
 {
     Vertex line[] =
     {
-    Vertex(Vector2f(fieldPosX, row), Color(c1, c2, c3)),
-    Vertex(Vector2f(fieldPosX+fieldWidth, row),Color(c4,c5,c6))
+    Vertex(Vector2f(fieldPosX, row), Color(c1, c2, c3, 230)),
+    Vertex(Vector2f(fieldPosX+fieldWidth, row),Color(c4,c5,c6,240))
     };
-
     window->draw(line, 2,Lines);
 }
 
@@ -239,8 +253,8 @@ for(int col = fieldPosX; col <= fieldPosX+fieldWidth; col += 20)
 {
     Vertex line[] =
     {
-    Vertex(Vector2f(col, fieldPosY), Color(c1, c2, c3)),
-    Vertex(Vector2f(col, fieldPosY+fieldHeight),Color(c4,c5,c6))
+    Vertex(Vector2f(col, fieldPosY), Color(c1, c2, c3,230)),
+    Vertex(Vector2f(col, fieldPosY+fieldHeight),Color(c4,c5,c6,255))
     };
 
     window->draw(line, 2,Lines);
@@ -255,7 +269,7 @@ void GameView::drawGhost()
     int moveCount=0;
     for(RectangleShape* b : figblocks)
     {
-        b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 128));
+        b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 110));
     }
     while(!gameEngine->collides(currentFigure))
     {

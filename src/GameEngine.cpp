@@ -378,7 +378,6 @@ Figure* GameEngine::generateRandomFigure()
 {
     int id = uniRand(); //[1,numFigure]
     Fig type = static_cast<Fig>(id);
-    cout << type;
     Figure* f = new Figure(type);
     return f;
 
