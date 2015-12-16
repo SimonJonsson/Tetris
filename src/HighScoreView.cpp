@@ -89,6 +89,7 @@ void HighScoreView::readHighscore()
         inputText.setPosition(positionCheck);
     }
     infile.close();
+    cout << "Success! Highscoreview OK!" << endl;
 }
 
 void HighScoreView::leftClick()

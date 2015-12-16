@@ -34,7 +34,7 @@ ViewHandler::ViewHandler()
     gameOverView    = new GameOverView(&window);
 
     //Preliminary test for gameOverView
-    gameOverView->checkScore();
+    //gameOverView->checkScore();
     changeView("MenuView");
 }
 

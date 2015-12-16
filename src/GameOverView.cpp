@@ -9,7 +9,7 @@ using namespace std;
 GameOverView::GameOverView(sf::RenderWindow* windowptr)
 {
     //Laddar in den font som ska användas för texten
-   coolFont.loadFromFile("res/fonts/nextwave.ttf");
+    coolFont.loadFromFile("res/fonts/nextwave.ttf");
 
     //Finjusterar de olika datamedlemmarna med avseende på
     //position, storlek, färg, osv.
@@ -33,7 +33,6 @@ GameOverView::GameOverView(sf::RenderWindow* windowptr)
     Input_field.setPosition(95, 245);
     Input_field.setFillColor(sf::Color::White);
 
-
     window = windowptr;
 }
 
@@ -51,16 +50,18 @@ void GameOverView::update()
             entered_name = false;
     }
     else
-        GameOver_message.setString("You did not get a high score. Therefore you suck!");
+        GameOver_message.setString("You did not get a high score!");
     window->draw(GameOver_message);
 }
 
 void GameOverView::readHighScores()
 {
+    highscores.clear();
     HighScoreInfo highScoreEntry;
     ifstream infile("res/highscore.txt");
     string inputString{""};
 
+    //läser från highscorelistan till highscores
     while(infile >> inputString)
     {
         if(highScoreEntry.name == "")
@@ -73,6 +74,9 @@ void GameOverView::readHighScores()
         }
     }
     infile.close();
+
+    for(int i = 0; i < highscores.size(); ++i)
+        cout << highscores[i].name << " " << highscores[i].score << endl;
 }
 
 int GameOverView::compareScore()
@@ -80,10 +84,8 @@ int GameOverView::compareScore()
     readHighScores();
     pos = 0;
     if(highscores.size() > 0)
-    {
-        while(score < (highscores.at(pos)).score && pos < 10)
+        while(pos < highscores.size() && score < highscores[pos].score)
             ++pos;
-    }
 
     return pos;
 }
@@ -152,12 +154,9 @@ void GameOverView::rightClick()
             HighScoreInfo input;
             input.name = getName();
             input.score = getScore();
-            cout << "Score: " << score << endl;
             vector<HighScoreInfo>::iterator it = highscores.begin();
 
             int n{0};
-            const char* spacechar = " ";
-            const char* newlinechar = "\n";
 
             while(n < highscores.size() && n < 10)
             {
@@ -170,10 +169,14 @@ void GameOverView::rightClick()
                     ++it;
                 ++n;
             }
+
+            if(pos == highscores.size())
+                outfile << input.name << " " << input.score << endl;
         }
         outfile.close();
     }
-
+    Input_text.setString("");
+    setName("");
 }
 
 void GameOverView::upClick()
