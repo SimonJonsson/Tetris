@@ -48,7 +48,7 @@ private:
     int rowsCleared = 0; //Number of rows player has cleared.
     int diffCleared = 0; //Number of rows cleared on current difficulty
     int difficulty = 0; //Difficulty of game. Based on number of cleared rows.
-    long initMoveTime = 850;//850 //Move time(ms) for difficulty 0.
+    long initMoveTime = 800;//850 //Move time(ms) for difficulty 0.
     int moveTime = 0; //Time(ms) until block should be moved. Based on difficulty.
     int timeStill = 0; //How long time(ms) has gone since block was moved.
     int blockSize = 20; //Width/Height of one block. This will be stepsize when translating.

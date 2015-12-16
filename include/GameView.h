@@ -82,6 +82,16 @@ private:
     sf::Font coolFont;
     sf::Clock clock;
 
+    int rfac = (rand() % 55)+200;
+    int c1 = std::rand() % rfac;
+    int c2 = rand() % rfac;
+    int c3 = rand() % rfac;
+
+    int c4 = rand() % rfac;
+    int c5 = rand() % rfac;
+    int c6 = rand() % rfac;
+
+    void drawGrid();
     float getFps();
     void drawFigures();
     void initGraphics();

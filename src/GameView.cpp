@@ -86,7 +86,7 @@ void GameView::draw()
     {
         pauseSplash();
     }
-
+    drawGrid();
 }
 
 /*
@@ -217,4 +217,32 @@ void GameView::pause(bool state)
 bool GameView::isGameOver()
 {
     return gameOver;
+}
+
+void GameView::drawGrid()
+{
+int first = rand() % 255;
+int last;
+for(int row = fieldPosY; row <= fieldPosY+fieldHeight; row += 20)
+{
+    Vertex line[] =
+    {
+    Vertex(Vector2f(fieldPosX, row), Color(c1, c2, c3)),
+    Vertex(Vector2f(fieldPosX+fieldWidth, row),Color(c4,c5,c6))
+    };
+
+    window->draw(line, 2,Lines);
+}
+
+for(int col = fieldPosX; col <= fieldPosX+fieldWidth; col += 20)
+{
+    Vertex line[] =
+    {
+    Vertex(Vector2f(col, fieldPosY), Color(c1, c2, c3)),
+    Vertex(Vector2f(col, fieldPosY+fieldHeight),Color(c4,c5,c6))
+    };
+
+    window->draw(line, 2,Lines);
+}
+
 }

@@ -136,9 +136,13 @@ void GameEngine::upClick()
             if(collides(currentFigure))
             {
                 currentFigure->translate(1,0);
-                currentFigure->rotate();
-                currentFigure->rotate();
-                currentFigure->rotate();
+                currentFigure->translate(1,0);
+                if(collides(currentFigure))
+                {
+                    currentFigure->rotate();
+                    currentFigure->rotate();
+                    currentFigure->rotate();
+                }
             }
         }
     }
@@ -359,6 +363,7 @@ bool GameEngine::collides(RectangleShape* block)
  */
 void GameEngine::placeFigure()
 {
+    increaseScore(50*(difficulty+1));
     vector<RectangleShape*> figblocks = currentFigure->getBlocks();
     for(RectangleShape* b : figblocks)
     {
