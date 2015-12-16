@@ -4,8 +4,6 @@
 using namespace std;
 using namespace sf;
 
-
-
 Figure::Figure(Fig r)
 {
 //Vi använder enum för att hantera alla figurer i
@@ -88,7 +86,6 @@ Figure::Figure(Fig r)
                 block->setPosition(sf::Vector2f(blocksize*i,blocksize*j));
                 block->setFillColor(Figure::color);
                 blocks.push_back(block);
-
             }
         }
     }
@@ -104,7 +101,7 @@ vector<RectangleShape*> Figure::getBlocks()
 return blocks;
 }
 
-
+//Rotationsfunktionalitet
 void Figure::rotate()
 {
 if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig::T || figenum == Fig::Z)
@@ -161,7 +158,6 @@ if(figenum == Fig::J || figenum == Fig::L || figenum == Fig::S || figenum == Fig
             }
         }
     }
-
 }
 
 else if(figenum == Fig::I)
@@ -220,7 +216,6 @@ else if(figenum == Fig::I)
         }
     }
 }
-
 }
 
 
@@ -243,6 +238,7 @@ void Figure::setPos(int x, int y)
 
     pos.x = x;
     pos.y = y;
+
      for(int j = 0; j <= blocks.size() - 1; ++j)
         {
             RectangleShape* b = blocks[j];
