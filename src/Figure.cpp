@@ -221,62 +221,6 @@ else if(figenum == Fig::I)
     }
 }
 
-else
-{
-        vector<vector<int>> temp = {
-         {0, 0},
-         {0, 0},
-         };
-
-    int xpos{0};
-    int ypos{0};
-
-    bool found = false;
-
-    for (int r = 0; r < figmatrix.size(); ++r)
-    {
-        for (int c = 0; c < figmatrix.size() ; ++c)
-        {
-            if(figmatrix[r][c] == 1 && !(found))
-            {
-                xpos = blocks[0]->getPosition().x - blocksize*c;
-                ypos = blocks[0]->getPosition().y - blocksize*r;
-                found = true;
-            }
-        }
-    }
-
-    cout << xpos << endl;
-    cout << ypos << endl;
-
-    for (int r = 0; r < figmatrix.size(); ++r)
-    {
-        for (int c = 0; c < figmatrix.size() ; ++c)
-        {
-            temp[c][figmatrix.size() - 1 -r] =
-            figmatrix[r][c];
-        }
-    }
-
-    figmatrix = temp;
-
-    //För att sätta in blocks i den roterade matrisen
-    int index = 0;
-    for (int r = 0; r < figmatrix.size(); ++r)
-    {
-        for (int c = 0; c < figmatrix.size() ; ++c)
-        {
-            if(figmatrix[r][c] == 1)
-            {
-                RectangleShape* block = blocks[index];
-                block->setPosition(Vector2f(xpos+ blocksize*c, ypos + blocksize*r));
-                index++;
-            }
-        }
-    }
-
-}
-
 }
 
 

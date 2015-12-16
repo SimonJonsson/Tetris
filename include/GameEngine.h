@@ -26,7 +26,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Figure.h"
-#include "Figures.h"
+//#include "Figures.h"
 
 typedef sf::Vector2<int> Position;
 
