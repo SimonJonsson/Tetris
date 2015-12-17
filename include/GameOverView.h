@@ -34,7 +34,6 @@ private:
     sf::RenderWindow* window;
 public:
     GameOverView(sf::RenderWindow*);
-    //Kanske bara standardkonstruktor
     ~GameOverView() = default;
 
     void               update() override;
@@ -48,6 +47,7 @@ public:
     int                getScore();
     bool               getHighScore();
     void               eventhandler(sf::Event&);
+    void               eraseLetter();
 
     void leftClick()  override;
     void rightClick() override;

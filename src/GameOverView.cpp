@@ -39,6 +39,7 @@ GameOverView::GameOverView(sf::RenderWindow* windowptr)
 void GameOverView::update()
 {
     window->draw(GameOver_text);
+    //Om spelaren har fått en highscore, ska spelaren kunna skriva in sitt namn
     if(highscore)
     {
         GameOver_message.setString("You got a high score!");
@@ -56,6 +57,8 @@ void GameOverView::update()
 
 void GameOverView::readHighScores()
 {
+    //Om spelaren spelar flera gånger under samma körning så måste
+    //highscores rensas
     highscores.clear();
     HighScoreInfo highScoreEntry;
     ifstream infile("res/highscore.txt");
@@ -74,13 +77,11 @@ void GameOverView::readHighScores()
         }
     }
     infile.close();
-
-    for(int i = 0; i < highscores.size(); ++i)
-        cout << highscores[i].name << " " << highscores[i].score << endl;
 }
 
 int GameOverView::compareScore()
 {
+    //Kollar var på listan en spelare eventuellt ska placeras
     readHighScores();
     pos = 0;
     if(highscores.size() > 0)
@@ -128,12 +129,23 @@ int GameOverView::getScore()
 
 void GameOverView::eventhandler(sf::Event& event)
 {
+    //Vid textinmatning ska spelaren kunna skriva in sitt namn, om spelaren
+    //har fått tillräckligt mycket poäng.
     if(highscore && event.type == sf::Event::TextEntered && getName().size() < 12)
     {
         char input = static_cast<char>(event.text.unicode);
         if(isalnum(input))
             setName(getName()+ input);
     }
+}
+
+void GameOverView::eraseLetter()
+{
+
+    if(name.size() > 0)
+        name.pop_back();
+
+    Input_text.setString(name);
 }
 
 void GameOverView::leftClick()
@@ -143,6 +155,8 @@ void GameOverView::leftClick()
 
 void GameOverView::rightClick()
 {
+    //Om spelaren har matat in ett namn, så ska spelaren in i
+    //highscore-listan
     if(getName().size() > 0)
     {
         ofstream outfile("res/highscore.txt", ios::out);
@@ -158,23 +172,29 @@ void GameOverView::rightClick()
 
             int n{0};
 
+            //I loopen byggs highscore-listan upp igen.
             while(n < highscores.size() && n < 10)
             {
                 if(n == pos)
                     highscores.insert(it, input);
 
-                outfile << highscores[n].name << " " << highscores[n].score << endl;
+                outfile << highscores[n].name << " "
+                        << highscores[n].score << endl;
 
                 if(n != pos)
                     ++it;
                 ++n;
             }
 
-            if(pos == highscores.size())
+            //Om spelaren hamnar sist i highscore-listan, så måste spelaren
+            //in sist i listan
+            if(pos == highscores.size() && pos < 10)
                 outfile << input.name << " " << input.score << endl;
         }
         outfile.close();
     }
+
+    //Namn rensas när spelaren lämnar GameOverView
     Input_text.setString("");
     setName("");
 }
