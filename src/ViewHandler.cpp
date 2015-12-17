@@ -230,6 +230,19 @@ void ViewHandler::inputHandler()
     {
         changeView("MenuView");
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
+    {
+        if (typeid(*currentView) == typeid(GameOverView) && !backspaceBounce)
+        {
+            gameOverView->eraseLetter();
+        }
+        backspaceBounce = true;
+    }
+    else
+    {
+        backspaceBounce = false;
+    }
 }
 
 /*
