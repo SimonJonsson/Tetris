@@ -243,8 +243,8 @@ for(int row = fieldPosY; row <= fieldPosY+fieldHeight; row += 20)
 {
     Vertex line[] =
     {
-    Vertex(Vector2f(fieldPosX, row), Color(c1, c2, c3, 230)),
-    Vertex(Vector2f(fieldPosX+fieldWidth, row),Color(c4,c5,c6,240))
+    Vertex(Vector2f(fieldPosX, row), Color(c1, c2, c3, 210)),
+    Vertex(Vector2f(fieldPosX+fieldWidth, row),Color(c4,c5,c6,210))
     };
     window->draw(line, 2,Lines);
 }
@@ -253,8 +253,8 @@ for(int col = fieldPosX; col <= fieldPosX+fieldWidth; col += 20)
 {
     Vertex line[] =
     {
-    Vertex(Vector2f(col, fieldPosY), Color(c1, c2, c3,230)),
-    Vertex(Vector2f(col, fieldPosY+fieldHeight),Color(c4,c5,c6,255))
+    Vertex(Vector2f(col, fieldPosY), Color(c1, c2, c3,210)),
+    Vertex(Vector2f(col, fieldPosY+fieldHeight),Color(c4,c5,c6,210))
     };
 
     window->draw(line, 2,Lines);
@@ -271,7 +271,7 @@ void GameView::drawGhost()
         int moveCount=0;
         for(RectangleShape* b : figblocks)
         {
-            b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 110));
+            b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 105));
         }
         while(!gameEngine->collides(currentFigure))
         {

@@ -44,7 +44,6 @@ GameEngine::GameEngine(Vector2<int> fieldPosition, int boardHeight, int boardWid
     startPos = Position(fieldPos.x + fWidth / 2  - blockSize, fieldPos.y);
     nextPos = nextPosition;
     currentFigure = generateRandomFigure();
-    currentFigure = new Figure(Fig::I);
     currentFigure->setPos(startPos.x, startPos.y);
     nextFigure = generateRandomFigure();
     shift=0;
@@ -109,7 +108,6 @@ void GameEngine::update(long dt)
         currani -= dt;
         if(currani <= 0)
         {
-            cout << "currani <= 0" << endl;
             int cleared = clearFullRows();
             increaseScore(scorePerRow*cleared*((difficulty+1)*(difficulty+1))); //+1 due to initial diff=0
             updateDifficulty();
@@ -146,7 +144,6 @@ void GameEngine::update(long dt)
                     placeFigure();
                     if(fullRows())
                     {
-                        cout << "NOW ANIMATING"<< endl;
                         currani = animationTime;
                     } else
                     {
