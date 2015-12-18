@@ -157,9 +157,10 @@ void ViewHandler::inputHandler()
 
             }
 
-            if (typeid(*currentView) == typeid(GameOverView))
+            if (typeid(*currentView) == typeid(GameOverView) && (gameOverView->getName().size() > 0 || !gameOverView->getHighScore()))
             {
                 changeView("HighScoreView");
+                gameOverView->clearName();
             }
         }
     }
@@ -272,6 +273,7 @@ void ViewHandler::outputHandler()
             gameOverView->setScore(gameView->getScore());
             gameOverView->checkScore();
             currentView = gameOverView;
+
         }
         else
         {
@@ -306,8 +308,9 @@ void ViewHandler::changeView(string newView)
     {
         delete gameOverView;
         gameOverView = new GameOverView(&window);
-        currentView = gameOverView;
         gameOverView->setScore(gameView->getScore());
+        gameOverView->checkScore();
+        currentView = gameOverView;
     }
     else
     {

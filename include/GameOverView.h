@@ -48,6 +48,7 @@ public:
     bool               getHighScore();
     void               eventhandler(sf::Event&);
     void               eraseLetter();
+    void               clearName();
 
     void leftClick()  override;
     void rightClick() override;

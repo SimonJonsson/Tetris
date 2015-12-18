@@ -148,6 +148,11 @@ void GameOverView::eraseLetter()
     Input_text.setString(name);
 }
 
+void GameOverView::clearName()
+{
+    setName("");
+    Input_text.setString("");
+}
 void GameOverView::leftClick()
 {
 
@@ -195,8 +200,6 @@ void GameOverView::rightClick()
     }
 
     //Namn rensas när spelaren lämnar GameOverView
-    Input_text.setString("");
-    setName("");
 }
 
 void GameOverView::upClick()

@@ -1,4 +1,10 @@
+Rebecka 70300
+John 64900
 Grayson 16400
 axel 3050
 Grayson 2300
-axel 800
+axel 1600
+axel 1450
+Simon 1300
+Simon 1050
+axel 1000
