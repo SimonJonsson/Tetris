@@ -44,9 +44,19 @@ GameEngine::GameEngine(Vector2<int> fieldPosition, int boardHeight, int boardWid
     startPos = Position(fieldPos.x + fWidth / 2  - blockSize, fieldPos.y);
     nextPos = nextPosition;
     currentFigure = generateRandomFigure();
+    currentFigure = new Figure(Fig::I);
     currentFigure->setPos(startPos.x, startPos.y);
     nextFigure = generateRandomFigure();
-    nextFigure->setPos(nextPos.x, nextPos.y);
+    shift=0;
+    if(nextFigure->figenum ==  Fig::I)
+    {
+        shift = -10;
+    }
+    else if(nextFigure->figenum ==  Fig::O)
+    {
+        shift = 10;
+    }
+    nextFigure->setPos(nextPos.x+shift, nextPos.y);
 
 }
 
@@ -71,32 +81,98 @@ GameEngine::~GameEngine()
  */
 void GameEngine::update(long dt)
 {
-    if(!gameOver && !gamePaused )
+    if(currani>0)
     {
-        timeStill += dt;
-        if(timeStill > moveTime)
+        for(int row = fieldPos.y; row <= fieldPos.y+fHeight-blockSize;row+=blockSize)
         {
-            bool shouldPlace = translate(currentFigure,0,1);
-            timeStill = 0;
-            if (shouldPlace)
+            vector<RectangleShape*> rowField;
+            int blocksInRow = 0;
+            for(RectangleShape* b : blockField)
             {
-                placeFigure();
-                nextFigure->setPos(startPos.x,startPos.y);
-                currentFigure = nextFigure;
-                nextFigure = generateRandomFigure();
-                nextFigure->setPos(nextPos.x, nextPos.y);
-                timeStill = 0;
-                if(collides(currentFigure)) //in default pos. -> can only collide with blockfield.
+                if(b->getPosition().y == row)
                 {
-                    gameOver = true;
+                    blocksInRow++;
+                    rowField.push_back(b);
+
+                }
+            }
+            int rowamount = fWidth/blockSize;
+            if(blocksInRow == rowamount)
+            {
+                int alpha = 255;
+                for(RectangleShape* b : rowField)
+                {
+                    b->setFillColor(Color(rand() %200+55,rand() %200+55,rand() %200+55, alpha));
                 }
             }
         }
-        int cleared = clearFullRows();
-        if(cleared != 0)
-       increaseScore(scorePerRow*cleared*((difficulty+1)*(difficulty+1))); //+1 due to initial diff=0
-       updateDifficulty();
+        currani -= dt;
+        if(currani <= 0)
+        {
+            cout << "currani <= 0" << endl;
+            int cleared = clearFullRows();
+            increaseScore(scorePerRow*cleared*((difficulty+1)*(difficulty+1))); //+1 due to initial diff=0
+            updateDifficulty();
 
+            nextFigure->setPos(startPos.x,startPos.y);
+                        currentFigure = nextFigure;
+                        nextFigure = generateRandomFigure();
+                        shift=0;
+                        if(nextFigure->figenum ==  Fig::I)
+                        {
+                            shift = -10;
+                        }
+                        else if(nextFigure->figenum ==  Fig::O)
+                        {
+                            shift = 10;
+                        }
+                        nextFigure->setPos(nextPos.x+shift, nextPos.y);
+                        if(collides(currentFigure)) //in default pos. -> can only collide with blockfield.
+                        {
+                            gameOver = true;
+                        }
+        }
+    } else
+    {
+        if(!gameOver && !gamePaused )
+        {
+            timeStill += dt;
+            if(timeStill > moveTime)
+            {
+                bool shouldPlace = translate(currentFigure,0,1);
+                timeStill = 0;
+                if (shouldPlace)
+                {
+                    placeFigure();
+                    if(fullRows())
+                    {
+                        cout << "NOW ANIMATING"<< endl;
+                        currani = animationTime;
+                    } else
+                    {
+                        nextFigure->setPos(startPos.x,startPos.y);
+                        currentFigure = nextFigure;
+                        nextFigure = generateRandomFigure();
+                        shift=0;
+                        if(nextFigure->figenum ==  Fig::I)
+                        {
+                            shift = -10;
+                        }
+                        else if(nextFigure->figenum ==  Fig::O)
+                        {
+                            shift = 10;
+                        }
+                        nextFigure->setPos(nextPos.x+shift, nextPos.y);
+                        if(collides(currentFigure)) //in default pos. -> can only collide with blockfield.
+                        {
+                            gameOver = true;
+                        }
+                    }
+
+                    timeStill = 0;
+                }
+            }
+        }
     }
 }
 
@@ -105,7 +181,7 @@ void GameEngine::update(long dt)
  */
 void GameEngine::leftClick()
 {
-    if(!gameOver)
+    if(!gameOver && currani <= 0)
     {
         translate(currentFigure,-1,0);
     }
@@ -116,7 +192,7 @@ void GameEngine::leftClick()
  */
 void GameEngine::rightClick()
 {
-    if(!gameOver)
+    if(!gameOver && currani <= 0)
     {
         translate(currentFigure,1,0);
     }
@@ -127,7 +203,7 @@ void GameEngine::rightClick()
  */
 void GameEngine::upClick()
 {
-    if(!gameOver)
+    if(!gameOver && currani <=0)
     {
         currentFigure->rotate();
         if(collides(currentFigure))
@@ -135,13 +211,24 @@ void GameEngine::upClick()
             currentFigure->translate(-1,0);
             if(collides(currentFigure))
             {
-                currentFigure->translate(1,0);
-                currentFigure->translate(1,0);
+                currentFigure->translate(-1,0);
                 if(collides(currentFigure))
                 {
-                    currentFigure->rotate();
-                    currentFigure->rotate();
-                    currentFigure->rotate();
+                    currentFigure->translate(1,0);
+                    currentFigure->translate(1,0);
+                    currentFigure->translate(1,0);
+                    if(collides(currentFigure))
+                    {
+                        currentFigure->translate(1,0);
+                        if(collides(currentFigure))
+                        {
+                            currentFigure->translate(-1,0);
+                            currentFigure->translate(-1,0);
+                            currentFigure->rotate();
+                            currentFigure->rotate();
+                            currentFigure->rotate();
+                        }
+                    }
                 }
             }
         }
@@ -153,7 +240,7 @@ void GameEngine::upClick()
  */
 void GameEngine::downClick()
 {
-    if(!gameOver)
+    if(!gameOver && currani <=0)
     {
         if(translate(currentFigure,0,1))
         {
@@ -448,5 +535,29 @@ void GameEngine::increaseScore(long amount)
     }
 }
 
+/* FUNCTION bool GameEngine::fullRows()
+ * Increases score by specified amount of points.
+ */
+bool GameEngine::fullRows()
+{
+    int rowamount = fWidth/blockSize;
+    for(int row = fieldPos.y; row <= fieldPos.y+fHeight-blockSize;row+=blockSize)
+    {
+        int blocksInRow = 0;
+        for(RectangleShape* b : blockField)
+        {
+            if(b->getPosition().y == row)
+            {
+                blocksInRow++;
+
+            }
+        }
+        if(blocksInRow == rowamount)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 //////////////////////-----(END) PRIVATE FUNCTIONS-----///////////////////////////////////
 

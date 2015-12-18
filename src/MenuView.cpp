@@ -7,6 +7,7 @@ using namespace std;
 
 MenuView::MenuView(sf::RenderWindow* windowptr)
 {
+    int shift = 50;
     //Laddar in den font som ska användas för texten
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
 
@@ -16,9 +17,9 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     Game_text.setString("teTRis");
     Game_text.setColor(textcolor);
     Game_text.setCharacterSize(160);
-    Game_text.setPosition(160,0);
+    Game_text.setPosition(160+shift-35,0);
 
-    StartGame_button.setPosition(245, 250);
+    StartGame_button.setPosition(245+shift, 250);
     StartGame_button.setFillColor(sf::Color::Black);
     StartGame_button.setOutlineThickness(5);
     StartGame_button.setOutlineColor(highlight);
@@ -27,9 +28,9 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     StartGame_text.setString("Play Game");
     StartGame_text.setColor(textcolor);
     StartGame_text.setCharacterSize(40);
-    StartGame_text.setPosition(255, 240);
+    StartGame_text.setPosition(255+shift, 240);
 
-    Highscore_button.setPosition(245, 330);
+    Highscore_button.setPosition(245+shift, 330);
     Highscore_button.setFillColor(sf::Color::Black);
     Highscore_button.setOutlineThickness(5);
     Highscore_button.setOutlineColor(background);
@@ -38,9 +39,9 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     Highscore_text.setString("higH Score");
     Highscore_text.setColor(textcolor);
     Highscore_text.setCharacterSize(40);
-    Highscore_text.setPosition(250, 320);
+    Highscore_text.setPosition(250+shift, 320);
 
-    Exit_button.setPosition(245, 410);
+    Exit_button.setPosition(245+shift, 410);
     Exit_button.setFillColor(sf::Color::Black);
     Exit_button.setOutlineThickness(5);
     Exit_button.setOutlineColor(background);
@@ -49,7 +50,7 @@ MenuView::MenuView(sf::RenderWindow* windowptr)
     Exit_text.setString("Exit");
     Exit_text.setColor(textcolor);
     Exit_text.setCharacterSize(40);
-    Exit_text.setPosition(305, 400);
+    Exit_text.setPosition(305+shift, 400);
 
     window = windowptr;
     focus = "GameView";

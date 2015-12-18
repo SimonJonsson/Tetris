@@ -31,7 +31,7 @@ GameView::GameView(RenderWindow* windowptr)
 {
 
     Vector2<int> fieldPosition = Vector2<int>(fieldPosX,fieldPosY);
-    Vector2<int> nextPos = Vector2<int>(440,60);
+    Vector2<int> nextPos = Vector2<int>(450+nextShift,70+nextShifty);
     gameEngine = new GameEngine(fieldPosition,fieldHeight,fieldWidth,nextPos);
 
     coolFont.loadFromFile("res/fonts/nextwave.ttf");
@@ -192,12 +192,12 @@ void GameView::initGraphics()
     nextFigureText.setString("NEXT FIGURE");
     nextFigureText.setColor(textcolor);
     nextFigureText.setCharacterSize(40);
-    nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset,
-                                scoreNumText.getPosition().y);
+    nextFigureText.setPosition(fieldPosX + fieldWidth + fieldOffset+nextShift-45,
+                                scoreNumText.getPosition().y+nextShifty);
 
     // The box where the next figure is placed in
-    nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset,
-                                fieldPosY);
+    nextFigureBox.setPosition(fieldPosX + fieldWidth + fieldOffset+nextShift,
+                                fieldPosY+nextShifty);
     nextFigureBox.setFillColor(sf::Color::Black);
 
     // The huge "PAUSE" text
@@ -264,32 +264,35 @@ for(int col = fieldPosX; col <= fieldPosX+fieldWidth; col += 20)
 
 void GameView::drawGhost()
 {
-    vector<RectangleShape*> figblocks = currentFigure->getBlocks();
-    Vector2f currentPosition(currentFigure->pos.x, currentFigure->pos.y);
-    int moveCount=0;
-    for(RectangleShape* b : figblocks)
+    if(gameEngine->currani <= 0)
     {
-        b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 110));
-    }
-    while(!gameEngine->collides(currentFigure))
-    {
-        moveCount++;
-        currentFigure->translate(0,1);
-    }
-    currentFigure->translate(0,-1);
-    moveCount--;
-
-   for(RectangleShape* b : figblocks)
-    {
-       window->draw(*b);
-    }
-
-    for(RectangleShape* b : figblocks)
-    {
-       b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 255));
-    }
-    for(int i = 0; i < moveCount; i++)
-    {
+        vector<RectangleShape*> figblocks = currentFigure->getBlocks();
+        Vector2f currentPosition(currentFigure->pos.x, currentFigure->pos.y);
+        int moveCount=0;
+        for(RectangleShape* b : figblocks)
+        {
+            b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 110));
+        }
+        while(!gameEngine->collides(currentFigure))
+        {
+            moveCount++;
+            currentFigure->translate(0,1);
+        }
         currentFigure->translate(0,-1);
+        moveCount--;
+
+       for(RectangleShape* b : figblocks)
+        {
+           window->draw(*b);
+        }
+
+        for(RectangleShape* b : figblocks)
+        {
+           b->setFillColor(Color(b->getFillColor().r, b->getFillColor().g, b->getFillColor().b, 255));
+        }
+        for(int i = 0; i < moveCount; i++)
+        {
+            currentFigure->translate(0,-1);
+        }
     }
 }

@@ -43,7 +43,6 @@ public:
     ~ViewHandler() = default;
 
     void    initiate();
-    //Problem uppstår när vi skall stänga av spelet.
 
 
 private:
@@ -66,6 +65,8 @@ private:
     int noBounces       = 20; //Number of bounces before we debounce
     int gNoBounces      = 3; //Number of bounces before we debounce in GameView
     std::string input{""};
+    sf::Texture texture;
+    sf::RectangleShape background;
 
     bool pause          = false;
     bool upBounce       = false;

@@ -62,6 +62,8 @@ private:
     int fieldHeight = 2*fieldWidth;
     int fieldOffset = 10;
     int blocksize = fieldWidth/10;
+    int nextShift = 110;
+    int nextShifty = 250;
     int scoreWidth;
 
     long int score = 0;

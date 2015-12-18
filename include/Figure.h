@@ -41,6 +41,7 @@ protected:
     sf::Color color;
 
 private:
+    sf::Texture texture;
     int blocksize = 20;
 
 };

@@ -24,6 +24,7 @@
 #include <typeinfo>
 
 using namespace std;
+using namespace sf;
 
 //Instantiates all the views
 ViewHandler::ViewHandler()
@@ -33,6 +34,11 @@ ViewHandler::ViewHandler()
     gameView        = new GameView(&window);
     gameOverView    = new GameOverView(&window);
 
+
+    texture.loadFromFile("res/blocks/honey.jpg");
+    background = RectangleShape(Vector2f(800,800));
+    background.setTexture(&texture);
+    background.setTextureRect({0,0,800,800});
     //Preliminary test for gameOverView
     //gameOverView->checkScore();
     changeView("MenuView");
@@ -254,6 +260,7 @@ void ViewHandler::outputHandler()
     // Clear screen, screen background is white.
     window.clear(sf::Color(60,60,60));
     // Update for currentView.
+    window.draw(background);
     currentView->update();
     // Update the window
     window.display();

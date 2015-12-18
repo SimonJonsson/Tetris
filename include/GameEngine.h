@@ -49,11 +49,13 @@ private:
     int diffCleared = 0; //Number of rows cleared on current difficulty
     int difficulty = 0; //Difficulty of game. Based on number of cleared rows.
     long initMoveTime = 800;//850 //Move time(ms) for difficulty 0.
+    int animationTime = 950; //Time to animate row dissapearing.
+
     int moveTime = 0; //Time(ms) until block should be moved. Based on difficulty.
     int timeStill = 0; //How long time(ms) has gone since block was moved.
     int blockSize = 20; //Width/Height of one block. This will be stepsize when translating.
     long score = 0; //Current accumulated score.
-    int scorePerRow = 100;
+    int scorePerRow = 100; //How many points player recieves per row
     bool gameOver = false; //Has the game ended.
     bool gamePaused = false; //Has the game been paused.
 
@@ -66,10 +68,12 @@ private:
     Figure* generateRandomFigure(); //Generate a random figure.
     int uniRand(); //Generate random number in range 1->number of figures.
     int clearFullRows(); //Removes full rows from board and returns number of rows removed.
+    bool fullRows(); //check if full rows
     void increaseScore(long amount); //Increases score by specified amount of points.
-
+    int shift = 0; //Accounting for alignment error in gameview.
 public:
- bool translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
+    int currani = 0;
+    bool translate(Figure* fig, int x, int y); //Translate figure one step. x,y=0 nothing. x=-1, left, x=1 right, y=-1 up, y=1 down.
     bool collides(Figure* fig); //Check if figure collides with blockfield/borders
     GameEngine(sf::Vector2<int> fieldPosition, int boardHeight, int boardWidth, sf::Vector2<int> nextPosition, int initialDifficulty=0); //Constructor.
     ~GameEngine(); //Destructor.

@@ -31,6 +31,7 @@ Figure::Figure(Fig r)
     switch (r)
     {
         case Fig::I:
+            texture.loadFromFile("res/blocks/block_purple.png");
             figmatrix =  {
                 {0, 0, 0, 0},
                 {1, 1, 1, 1},
@@ -41,6 +42,7 @@ Figure::Figure(Fig r)
             break;
 
         case Fig::J:
+             texture.loadFromFile("res/blocks/block_blue.png");
              figmatrix = {
                  {1, 0, 0},
                  {1, 1, 1},
@@ -49,6 +51,7 @@ Figure::Figure(Fig r)
             color = sf::Color::Blue;
             break;
         case Fig::L:
+            texture.loadFromFile("res/blocks/block_green.png");
             figmatrix = {
                 {0, 0, 1},
                 {1, 1, 1},
@@ -57,6 +60,7 @@ Figure::Figure(Fig r)
             color = sf::Color::Green;
             break;
         case Fig::O:
+            texture.loadFromFile("res/blocks/block_red.png");
             figmatrix = {
                 {1, 1},
                 {1, 1}
@@ -64,6 +68,7 @@ Figure::Figure(Fig r)
             color = sf::Color(255, 51, 0);
             break;
         case Fig::S:
+            texture.loadFromFile("res/blocks/block_orange.png");
             figmatrix = {
                 {0, 1, 1},
                 {1, 1, 0},
@@ -72,6 +77,7 @@ Figure::Figure(Fig r)
             color = sf::Color(0,255,255);
             break;
         case Fig::T:
+            texture.loadFromFile("res/blocks/block_white.png");
             figmatrix = {
                 {0, 1, 0},
                 {1, 1, 1},
@@ -80,6 +86,7 @@ Figure::Figure(Fig r)
             color = sf::Color(153, 102, 255);
             break;
         case Fig::Z:
+            texture.loadFromFile("res/blocks/block_yellow.png");
             figmatrix = {
             {1, 1, 0},
             {0, 1, 1},
@@ -101,7 +108,9 @@ Figure::Figure(Fig r)
             {
                 RectangleShape* block = new RectangleShape(sf::Vector2f(blocksize,blocksize));
                 block->setPosition(sf::Vector2f(blocksize*i,blocksize*j));
-                block->setFillColor(Figure::color);
+                block->setTexture(&texture);
+               // block->setFillColor(Color(180,180,180,170));
+
                 blocks.push_back(block);
             }
         }
